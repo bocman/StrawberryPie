@@ -1,0 +1,24 @@
+
+.test {
+     font-family: Arial, Helvetica, sans-serif;
+    color: #EBEBEB;
+    background: red;
+    font-size: 50px;   
+}
+
+.first_container{
+    width: 430px;
+}
+
+p.field_group  {
+    display: block;
+    margin-bottom: 7px;
+}
+
+form p input[type="text"], form p input[type="number"]{
+    padding: 6px;
+    font-size: 14px;
+
+    color: black;
+    width: 370px;
+}

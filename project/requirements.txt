@@ -1,0 +1,6 @@
+DJANGO
+install pip tweeks		->	https://pypi.python.org/pypi/django-widget-tweaks
+
+OSTALO
+
+install webcam on network		->	http://www.instructables.com/id/Raspberry-Pi-remote-webcam/

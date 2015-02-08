@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Clients <small>Add new</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Clients
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <hr>
+    <div class="first_container" />
+        <form action= "
+                    {% if client_id %}
+                        {% url 'settings:edit_client' client_id %}
+                    {% else %}
+                        {% url 'settings:add_client'%}
+                    {% endif %}
+                      "
+                    }
+
+                 method="post"> 
+            {% csrf_token %}
+            {% for field in client_form %}
+                <p class="field_group" />
+                    {{field.label}} </br>
+                    {{field}} </br>
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            {{error}}
+                        {% endfor %}
+                        <br>
+                    {% endif %}
+                    <small>{{field.help_text}}</small> </br>
+                </p>
+            {% endfor %}  
+            <hr>      
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+{% endblock %}
