@@ -10,7 +10,7 @@ from models import Client
 
 def clients_list(request):
 
-    clients = Client.objects.all()
+    clients = Client.active.all()
 
     return TemplateResponse(request, 'settings/clients.html', {
         'clients': clients
@@ -38,5 +38,14 @@ def add_edit_client(request, client_id=None):
         'client_id': client_id if client_id else None
         })
 
+def delete_client(self, client_id):
+    """
+    """
+
+    client = get_object_or_404(Client, pk=client_id)
+    try:
+        client.deleted = True
+    except:
+        pass
 
 

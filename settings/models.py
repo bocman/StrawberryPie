@@ -1,4 +1,5 @@
 from django.db import models
+from managers import ActiveClientsManager
 from django.utils.translation import ugettext as _
 
 
@@ -40,6 +41,9 @@ class Client(models.Model):
 
     class Meta:
         db_table = 'client'
+
+    objects = models.Manager()
+    active = ActiveClientsManager()
 
 
 
