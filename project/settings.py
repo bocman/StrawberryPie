@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'widget_tweaks',
     'settings'
 )
@@ -106,3 +107,9 @@ RADIO_STREAM_LINK = ""
 
 #Link which is used to stream video
 VIDEO_STREAM_LINK = ""
+
+#IP address of server
+IP_ADDRESS = "192.168.1.1"
+
+#Domain name of server
+DOMAIN_NAME = "malina.webhop.me:8000"

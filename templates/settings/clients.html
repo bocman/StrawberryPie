@@ -37,7 +37,8 @@
                         <tr>
                             <td>
                                 <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static "edit.png" %}" alt="Edit" /></a>
-                                <img src="{% static "remove.png" %}" alt="Remove" /> 
+
+                                <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static "remove.png" %}" alt="Remove" /> </a>
                             </td>
                             <td>{{client.id}}</td>
                             <td>{{client.name}}</td>

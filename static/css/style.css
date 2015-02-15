@@ -6,8 +6,21 @@
     font-size: 50px;   
 }
 
+.main {
+    margin: auto;
+}
+
 .first_container{
     width: 430px;
+    float: left;
+    margin-left: 20px;
+
+}
+
+.second_container{
+    width: 430px;
+    float: left; 
+    margin-left: 20px;
 }
 
 p.field_group  {
