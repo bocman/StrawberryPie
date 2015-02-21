@@ -3,9 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 
+from rest_framework import viewsets
 
 from forms import ClientForm
 from models import Client
+from serializers import ClientSerializer
 
 
 def clients_list(request):
@@ -55,3 +57,12 @@ def delete_client(self, client_id):
         pass
 
     return HttpResponseRedirect(reverse('settings:clients_list'))
+
+
+class ClientViewSet(viewsets.ModelViewSet):
+
+    """
+    API endpoint that allows Clients to be viewed or edited.
+    """
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer

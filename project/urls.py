@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^settings/', include('settings.urls', namespace='settings')),
+    url(r'^webservice/', include('rest_services.urls', namespace="webservice")),
 
     url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'project/index.html', 'redirect_field_name': 'nekaj.html'}),
     #url(r'^/lost_password$', 'django.contrib.auth.views.password_reset' name="lost_password")

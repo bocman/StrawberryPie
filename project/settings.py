@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_services',
     'widget_tweaks',
     'settings'
 )
@@ -73,6 +74,11 @@ DATABASES = {
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGINATE_BY': 10
 }
 
 # Internationalization
