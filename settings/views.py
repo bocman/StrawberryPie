@@ -3,21 +3,24 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 
+import logging
 from rest_framework import viewsets
 
 from forms import ClientForm
 from models import Client
 from serializers import ClientSerializer
 
+log = logging.getLogger(__name__)
 
 def clients_list(request):
     """
     TODO
     """
+
     clients = Client.active.all()
 
     return TemplateResponse(request, 'settings/clients.html', {
-        'clients': clients
+        'clients': clients,
     })
 
 
@@ -32,6 +35,7 @@ def add_edit_client(request, client_id=None):
         client = Client()
 
     if request.POST:
+        log.debug("Testiram in dela")
         client_form = ClientForm(request.POST, instance=client)
         if client_form.is_valid():
             client_form.save()
