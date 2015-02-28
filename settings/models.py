@@ -40,7 +40,7 @@ class Client(models.Model):
     )
     status = models.BooleanField(
         default=False,
-        help_text="If client is currently connected"
+        help_text="Is client is currently connected"
     )
     created = models.DateTimeField(auto_now=True)
 

@@ -35,7 +35,6 @@ def add_edit_client(request, client_id=None):
         client = Client()
 
     if request.POST:
-        log.debug("Testiram in dela")
         client_form = ClientForm(request.POST, instance=client)
         if client_form.is_valid():
             client_form.save()

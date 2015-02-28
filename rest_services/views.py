@@ -2,24 +2,19 @@ from django.forms import widgets
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-import logging
+from rest_framework import status
 from rest_framework.renderers import JSONRenderer
-from serializers import ClientSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from settings.models import Client
+from serializers import ClientSerializer
+
+import json
+import logging
 
 log = logging.getLogger(__name__)
 
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -35,10 +30,10 @@ def clients(request, format=None):
 
 
 @csrf_exempt
-@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
-def client_detail(request, pk, format=None,):
+@api_view(['GET', 'PATCH'])
+def client_detail(request, pk, data=None,):
     """
-    Retrieve, update or delete a client instance.
+    Get or update client information/s
     """
     try:
         client = Client.objects.get(pk=pk)
@@ -46,20 +41,21 @@ def client_detail(request, pk, format=None,):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = ClientSerializer(client)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = ClientSerializer(client, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = ClientSerializer(client)
+            return Response(serializer.data, status=HTTP_200_OK)
+        except:
+            log.info("Failed to get Client '%s' data", (client.name))
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'PATCH':
-        serializer = ClientSerializer(pk=pk)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        new_data = request.data
+        try:
+            Client.objects.filter(pk=pk).update(**new_data)
+            log.debug("Client '%s' has been updated", (client.name))
+            return Response(status=status.HTTP_200_OK)
+        except:
+            log.debug("Client '%s' failed to be updated", (client.name))
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
-        Client.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
