@@ -23,6 +23,8 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th></th>
+                            <th></th>
                             <th>ID</th> 
                             <th>Name</th>
                             <th>Description</th>
@@ -35,9 +37,15 @@
                     <tbody>
                     {% for client in clients%}
                         <tr>
+                            {% if client.status == True %}
+                               <td> <img src="{% static 'ok_icon.png' %}" title='Connected'></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
                             <td>
                                 <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static "edit.png" %}" alt="Edit" /></a>
-
+                            </td>
+                            <td>
                                 <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static "remove.png" %}" alt="Remove" /> </a>
                             </td>
                             <td>{{client.id}}</td>

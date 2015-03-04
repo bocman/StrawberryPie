@@ -87,11 +87,17 @@ a:link {
 
 <body>
 
-
+{% load staticfiles %}
 {% load widget_tweaks %}
 
+
   <div class="login">
+
+	<div>
+	   <img src="{% static "logo.png" %}" >
+
 	<h1>Login</h1>
+		</div> 
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 	{% csrf_token %}
 	{% if form.errors %}

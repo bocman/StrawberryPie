@@ -22,7 +22,6 @@ def clients(request, format=None):
     """
     List all code clients, or create a new client.
     """
-    log.info("sem v logih")
     if request.method == 'GET':
         client = Client.objects.all()
         serializer = ClientSerializer(client, many=True)

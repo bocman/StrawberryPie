@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0009_client_status'),
+        ('settings', '0015_auto_20150301_1607'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='client',
-            name='status',
-            field=models.BooleanField(default=False, help_text=b'Is client is currently connected'),
+            name='group',
+            field=models.OneToOneField(related_name='Group', null=True, default=None, blank=True, to='settings.Group'),
             preserve_default=True,
         ),
     ]

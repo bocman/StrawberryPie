@@ -7,14 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0009_client_status'),
+        ('settings', '0011_auto_20150301_1405'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='client',
-            name='status',
-            field=models.BooleanField(default=False, help_text=b'Is client is currently connected'),
-            preserve_default=True,
+            name='group',
         ),
     ]
