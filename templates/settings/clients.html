@@ -38,9 +38,11 @@
                     {% for client in clients%}
                         <tr>
                             {% if client.status == True %}
-                               <td> <img src="{% static 'ok_icon.png' %}" title='Connected'></td>
+                            
+                               <td stye="width=100px"> <img class="myDiv" src="{% static 'ok_icon.png' %}" title='Connected'></td>
                             {% else %}
-                                <td></td>
+                            
+                                <td style="width:35px"></td>
                             {% endif %}
                             <td>
                                 <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static "edit.png" %}" alt="Edit" /></a>
@@ -61,4 +63,5 @@
             </div>
         </div>
 
+    <script src="{{ STATIC_URL }}js/content/clients.js"></script>  
 {% endblock %}

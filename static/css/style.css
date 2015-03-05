@@ -30,3 +30,7 @@ form p input[type="text"], form p input[type="number"]{
 #advanced_content{
     border-style: groove; 
 } 
+
+.blink {
+    display: none !important;
+}
