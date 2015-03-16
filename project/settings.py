@@ -43,9 +43,9 @@ INSTALLED_APPS = (
     'settings'
 )
 
-TEMPLATE_DIRS = (        
+TEMPLATE_DIRS = (
     "%s/templates" % BASE_DIR,
- )
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,13 +61,13 @@ ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-LOGIN_REDIRECT_URL ="/home"
+LOGIN_REDIRECT_URL = "/dashboard"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project',
         'USER': 'root',
         'PASSWORD': 'bostjan123',
@@ -100,24 +100,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_PATH = os.path.join(BASE_DIR,'static')
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
     '%s/static/images' % BASE_DIR,
-    
+
 )
 
-#Link which is in use to stream radio
+# Link which is in use to stream radio
 RADIO_STREAM_LINK = ""
 
-#Link which is used to stream video
+# Link which is used to stream video
 VIDEO_STREAM_LINK = ""
 
-#IP address of server
+# IP address of server
 IP_ADDRESS = "192.168.1.130"
 
-#Domain name of server
+# Domain name of server
 DOMAIN_NAME = "malina.webhop.me:8000"
 
 LOGGING = {
@@ -134,7 +134,7 @@ LOGGING = {
     'formatters': {
         'main_formatter': {
             'format': '%(levelname)s:%(name)s: %(message)s '
-                     '(%(asctime)s; %(filename)s:%(lineno)d)',
+            '(%(asctime)s; %(filename)s:%(lineno)d)',
             'datefmt': "%Y-%m-%d %H:%M:%S",
         },
     },
@@ -144,27 +144,27 @@ LOGGING = {
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'console':{
+        'console': {
             'level': 'DEBUG',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'main_formatter',
         },
-        'production_file':{
-            'level' : 'DEBUG',
-            'class' : 'logging.handlers.RotatingFileHandler',
-            'filename' : '/var/log/StrawberryPie/strawberry_info.log',
-            'maxBytes': 1024*1024*5, # 5 MB
-            'backupCount' : 7,
+        'production_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/StrawberryPie/strawberry_info.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 7,
             'formatter': 'main_formatter',
             'filters': ['require_debug_false'],
         },
-        'debug_file':{
-            'level' : 'DEBUG',
-            'class' : 'logging.handlers.RotatingFileHandler',
-            'filename' : '/var/log/StrawberryPie/strawberry.log',
-            'maxBytes': 1024*1024*5, # 5 MB
-            'backupCount' : 7,
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/StrawberryPie/strawberry.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 7,
             'formatter': 'main_formatter',
             'filters': ['require_debug_true'],
         },

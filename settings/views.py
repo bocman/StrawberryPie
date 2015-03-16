@@ -12,12 +12,13 @@ from serializers import ClientSerializer
 
 log = logging.getLogger(__name__)
 
+
 def clients_list(request):
     """
     TODO
     """
 
-    clients = Client.active.all()
+    clients = Client.active.all().order_by('disabled')
 
     return TemplateResponse(request, 'settings/clients.html', {
         'clients': clients,

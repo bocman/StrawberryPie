@@ -24,7 +24,6 @@
                         <tr>
                             <th></th>
                             <th></th>
-                            <th></th>
                             <th>ID</th> 
                             <th>Name</th>
                             <th>Description</th>
@@ -36,19 +35,28 @@
                     </thead>
                     <tbody>
                     {% for client in clients%}
-                        <tr>
+                       
                             {% if client.status == True %}
-                            
+                                <tr class="success">                
                                <td stye="width=100px"> <img class="myDiv" src="{% static 'ok_icon.png' %}" title='Connected'></td>
                             {% else %}
-                            
+                                <tr>
                                 <td style="width:35px"></td>
                             {% endif %}
                             <td>
                                 <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static "edit.png" %}" alt="Edit" /></a>
-                            </td>
-                            <td>
+
                                 <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static "remove.png" %}" alt="Remove" /> </a>
+
+                                <a href="{%url 'settings:edit_client' client.id%}" >
+                                <img src=
+                                    "{% if client.disabled == True %}
+                                        {% static 'lock.png' %}
+                                     {% else %}
+                                        {% static 'unlock.png' %}
+                                     {% endif %}"
+                                     alt="Edit" /></a>
+
                             </td>
                             <td>{{client.id}}</td>
                             <td>{{client.name}}</td>
@@ -62,6 +70,6 @@
                 </table>
             </div>
         </div>
-
+    <hr>
     <script src="{{ STATIC_URL }}js/content/clients.js"></script>  
 {% endblock %}

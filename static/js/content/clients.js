@@ -27,6 +27,5 @@ function blink(elem, times, speed) {
         setTimeout(function () {
             blink(elem, times, speed);
         }, speed);
-        times -= .5;
     }
 }

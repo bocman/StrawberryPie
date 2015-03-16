@@ -92,12 +92,14 @@ a:link {
 
 
   <div class="login">
-
+	{% comment %}
 	<div>
 	   <img src="{% static "logo.png" %}" >
-
+	 </div>   
+	 {%endcomment%}
+	 
 	<h1>Login</h1>
-		</div> 
+		
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 	{% csrf_token %}
 	{% if form.errors %}
