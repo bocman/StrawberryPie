@@ -2,6 +2,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 import logging
 from rest_framework import viewsets
@@ -13,6 +15,13 @@ from serializers import ClientSerializer
 log = logging.getLogger(__name__)
 
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+
+@login_required
 def clients_list(request):
     """
     TODO
@@ -25,6 +34,7 @@ def clients_list(request):
     })
 
 
+@login_required
 def add_edit_client(request, client_id=None):
     """ 
     TODO
@@ -49,6 +59,7 @@ def add_edit_client(request, client_id=None):
     })
 
 
+@login_required
 def delete_client(self, client_id):
     """
     """
