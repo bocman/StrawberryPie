@@ -113,7 +113,7 @@ STATICFILES_DIRS = (
 )
 
 # Link which is in use to stream radio
-RADIO_STREAM_LINK = ""
+RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
 
 # Link which is used to stream video
 VIDEO_STREAM_LINK = ""
