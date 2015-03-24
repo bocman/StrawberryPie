@@ -37,7 +37,7 @@
                     <tbody>
                     {% for client in clients%}
                        
-                            {% if client.status == True %}
+                            {% if client.is_active and client.last_active %}
                                 <tr class="success">                
                                <td stye="width:100px"> <img class="myDiv" src="{% static 'ok_icon.png' %}" title='Connected'></td>
                             {% else %}

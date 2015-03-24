@@ -1,7 +1,7 @@
 from django.db import models
 from core.managers import ActiveClientsManager
 from django.utils.translation import ugettext as _
-
+from django.utils import timezone as tz
 
 class Group(models.Model):
 
@@ -33,6 +33,12 @@ class Client(models.Model):
     This model is used to store Clients, which are in use to connect to
     Strawberry Pie
     """
+
+    class Meta:
+        db_table = 'client'
+
+    objects = models.Manager()
+    active = ActiveClientsManager()
 
     name = models.CharField(
         verbose_name=_('Client name'),
@@ -66,10 +72,10 @@ class Client(models.Model):
         help_text="Status which indicate if client is assigned as disabled"
     )
     last_active = models.DateTimeField(default=None)
+    
     created = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        db_table = 'client'
+    def is_active(self):
+        now = tz.now()
+        return True if (now - self.last_active).seconds < 60 else False 
 
-    objects = models.Manager()
-    active = ActiveClientsManager()
