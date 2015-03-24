@@ -47,7 +47,6 @@ def clients_list(request):
     :return: List of Client objects
     """
     clients = Client.active.all().order_by('disabled')
-    log.info("sem "+ str(clients[0].is_active() ))
     return TemplateResponse(request, 'settings/clients.html', {
         'clients': clients,
     })

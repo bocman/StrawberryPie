@@ -49,7 +49,6 @@ def client_detail(request, pk, data=None,):
 
     elif request.method == 'PATCH':
         new_data = request.data
-        print new_data
         try:
             Client.objects.filter(pk=pk).update(**new_data)
             log.debug("Client '%s' has been updated", (client.name))
