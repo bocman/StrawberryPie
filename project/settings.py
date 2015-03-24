@@ -90,7 +90,8 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# "UTC", "Europe/Ljubljana"
+TIME_ZONE = 'Europe/Ljubljana'
 
 USE_I18N = True
 

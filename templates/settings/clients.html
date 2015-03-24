@@ -29,7 +29,8 @@
                             <th>Description</th>
                             <th>IP address</th>
                             <th>Port</th>
-                            <th>Created</th> 
+                            <th>Created</th>
+                            <th>Last active</th> 
 
                         </tr>
                     </thead>
@@ -58,6 +59,11 @@
                             <td>{{client.ip_address}}</td>
                             <td>{{client.port}}</td>
                             <td>{{client.created}}</td>
+                            {% ifequal client.last_active None %}
+                                <td> - </td>
+                            {% else %}
+                                <td>{{client.last_active}}</td>
+                            {% endifequal %}
                         </tr>
                     {% endfor %}
                     </tbody>

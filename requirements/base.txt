@@ -1,0 +1,1 @@
+sudo pip install pytz // za django timezone priporoceno

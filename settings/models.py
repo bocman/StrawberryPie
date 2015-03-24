@@ -65,10 +65,7 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    status = models.BooleanField(
-        default=False,
-        help_text="Is client is currently connected"
-    )
+    last_active = models.DateTimeField(default=None)
     created = models.DateTimeField(auto_now=True)
 
     class Meta:
