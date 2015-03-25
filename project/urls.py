@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
 
 import logging
 
@@ -15,10 +14,10 @@ urlpatterns = patterns('',
                        # url(r'^blog/', include('blog.urls')),
 
   url(r'^admin/', include(admin.site.urls)),
-
+  url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
   url(r'^settings/', include('settings.urls', namespace='settings')),
-  url(r'^dashboard/$', TemplateView.as_view(template_name='dashboard/dashboard.html'), name="dashboard"),
   url(r'^webservice/', include('rest_services.urls', namespace="webservice")),
+  
   url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'project/index.html', 'redirect_field_name': 'nekaj.html'}),
 
   )

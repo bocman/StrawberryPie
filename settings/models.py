@@ -1,5 +1,5 @@
 from django.db import models
-from core.managers import ActiveClientsManager
+from core.managers import ActiveClientsManager, OnlineClientsManager
 from django.utils.translation import ugettext as _
 from django.utils import timezone as tz
 
@@ -39,6 +39,7 @@ class Client(models.Model):
 
     objects = models.Manager()
     active = ActiveClientsManager()
+    online = OnlineClientsManager()
 
     name = models.CharField(
         verbose_name=_('Client name'),
@@ -77,5 +78,5 @@ class Client(models.Model):
 
     def is_active(self):
         now = tz.now()
-        return True if (now - self.last_active).seconds < 60 else False 
+        return True if self.last_active and (now - self.last_active).seconds < 60 else False 
 

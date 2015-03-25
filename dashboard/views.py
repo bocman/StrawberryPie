@@ -4,14 +4,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 
 import logging
-
+from settings.models import Client
 
 log = logging.getLogger(__name__)
 
 
-def test_dashboard(request):
+def dashboard(request):
     """
     TODO
     """
 
-    return HttpResponse("delam daj ")
+    context = {
+        'clients_online': Client.online.count(),
+    }
+    return TemplateResponse(request, 'dashboard/dashboard.html', context)
