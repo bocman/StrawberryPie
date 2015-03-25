@@ -11,7 +11,7 @@ from rest_framework import viewsets
 
 from forms import ClientForm
 from models import Client
-from serializers import ClientSerializer
+#from serializers import ClientSerializer
 
 log = logging.getLogger(__name__)
 
@@ -106,4 +106,4 @@ class ClientViewSet(viewsets.ModelViewSet):
     API endpoint that allows Clients to be viewed or edited.
     """
     queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+   # serializer_class = ClientSerializer
