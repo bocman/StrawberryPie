@@ -55,10 +55,12 @@
                                         <img src="{{weather_data.icon}}" />
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"> {{weather_data.temp}} &deg;</div>
-                                        <div> {{weather_data.city}} </div>
+                                        <div class="huge"> {{ weather_data.temp }} &deg;</div>
+                                        <div> {{ weather_data.description|capfirst }} </div>
+                                        <div> {{ weather_data.city }} </div>
                                     </div>
                                 </div>
+                                <i> Humudity: {{ weather_data.relative_humidity }} </i>
                             </div>
                             <a href="#">
                                 <div class="panel-footer">
