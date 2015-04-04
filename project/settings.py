@@ -119,6 +119,17 @@ RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
 # Link which is used to stream video
 VIDEO_STREAM_LINK = ""
 
+WEATHER_LOCATION = "Koper"
+WEATHER_API_KEY = "1e408decf36cd52f"
+WEATHER_API_LINK = "http://api.wunderground.com/api/"+ WEATHER_API_KEY+"/conditions/q/CA/"+WEATHER_LOCATION +".json"
+
+# temperature unit, which is used at convertion
+# Options: - KELVIN
+#          - CELSIUS
+#          - FAHRENHEIT
+TEMPERATURE_UNIT = "CELSIUS"
+
+
 # IP address of server
 IP_ADDRESS = "192.168.1.130"
 
@@ -189,6 +200,11 @@ LOGGING = {
         'py.warnings': {
             'handlers': ['null', ],
         },
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+            },
         '': {
             'handlers': ['console', 'production_file', 'debug_file'],
             'level': "DEBUG",

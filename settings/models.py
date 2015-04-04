@@ -76,6 +76,11 @@ class Client(models.Model):
     
     created = models.DateTimeField(auto_now=True)
 
+    realibility = models.PositiveSmallIntegerField(
+        verbose_name=_('CLient realibility'), default=0,
+        help_text="Daily count of the client disconections"
+    )
+
     def is_active(self):
         now = tz.now()
         return True if self.last_active and (now - self.last_active).seconds < 60 else False 
