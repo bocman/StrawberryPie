@@ -26,7 +26,10 @@ class TemperatureLog(models.Model):
         verbose_name=_('Feels like'),
         default=None, null=True
     )
-
+    description = models.CharField(
+        verbose_name=_('Description'),
+        max_length=30, null=False, default="-"
+    )
     timestamp = models.DateTimeField(auto_now=True)
     
     class Meta:

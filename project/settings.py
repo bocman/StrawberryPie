@@ -120,7 +120,7 @@ RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
 # Link which is used to stream video
 VIDEO_STREAM_LINK = ""
 
-WEATHER_LOCATION = "Koper"
+WEATHER_LOCATION = "Izola"
 WEATHER_API_KEY = "1e408decf36cd52f"
 WEATHER_API_LINK = "http://api.wunderground.com/api/"+ WEATHER_API_KEY+"/conditions/q/CA/"+WEATHER_LOCATION +".json"
 
