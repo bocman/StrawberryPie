@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_services',
     'widget_tweaks',
-    'settings'
+    'settings',
+    'dashboard'
 )
 
 TEMPLATE_DIRS = (
