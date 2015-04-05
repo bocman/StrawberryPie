@@ -31,19 +31,34 @@ def weather_info(country_name):
     """
     TODO
     """
-    response = requests.get(url=global_settings.WEATHER_API_LINK)
-    data = json.loads(response.text)
-    description = data["current_observation"]["icon"]
-    icon = None
-    if description == "cloudy": 
-        icon = static("weather/Sunny.png")
+    #response = requests.get(url=global_settings.WEATHER_API_LINK)
+    # data = json.loads(response.text)
+    # description = data["current_observation"]["icon"]
+    # icon = None
     
+    description ="sunny"
+    if description == "cloudy": 
+        icon = static("weather/Cloudy.png")
+    elif description == "sunny":
+        icon = static("weather/Sunny.png")       
+    else:
+        icon = static("weather/Sunny.png")  
+    
+    # context_data = {
+    #     'city': data["current_observation"]["display_location"]["city"],
+    #     'last_updated': data["current_observation"]["observation_time"],
+    #     'temp': data["current_observation"]["temp_c"],
+    #     'description': data["current_observation"]["icon"],
+    #     'relative_humidity': data["current_observation"]["relative_humidity"],
+    #     'icon': icon
+
+    # }
     context_data = {
-        'city': data["current_observation"]["display_location"]["city"],
-        'last_updated': data["current_observation"]["observation_time"],
-        'temp': data["current_observation"]["temp_c"],
-        'description': data["current_observation"]["icon"],
-        'relative_humidity': data["current_observation"]["relative_humidity"],
+        'city': "Piran",
+        'last_updated': "nop",
+        'temp': "23.8",
+        'description': "cloudy",
+        'relative_humidity': "56%",
         'icon': icon
 
     }
