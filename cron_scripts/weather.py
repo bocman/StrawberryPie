@@ -6,6 +6,7 @@ import sys
 import requests
 import json
 import datetime
+ 
 try:
     con = _mysql.connect('localhost', 'root', 'bostjan123', 'project')
         
@@ -19,12 +20,12 @@ try:
     response = requests.get(url=WEATHER_API_LINK)
     data = json.loads(response.text)
     description = data["current_observation"]["icon"]
-    import time   
+    print datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
     context_data = {
         'city': "'" + str(data["current_observation"]["display_location"]["city"]) +"'",
         'temp': data["current_observation"]["temp_c"],
         'description': "'" + str(data["current_observation"]["icon"])+"'",
-        'timestamp': "'" + time.strftime('%Y-%m-%d %H:%M:%S')+ "'",
+        'timestamp': "'" + datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")+ "'",
         'humidity': int(data["current_observation"]["relative_humidity"].replace("%", "")),
         'wind': data["current_observation"]["wind_kph"],
         'feels_like': float(data["current_observation"]["feelslike_c"]),

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <!-- Page Heading -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Weather
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Weather
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <hr>
+    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>City </th>
+                                        <th>Description</th>
+                                        <th>Temperature</th>
+                                        <th>Feels like</th>
+                                        <th>Relative humidity</th>
+                                        <th>Wind</th>
+                                        <th>Timestamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in data%}
+                                        <tr>
+                                            <td>{{item.city}}</td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.temp}} &deg</td>
+                                            <td>{{item.feels_like}} &deg</td>
+                                            <td>{{item.humidity}}%</td>
+                                            <td>{{item.wind}}%</td>
+                                            <td>{{item.timestamp}}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<i class="fa fa-spinner"></i>
+
+    <script src="{{ STATIC_URL }}js/content/clients.js"></script>  
+{% endblock %}

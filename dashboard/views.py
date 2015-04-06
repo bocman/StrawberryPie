@@ -21,20 +21,27 @@ def dashboard(request):
 
     context = {
         'clients_online': Client.online.count(),
-        'weather_data': weather_info(),
+        'weather_data': weather_widget(),
         'icon': static('weather/Sunny.png')
     }
     #log.info(weather_info(global_settings.WEATHER_API_LINK))
     return TemplateResponse(request, 'dashboard/dashboard.html', context)
 
 
-def weather_info(country_name=None):
+def weather_widget(country_name=None):
     """
     TODO
     """
     return TemperatureLog.objects.latest('timestamp')    
 
-
+def weather_full(request):
+    """
+    TODO
+    """
+    all_weather_info = TemperatureLog.objects.all().order_by('-timestamp')
+    return TemplateResponse(request, 'dashboard/weather.html', {
+        'data': all_weather_info,
+    })
 
 
 
