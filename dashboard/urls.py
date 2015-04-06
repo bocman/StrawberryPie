@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = patterns('',
   url(r'^$', views.dashboard, name="dashboard"),
+  url(r'^weather/$', views.weather_full, name='weather_full'),
     )
