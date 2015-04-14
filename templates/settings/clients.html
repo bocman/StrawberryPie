@@ -49,8 +49,8 @@
 
                                 <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
 
-                                <a href="{%url 'settings:edit_client' client.id%}" >
-                                <img src="{% static 'lock.png' %}" alt="Notification settings" title="Notification settings" /></a>
+                                <a href="{%url 'settings:edit_client_notification' client.id%}" >
+                                <img src="{% static 'mute.png' %}" alt="Notification settings" title="Notification settings" /></a>
 
                             </td>
                             <td>{{client.id}}</td>

@@ -37,7 +37,6 @@ def users_list(request):
         'users': users,
     })
 
-
 @login_required
 def clients_list(request):   
    
@@ -50,7 +49,6 @@ def clients_list(request):
     return TemplateResponse(request, 'settings/clients.html', {
         'clients': clients,
     })
-
 
 @login_required
 def add_edit_client(request, client_id=None):    
@@ -77,7 +75,6 @@ def add_edit_client(request, client_id=None):
         'client_id': client_id if client_id else None
     })
 
-
 @login_required
 def delete_client(self, client_id):
     
@@ -99,6 +96,11 @@ def delete_client(self, client_id):
 
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
+@login_required
+def edit_client_notification(request, client_id):
+    return TemplateResponse(request, 'settings/edit_client_notification.html', {
+        'client_id':client_id
+    })
 
 class ClientViewSet(viewsets.ModelViewSet):
 
