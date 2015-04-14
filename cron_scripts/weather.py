@@ -20,7 +20,7 @@ try:
     response = requests.get(url=WEATHER_API_LINK)
     data = json.loads(response.text)
     description = data["current_observation"]["icon"]
-    print datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+
     context_data = {
         'city': "'" + str(data["current_observation"]["display_location"]["city"]) +"'",
         'temp': data["current_observation"]["temp_c"],

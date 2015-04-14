@@ -27,8 +27,8 @@ form p input[type="text"], form p input[type="number"]{
     width: 370px;
 }
 
-#advanced_content{
-    border-style: groove; 
+.fieldset_content{
+    display: none;
 } 
 
 .blink {

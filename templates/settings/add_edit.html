@@ -3,13 +3,6 @@
 
 {% block content %}
 
-<script type="text/javascript">
-    var paths={
-        'fieldset_open': "{% static 'advanced_plus.png' %}",
-        'fieldset_close': "{% static 'advanced_minus.png' %}" 
-    }
-</script>
-
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
@@ -59,14 +52,10 @@
 
                      <fieldset>
                           <legend>
-                             <img id='advanced' src="{% static 'advanced_minus.png' %}" alt="advanced" /> 
-                             Advanced settings
+                             <img class='icon' src="{% static 'maximize.png' %}" alt="title" /> 
+                             Basic settings
                           </legend>
-                          <div id="advanced_content" data-fieldset_status="close" >
-                            <img src="{% static 'shutdown.png' %}">
-                            <img src="{% static 'restart.png' %}">
-                            <br><br>
-
+                          <div class="fieldset_content" data-state="close" >
 
                             <label for=weight>Volume control</label>
                             <input type=range id='weight' min='10' value='10' max='2000' step='100'>
@@ -76,6 +65,10 @@
 
         </div>
     </div>
-
-    <script src="{{ STATIC_URL }}js/content/add_edit_client.js"></script>  
+    
+    <!--- Here we extend our own javascript librarys from the base html template-->
+    {% block js %}
+        {{ block.super }}
+    {% endblock %}
+    
 {% endblock %}
