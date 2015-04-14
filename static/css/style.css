@@ -29,6 +29,7 @@ form p input[type="text"], form p input[type="number"]{
 
 .fieldset_content{
     display: none;
+    margin-bottom: 10px;
 } 
 
 .blink {
