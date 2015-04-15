@@ -15,6 +15,15 @@ from models import Client
 
 log = logging.getLogger(__name__)
 
+@login_required
+def general_settings(request):   
+   
+    """
+    TODO
+    """
+
+    return TemplateResponse(request, 'settings/general_settings.html', {
+    })
 
 def user_logout(request):   
     
