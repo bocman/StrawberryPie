@@ -11,7 +11,12 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> Clients
+                    <i class="fa fa-dashboard"></i>
+                    {% if client.is_active %}
+                        Online
+                    {% else %}
+                        Offline
+                    {% endif %}
                 </li>
             </ol>
         </div>
@@ -57,6 +62,16 @@
                 </legend>
                 <div class="fieldset_content" data-state="close" >
                     This are the basic settings
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <img class='icon' src="{% static 'maximize.png' %}" alt="title" /> 
+                    Wake me 
+                </legend>
+                <div class="fieldset_content" data-state="close" >
+                    <button type="button" class="btn btn-xs btn-success">New alarm</button>
+                    <button type="button" class="btn btn-xs btn-info">List of alarms</button>
                 </div>
             </fieldset>
             <fieldset>
