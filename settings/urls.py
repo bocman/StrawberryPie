@@ -15,5 +15,7 @@ urlpatterns = patterns('',
     url(r'^clients/add/$', views.add_edit_client, name='add_client'),
     url(r'^clients/edit/(?P<client_id>[0-9]+)/$', views.add_edit_client, name='edit_client'),
     url(r'^clients/delete/(?P<client_id>[0-9]+)/$', views.delete_client, name='delete_client'),
+    url(r'^clients/statistics/(?P<client_id>[0-9]+)/$', views.client_statistics, name='client_statistics'),
+    
     url(r'^clients/notification_settings/(?P<client_id>[0-9]+)/$', views.edit_client_notification, name='edit_client_notification'),
 )

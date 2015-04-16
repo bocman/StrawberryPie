@@ -112,6 +112,11 @@ def edit_client_notification(request, client_id):
         'client_id':client_id
     })
 
+def client_statistics(request, client_id):
+    return TemplateResponse(request, 'settings/client_statistics.html', {
+    'client_id':client_id
+})
+
 class ClientViewSet(viewsets.ModelViewSet):
 
     """

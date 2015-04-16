@@ -12,11 +12,13 @@
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-dashboard"></i>
-                    {% if client.is_active %}
-                        Online
-                    {% else %}
-                        Offline
-                    {% endif %}
+                    <a href="{% url 'settings:client_statistics' client_id %}">
+                        {% if client.is_active %}                   
+                                <button type="button" class="btn btn-xs btn-success">Online</button> 
+                        {% else %}
+                            <button type="button" class="btn btn-xs btn-default">Offline</button>
+                        {% endif %}
+                    </a>
                 </li>
             </ol>
         </div>
@@ -144,7 +146,7 @@
                 </div>
 
              </fieldset>
-             
+
         </div>
     </div>
 
