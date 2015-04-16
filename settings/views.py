@@ -48,6 +48,16 @@ def users_list(request):
     })
 
 @login_required
+def add_edit_user(request, user_id=None):    
+    
+    """ 
+    TODO
+    """
+
+    return TemplateResponse(request, 'settings/add_edit_user.html', {
+    })
+
+@login_required
 def clients_list(request):   
    
     """

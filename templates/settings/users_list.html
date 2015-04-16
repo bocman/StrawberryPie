@@ -44,7 +44,7 @@
                                 <td style="width:80px"></td>
                             {% endif %}
                             <td>
-                                <a href="#" ><img src="{% static 'edit.png' %}" alt='Edit' /></a>
+                                <a href="{% url 'settings:edit_user' user.id %}"><img src="{% static 'edit.png' %}" alt='Edit' /></a>
 
                                 <a href="#" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
 
