@@ -8,13 +8,20 @@
             <h1 class="page-header">
                 Clients 
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> Clients
-                </li>
-            </ol>
+            {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == "success"%}
+                    <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="fa fa-info-circle"></i>  
+                    <strong>Client</strong> has been <strong>successfully</strong> updated
+                    </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
+
     <!-- /.row -->
     <hr>
         <div class="col-lg-14">
@@ -35,8 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for client in clients%}
-                       
+                    {% for client in clients%}                
                             {% if client.is_active and client.last_active %}
                                 <tr class="success">                
                                <td stye="width:100px"> <img class="myDiv" src="{% static 'ok_icon.png' %}" title='Connected'></td>
@@ -51,7 +57,6 @@
 
                                 <a href="{%url 'settings:edit_client_notification' client.id%}" >
                                 <img src="{% static 'mute.png' %}" alt="Notification settings" title="Notification settings" /></a>
-
                             </td>
                             <td>{{client.id}}</td>
                             <td>{{client.name}}</td>

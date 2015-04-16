@@ -5,6 +5,7 @@ from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 import logging
 from rest_framework import viewsets
@@ -75,7 +76,8 @@ def add_edit_client(request, client_id=None):
         client_form = ClientForm(request.POST, instance=client)
         if client_form.is_valid():
             client_form.save()
-            return HttpResponseRedirect(reverse('settings:clients_list'))
+            messages.add_message(request, messages.SUCCESS, 'Hello world.')
+            return HttpResponseRedirect(reverse('settings:clients_list'), {'messages':messages})
     else:
         client_form = ClientForm(instance=client)
 
