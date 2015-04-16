@@ -79,9 +79,10 @@ def add_edit_client(request, client_id=None):
     else:
         client_form = ClientForm(instance=client)
 
-    return TemplateResponse(request, 'settings/add_edit.html', {
+    return TemplateResponse(request, 'settings/add_edit_client.html', {
         'client_form': client_form,
-        'client_id': client_id if client_id else None
+        'client_id': client_id if client_id else None,
+        'client':client
     })
 
 @login_required

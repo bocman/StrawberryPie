@@ -14,6 +14,7 @@ from dashboard.models import TemperatureLog
 log = logging.getLogger(__name__)
 
 
+
 def dashboard(request):
     """
     TODO
