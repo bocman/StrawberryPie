@@ -72,8 +72,9 @@
                     Wake me 
                 </legend>
                 <div class="fieldset_content" data-state="close" >
-                    <button type="button" class="btn btn-xs btn-success">New alarm</button>
-                    <button type="button" class="btn btn-xs btn-info">List of alarms</button>
+
+                    <a href="{% url 'settings:add_alarm' %}" class="btn btn-xs btn-success" role="button">New alarm</a>
+                    <a href="{% url 'settings:alarms_list' %}" class="btn btn-xs btn-info" role="button">List of alarms</a>
                 </div>
             </fieldset>
             <fieldset>

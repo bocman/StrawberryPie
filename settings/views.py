@@ -129,6 +129,25 @@ def client_statistics(request, client_id):
     'client_id':client_id
 })
 
+@login_required
+def add_edit_alarm(request, alarm_id=None):    
+    
+    """ 
+    TODO
+    """
+    return TemplateResponse(request, 'settings/add_edit_alarm.html', {
+    })
+
+@login_required
+def alarms_list(request):   
+   
+    """
+    TODO
+    """
+    return TemplateResponse(request, 'settings/alarms_list.html', {
+    })
+
+
 class ClientViewSet(viewsets.ModelViewSet):
 
     """
