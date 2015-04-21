@@ -10,7 +10,7 @@ from django.contrib import messages
 import logging
 from rest_framework import viewsets
 
-from forms import ClientForm, AlarmForm
+from forms import ClientForm, AlarmForm, UserForm
 from models import Client
 #from serializers import ClientSerializer
 
@@ -53,8 +53,27 @@ def add_edit_user(request, user_id=None):
     """ 
     TODO
     """
+    if user_id:
+       user = get_object_or_404(User, pk=user_id)     
+    else:
+        user = User()
+
+    if request.POST:
+        form = UserForm(request.POST, instance=user)
+        log.info("sem 1")
+        if form.is_valid():
+            log.info("sem 2")
+            form.save()
+            #messages.add_message(request, messages.SUCCESS, 'Hello world.')
+            log.info("sem prisel do redirects")
+            return HttpResponseRedirect(reverse('dashboard:dashboard'), {'messages':messages})
+    else:
+        log.info("sem 1")
+        form = UserForm(instance=user)
 
     return TemplateResponse(request, 'settings/add_edit_user.html', {
+        'user_form': form,
+        'user_id':user_id
     })
 
 @login_required

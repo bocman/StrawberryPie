@@ -20,7 +20,7 @@ p.field_group  {
     margin-bottom: 7px;
 }
 
-form p input[type="text"], form p input[type="number"]{
+form p input[type="text"],form p input[type="email"], form p input[type="number"]{
     padding: 6px;
     font-size: 14px;
     color: black;
