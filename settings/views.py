@@ -10,7 +10,7 @@ from django.contrib import messages
 import logging
 from rest_framework import viewsets
 
-from forms import ClientForm
+from forms import ClientForm, AlarmForm
 from models import Client
 #from serializers import ClientSerializer
 
@@ -135,18 +135,20 @@ def add_edit_alarm(request, alarm_id=None):
     """ 
     TODO
     """
+    alarm_form = AlarmForm()
+
     return TemplateResponse(request, 'settings/add_edit_alarm.html', {
+        'alarm_form': alarm_form,
     })
 
 @login_required
-def alarms_list(request):   
+def alarms_list(request, alarm_id=None):   
    
     """
     TODO
-    """
+    """    
     return TemplateResponse(request, 'settings/alarms_list.html', {
     })
-
 
 class ClientViewSet(viewsets.ModelViewSet):
 

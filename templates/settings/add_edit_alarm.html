@@ -1,10 +1,45 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+
+
 {% block content %}
     <!-- Page Heading -->
     <div class="row">
-        <b>  Test page for alarm</b>
+    <div class="main_container">
+        <div class="first_container" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add new alarm</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        {% for field in alarm_form  %}
+                             <p class="field_group" />
+                                {{ field.label }}<br>
+                                {{ field }}
+                                <small> {{ field.help_text }} </small>
+                            </p>
+                        {% endfor %}
+                        <br>
+                        <button id="monday" type="button" class="btn btn-xs btn-default">Monday</button>
+                        <button id="tuesday" type="button" class="btn btn-xs btn-default">Tuesday</button>
+                        <button id="wednesday" type="button" class="btn btn-xs btn-default">Wednesday</button>
+                        <button id="thursday" type="button" class="btn btn-xs btn-default">Thursday</button>
+                        <button id="friday" type="button" class="btn btn-xs btn-default">Friday</button>
+                        <button id="saturday" type="button" class="btn btn-xs btn-default">Saturday</button>
+                        <button id="sunday" type="button" class="btn btn-xs btn-default">Sunday</button>
+                        <br><br>
+
+
+
+                        <button type="button" class="btn btn-xs btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-{% endblock %}
+    </div>
+        <script src="{{ STATIC_URL }}js/pages/add_edit_alarm.js"></script> 
+{% endblock %}        <script src="{{ STATIC_URL }}js/pages/add_edit_alarm.js"></script> 
