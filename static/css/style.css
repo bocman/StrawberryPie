@@ -15,16 +15,25 @@
     margin-left: 20px;
 }
 
-p.field_group  {
+.field_group  {
     display: block;
     margin-bottom: 7px;
 }
 
-form p input[type="text"],form p input[type="email"], form p input[type="number"]{
+form input[type="text"],form input[type="email"], form input[type="number"]{
     padding: 6px;
     font-size: 14px;
     color: black;
     width: 370px;
+    height: 34px;
+    padding: 6px 6px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
 }
 
 .fieldset_content{

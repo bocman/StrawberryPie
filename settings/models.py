@@ -85,3 +85,38 @@ class Client(models.Model):
         now = tz.now()
         return True if self.last_active and (now - self.last_active).seconds < 60 else False 
 
+class Alarm(models.Model):
+    """
+    This model is used to represent alarm, which notify user about something.
+    It can be used like a event reminder, timer ...
+    """
+
+    class Meta:
+        db_table = 'alarm'
+
+    note = models.CharField(
+        max_length=50,
+        verbose_name='Notes',
+        help_text='Short notes about this alarm'
+        )
+
+    alarm_volume = models.PositiveIntegerField(
+        default=100        )
+    
+    notification_time = models.CharField(
+        max_length=50
+        )
+
+    notified = models.BooleanField(
+        default=False,
+        blank=False, null=False
+        )
+
+    client = models.ForeignKey(
+        "Client",
+        blank=False, null=False
+        )
+
+
+
+

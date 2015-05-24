@@ -11,7 +11,7 @@ import logging
 from rest_framework import viewsets
 
 from forms import ClientForm, AlarmForm, UserForm
-from models import Client
+from models import Client, Alarm
 #from serializers import ClientSerializer
 
 log = logging.getLogger(__name__)
@@ -154,10 +154,28 @@ def add_edit_alarm(request, alarm_id=None):
     """ 
     TODO
     """
-    alarm_form = AlarmForm()
+    if alarm_id:
+        alarm = get_object_or_404(Alarm, pk=alarm_id)
+    else:
+        alarm = Alarm()
+        alarm.client_id = request.GET["client_id"]
 
-    return TemplateResponse(request, 'settings/add_edit_alarm.html', {
+    if request.POST:
+        alarm_form = AlarmForm(request.POST, instance=alarm)
+        if alarm_form.is_valid():
+            alarm_form.save()
+            if alarm_id:
+                log.info("Alarm with id "+str(alarm_id)+" has been edited")
+            else:
+                log.info("New alarm has been successfully created with")
+
+            return HttpResponseRedirect(reverse('settings:clients_list'))
+    else:
+        alarm_form = AlarmForm()
+    
+    return TemplateResponse(request, 'settings/alarm/add_edit_alarm.html', {
         'alarm_form': alarm_form,
+        'alarms': Alarm.objects.filter(client_id=1)
     })
 
 @login_required

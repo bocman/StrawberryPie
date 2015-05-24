@@ -39,7 +39,7 @@
                      method="post"> 
                 {% csrf_token %}
                 {% for field in client_form %}
-                    <p class="field_group" />
+                    <div class="field_group" />
                         {{field.label}} </br>
                         {{field}} </br>
                         {% if field.errors %}
@@ -49,7 +49,7 @@
                             <br>
                         {% endif %}
                         <small>{{field.help_text}}</small> </br>
-                    </p>
+                    </div>
                 {% endfor %}              
                 <hr>      
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
@@ -73,7 +73,7 @@
                 </legend>
                 <div class="fieldset_content" data-state="close" >
 
-                    <a href="{% url 'settings:add_alarm' %}" class="btn btn-xs btn-success" role="button">New alarm</a>
+                    <a href="{% url 'settings:add_alarm' %}?client_id=1" class="btn btn-xs btn-success" role="button">New alarm</a>
                     <a href="{% url 'settings:alarms_list' %}" class="btn btn-xs btn-info" role="button">List of alarms</a>
                 </div>
             </fieldset>

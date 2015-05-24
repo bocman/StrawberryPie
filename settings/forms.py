@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 
-from models import Client
+from models import Client, Alarm
 
 
 class ClientForm(ModelForm):
@@ -16,22 +16,15 @@ class ClientForm(ModelForm):
             'port', 'group'
         ]
 
-class AlarmForm(forms.Form):
+class AlarmForm(ModelForm):
     """
     TODO
     """
-    notes = forms.CharField(
-        max_length=50,
-        label='Notes',
-        help_text='Short notes about this alarm'
-        )
-    alarm_volume = forms.IntegerField(
-        label='Volume of the alarm',
-        initial=100,
-        max_value=100,
-        min_value=0,
-        help_text='Volume of the alarm melody'
-        )
+    class Meta:
+        model = Alarm
+        fields = [
+            'note','alarm_volume','notification_time'
+        ]
 
 class UserForm(ModelForm):
     """
@@ -46,7 +39,12 @@ class UserForm(ModelForm):
             'email'
         ]
 
-    password = forms.CharField(max_length=50)      
+    password = forms.CharField(
+        max_length=50
+        )
+    confirm_password = forms.CharField(
+        max_length=50
+        )       
 
 
 
