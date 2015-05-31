@@ -72,7 +72,7 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    last_active = models.DateTimeField(default=None)
+    last_active = models.DateTimeField(auto_now=True)
     
     created = models.DateTimeField(auto_now=True)
 
@@ -80,6 +80,11 @@ class Client(models.Model):
         verbose_name=_('CLient realibility'), default=0,
         help_text="Daily count of the client disconections"
     )
+    client_key =  models.CharField(
+        unique=True, max_length=32,
+        null=True, blank=True,
+        default=None
+        )
 
     def is_active(self):
         now = tz.now()

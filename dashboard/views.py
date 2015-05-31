@@ -19,10 +19,10 @@ def dashboard(request):
     """
     TODO
     """
-
+    #weather_data = weather_widget()
     context = {
         'clients_online': Client.online.count(),
-        'weather_data': weather_widget(),
+        #'weather_data': weather_data if weather_data else None,
         'icon': static('weather/Sunny.png')
     }
     #log.info(weather_info(global_settings.WEATHER_API_LINK))
@@ -33,7 +33,10 @@ def weather_widget(country_name=None):
     """
     TODO
     """
-    return TemperatureLog.objects.latest('timestamp')    
+    if TemperatureLog.objects.latest('timestamp'):
+        return TemperatureLog.objects.latest('timestamp') 
+    else:
+        return None
 
 def weather_full(request):
     """

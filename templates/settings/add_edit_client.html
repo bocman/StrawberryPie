@@ -12,7 +12,9 @@
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-dashboard"></i>
-                    <a href="{% url 'settings:client_statistics' client_id %}">
+                    {% comment %}
+                        <a href="{% url 'settings:client_statistics' client_id %}">
+                    {% endcomment %}
                         {% if client.is_active %}                   
                                 <button type="button" class="btn btn-xs btn-success">Online</button> 
                         {% else %}

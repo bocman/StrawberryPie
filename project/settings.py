@@ -83,8 +83,9 @@ DATABASES = {
     }
 }
 
+# TODO permissions IsAdminUser
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
     'PAGINATE_BY': 10
 }
 
@@ -113,7 +114,6 @@ STATIC_PATH = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
     '%s/static/images' % BASE_DIR,
-
 )
 
 # Link which is in use to stream radio
@@ -138,6 +138,12 @@ IP_ADDRESS = "192.168.1.130"
 
 # Domain name of server
 DOMAIN_NAME = "malina.webhop.me:8000"
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bocman.novak@gmail.com'
+EMAIL_HOST_PASSWORD = 'bocmanadmin'
+EMAIL_PORT = 587
 
 LOGGING = {
     'version': 1,

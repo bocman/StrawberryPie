@@ -6,9 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.mail import send_mail, BadHeaderError
+from django.utils.crypto import get_random_string
+from django.utils.translation import ugettext as _
 
 import logging
 from rest_framework import viewsets
+import project.settings as settings
 
 from forms import ClientForm, AlarmForm, UserForm
 from models import Client, Alarm
@@ -60,15 +64,11 @@ def add_edit_user(request, user_id=None):
 
     if request.POST:
         form = UserForm(request.POST, instance=user)
-        log.info("sem 1")
         if form.is_valid():
-            log.info("sem 2")
             form.save()
             #messages.add_message(request, messages.SUCCESS, 'Hello world.')
-            log.info("sem prisel do redirects")
             return HttpResponseRedirect(reverse('dashboard:dashboard'), {'messages':messages})
     else:
-        log.info("sem 1")
         form = UserForm(instance=user)
 
     return TemplateResponse(request, 'settings/add_edit_user.html', {
@@ -93,19 +93,40 @@ def clients_list(request):
 def add_edit_client(request, client_id=None):    
     
     """ 
-    TODO
+    Method is used to create or edit some existing client.
     """
+
+    from_email = settings.EMAIL_HOST
+    to_email = request.user.email
+    text = {'client_created_email': _("New client has been successfully created on %s. To authorize it \
+                                         use this generated key %s ."),
+                'client_email_subject': _("New client has been successfully created"),
+                'client_created': _("Client '%s' with id=%s has been created"),
+                'client_edited': "Client '%s' with id=%s has been edited",
+                'client_created_log': _("Email after creation sended for client '%s' with id=%s")
+               }
 
     if client_id:
         client = get_object_or_404(Client, pk=client_id)
     else:
         client = Client()
+        client.client_key = get_random_string(length=32)
 
     if request.POST:
         client_form = ClientForm(request.POST, instance=client)
         if client_form.is_valid():
             client_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Hello world.')
+            if not client_id:
+                log.info(text['client_created'] % (client.name, client.id))
+                if from_email and to_email:
+                    send_mail(text['client_email_subject'],
+                              text['client_created_email'] % (settings.DOMAIN_NAME, client.client_key),
+                              from_email, [to_email])
+                    log.info(text['client_created_log'] % (client.name, client.id))
+            else:
+                log.info(text['client_edited'] % (client.name, client.id))
+            
+            messages.add_message(request, messages.SUCCESS, _('Additional info were sended on email'))
             return HttpResponseRedirect(reverse('settings:clients_list'), {'messages':messages})
     else:
         client_form = ClientForm(instance=client)
