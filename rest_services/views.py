@@ -30,12 +30,13 @@ def clients(request, format=None):
 
 @csrf_exempt
 @api_view(['GET', 'PATCH'])
-def client_detail(request, pk, data=None,):
+def client_detail(request, key, data=None,):
+    log.info("Im in the client detail")
     """
     Get or update client information/s
     """
     try:
-        client = Client.objects.get(pk=pk)
+        client = Client.objects.get(client_key=key)
     except Client.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -50,7 +51,7 @@ def client_detail(request, pk, data=None,):
     elif request.method == 'PATCH':
         new_data = request.data
         try:
-            Client.objects.filter(pk=pk).update(**new_data)
+            Client.objects.filter(client_key=key).update(**new_data)
             log.debug("Client '%s' has been updated", (client.name))
             return Response(status=status.HTTP_200_OK)
         except:

@@ -4,9 +4,12 @@
 {% block content %}
     <!-- Page Heading -->
     <div class="row">
-        <b>  Test page for general settings </b>
+        <b>  Test page music </b>
         <br><br>
-
+        <br><br>
+        {% for element in data %}
+            {{ element }} <br>
+        {% endfor %}
     </div>
 
 {% endblock %}

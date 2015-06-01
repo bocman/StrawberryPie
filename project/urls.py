@@ -17,7 +17,7 @@ urlpatterns = patterns('',
   url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
   url(r'^settings/', include('settings.urls', namespace='settings')),
   url(r'^webservice/', include('rest_services.urls', namespace="webservice")),
-  
+  url(r'^entertainment/', include('entertainment.urls', namespace="entertainment")),
   url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'project/index.html', 'redirect_field_name': 'nekaj.html'}),
 
   )

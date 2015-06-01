@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'rest_services',
     'widget_tweaks',
     'settings',
-    'dashboard'
+    'dashboard',
+    'entertainment'
 
 )
 
@@ -118,9 +119,11 @@ STATICFILES_DIRS = (
 
 # Link which is in use to stream radio
 RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
-
 # Link which is used to stream video
 VIDEO_STREAM_LINK = ""
+#Directory which hold music files
+MUSIC_PATH = "/media/bostjan/USB_DISK/music"
+
 
 WEATHER_LOCATION = "Izola"
 WEATHER_API_KEY = "1e408decf36cd52f"

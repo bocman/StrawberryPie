@@ -18,6 +18,7 @@ from forms import ClientForm, AlarmForm, UserForm
 from models import Client, Alarm
 #from serializers import ClientSerializer
 
+
 log = logging.getLogger(__name__)
 
 @login_required
@@ -26,7 +27,6 @@ def general_settings(request):
     """
     TODO
     """
-
     return TemplateResponse(request, 'settings/general_settings.html', {
     })
 

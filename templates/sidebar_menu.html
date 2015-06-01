@@ -13,11 +13,13 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>
-                    <a href="#">Play music</a>
+                    <a href="{% url 'entertainment:music' %}">Play music</a>
                 </li>
+                {% comment %}
                 <li>
-                    <a href="#">Stream video</a>
+                        <a href="#">Stream video</a>
                 </li>
+                {% endcomment %}
             </ul>
         </li>
 
