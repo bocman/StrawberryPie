@@ -8,7 +8,7 @@ import json
 import datetime
  
 try:
-    con = _mysql.connect('localhost', 'root', 'bostjan123', 'project')
+    con = _mysql.connect('localhost', 'root', 'bostjanNovak1', 'project')
         
     #con.query("INSERT INTO temperature_log (temp) VALUES ('1')")
     #result = con.use_result()
