@@ -21,17 +21,17 @@ from models import Client, Alarm
 
 log = logging.getLogger(__name__)
 
+
 @login_required
-def general_settings(request):   
-   
+def general_settings(request):
     """
     TODO
     """
     return TemplateResponse(request, 'settings/general_settings.html', {
     })
 
-def user_logout(request):   
-    
+
+def user_logout(request):
     """
     This method is used to logout currently logged user
     :param request: Request, which hold information about user
@@ -40,6 +40,7 @@ def user_logout(request):
     """
     logout(request)
     return HttpResponseRedirect("/")
+
 
 @login_required
 def users_list(request):
@@ -51,14 +52,14 @@ def users_list(request):
         'users': users,
     })
 
+
 @login_required
-def add_edit_user(request, user_id=None):    
-    
-    """ 
+def add_edit_user(request, user_id=None):
+    """
     TODO
     """
     if user_id:
-       user = get_object_or_404(User, pk=user_id)     
+       user = get_object_or_404(User, pk=user_id)
     else:
         user = User()
 
@@ -66,8 +67,10 @@ def add_edit_user(request, user_id=None):
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            #messages.add_message(request, messages.SUCCESS, 'Hello world.')
-            return HttpResponseRedirect(reverse('dashboard:dashboard'), {'messages':messages})
+            # messages.add_message(request, messages.SUCCESS, 'Hello world.')
+            return HttpResponseRedirect(reverse('dashboard:dashboard'),
+                {'messages': messages}
+            )
     else:
         form = UserForm(instance=user)
 
@@ -76,9 +79,9 @@ def add_edit_user(request, user_id=None):
         'user_id':user_id
     })
 
+
 @login_required
-def clients_list(request):   
-   
+def clients_list(request):  
     """
     This method is used to get all Clients. At the moment, Clients are also sorted by
     status, so Clients which are online are set before those which aren't
@@ -89,9 +92,9 @@ def clients_list(request):
         'clients': clients,
     })
 
+
 @login_required
-def add_edit_client(request, client_id=None):    
-    
+def add_edit_client(request, client_id=None):
     """ 
     Method is used to create or edit some existing client.
     """

@@ -93,18 +93,18 @@ a:link {
 
   <div class="login">
 	{% comment %}
-	<div>
-	   <img src="{% static "logo.png" %}" >
-	 </div>   
-	 {%endcomment%}
+		<div>
+		   <img src="{% static "logo.png" %}" >
+		 </div>   
+	{% endcomment %}
 	 
 	<h1>Login</h1>
 		
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 	{% csrf_token %}
+	
 	{% if form.errors %}
-
-	<p>Your username and password didn't match. Please try again.</p>
+		<p>Your username and password didn't match. Please try again.</p>
 	{% endif %}
 	    {% render_field form.username placeholder='Username' %}
 	    {% render_field form.password placeholder='Password' %}
