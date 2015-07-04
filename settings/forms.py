@@ -13,7 +13,7 @@ class ClientForm(ModelForm):
         model = Client
         fields = [
             'name', 'description', 'ip_address',
-            'port'
+            'port', 'group'
         ]
 
 class AlarmForm(ModelForm):

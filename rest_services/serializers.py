@@ -15,7 +15,7 @@ class ClientSerializer(serializers.Serializer):
     port = serializers.IntegerField(required=False)
     deleted = serializers.BooleanField()
     disabled = serializers.BooleanField()
-    client_key = serializers.CharField(max_length=80)
+    key = serializers.CharField(max_length=80)
 
     def create(self, validated_data):
         """

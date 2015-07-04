@@ -8,26 +8,36 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                {% trans "Clients" %}<small>{% trans "Add new" %}</small>
+                {% trans "Clients" %}
+                {% if client_id %}
+                    <small>{% trans " Edit client" %}</small>
+                {% else %}
+                    <small>{% trans " Add new" %}</small>
+                {% endif %}
             </h1>
+
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-dashboard"></i>
                     {% comment %}
                         <a href="{% url 'settings:client_statistics' client_id %}">
                     {% endcomment %}
+                     {% if client_id %} 
                         {% if client.is_active %}                   
                                 <button type="button" class="btn btn-xs btn-success">{% trans "Online" %}</button> 
                         {% else %}
                             <button type="button" class="btn btn-xs btn-default">{% trans "Offline" %}</button>
-                        {% endif %}
-                    </a>
+                        {% endif %}              
+                     {% endif %}
                 </li>
-                <li class="system_buttons">
-                    <a href="." class="btn btn-xs btn-info" role="button">{% trans "Reboot" %}</a>
-                    <a href="." class="btn btn-xs btn-info" role="button">{% trans "Shutdown" %}</a>
-                </li>
+                {% if client %} 
+                    <li class="system_buttons">
+                        <a href="." class="btn btn-xs btn-info" role="button">{% trans "Reboot" %}</a>
+                        <a href="." class="btn btn-xs btn-info" role="button">{% trans "Shutdown" %}</a>
+                    </li>
+                {% endif %}
             </ol>
+            
         </div>
     </div>
     <!-- /.row -->
@@ -57,7 +67,8 @@
                         {% endif %}
                         <small>{{field.help_text}}</small> </br>
                     </div>
-                {% endfor %}              
+                {% endfor %}
+                <button type="submit" class="btn btn-sm btn-default">{% trans "Test connection" %}</button>          
                 <hr>      
                 <button type="submit" class="btn btn-sm btn-primary">{% trans "Save" %}</button>
             </form>

@@ -31,6 +31,10 @@ class TemperatureLog(models.Model):
         max_length=30, null=False, default="-"
     )
     timestamp = models.DateTimeField(auto_now=True)
-    
+    sea_temp = models.SmallIntegerField(
+        verbose_name=_('Sea temperature'),
+        default=None, null=True
+    )
+
     class Meta:
         db_table = 'temperature_log'

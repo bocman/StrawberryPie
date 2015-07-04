@@ -5,10 +5,11 @@
         <li class="active">
             <a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
-        <li>
-            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Speach</a>
-        </li>
-
+        {% comment %}
+            <li>
+                <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Speach</a>
+            </li>
+        {% endcomment %}
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">

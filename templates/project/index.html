@@ -102,9 +102,9 @@ a:link {
 		
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 	{% csrf_token %}
-	
+
 	{% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
+		<p>Your username or password didn't match. Please try again.</p>
 	{% endif %}
 	    {% render_field form.username placeholder='Username' %}
 	    {% render_field form.password placeholder='Password' %}
@@ -112,7 +112,7 @@ a:link {
 	</form>
 
 	<div class="lost_password">
-		 <a href="#" >Lost password?</a>
+		 <a href="{% url 'password_reset' %}" >Lost password?</a>
 	</div>
 	<img src="{% static 'flags/english.png' %}" alt='english' title="English" />
 	<img src="{% static 'flags/slovenia.png' %}" alt='slovenian' title="Slovenian" />

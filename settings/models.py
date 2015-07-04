@@ -2,8 +2,12 @@ from django.db import models
 from core.managers import ActiveClientsManager, OnlineClientsManager
 from django.utils.translation import ugettext as _
 from django.utils import timezone as tz
+import logging
 
-class Group(models.Model):
+log = logging.getLogger(__name__)
+
+
+class ClientGroup(models.Model):
 
     """
     TODO
@@ -22,6 +26,9 @@ class Group(models.Model):
         default=0,
         help_text="Number of clients in the group"
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'client_group'
@@ -62,7 +69,7 @@ class Client(models.Model):
         help_text="Port number which is used to make connection with client"
     )
     group = models.OneToOneField(
-        "Group", default=None, null=True, blank=True, related_name='Group')
+        "ClientGroup", default=None, null=True, blank=True, related_name='ClientGroup')
 
     deleted = models.BooleanField(
         default=False,
@@ -73,22 +80,34 @@ class Client(models.Model):
         help_text="Status which indicate if client is assigned as disabled"
     )
     last_active = models.DateTimeField(auto_now=True)
-    
     created = models.DateTimeField(auto_now=True)
-
     realibility = models.PositiveSmallIntegerField(
         verbose_name=_('CLient realibility'), default=0,
         help_text="Daily count of the client disconections"
     )
-    client_key =  models.CharField(
+    key = models.CharField(
         unique=True, max_length=32,
         null=True, blank=True,
         default=None
         )
+    CLIENT_TYPES = (
+        ('Normal', 'Normal'),
+        ('RPi', 'Raspberry Pi'),
+    )
+    type = models.CharField(
+        max_length=20,
+        choices=CLIENT_TYPES,
+        default=CLIENT_TYPES[0][0]
+        )
+
+    def __str__(self):
+        return self.name
 
     def is_active(self):
-        now = tz.now()
-        return True if self.last_active and (now - self.last_active).seconds < 60 else False 
+        now = tz.localtime(tz.now())
+        last_active = tz.localtime(self.last_active)
+        return True if last_active and (now - last_active).seconds < 60 else False
+
 
 class Alarm(models.Model):
     """
@@ -106,22 +125,20 @@ class Alarm(models.Model):
         )
 
     alarm_volume = models.PositiveIntegerField(
-        default=100        )
-    
+        default=100
+        )
     notification_time = models.CharField(
         max_length=50
         )
-
     notified = models.BooleanField(
         default=False,
         blank=False, null=False
         )
-
     client = models.ForeignKey(
         "Client",
         blank=False, null=False
         )
 
-
-
-
+    def __str__(self):
+        pass
+        return self.client.name + str(self.notification_time)
