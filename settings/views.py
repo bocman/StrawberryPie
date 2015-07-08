@@ -9,13 +9,14 @@ from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _
+from django.views.generic import ListView
 
 import logging
 from rest_framework import viewsets
 import project.settings as settings
 
-from forms import ClientForm, AlarmForm, UserForm
-from models import Client, Alarm
+from forms import ClientForm, ItemForm, AlarmForm, UserForm
+from models import Client, Alarm, ClientGroup, Item
 # from serializers import ClientSerializer
 
 
@@ -79,6 +80,19 @@ def add_edit_user(request, user_id=None):
         'user_id': user_id
     })
 
+
+@login_required
+def groups_list(request):
+    """
+    This method is used to get all Clients. At the moment, Clients are also sorted by
+    status, so Clients which are online are set before those which aren't
+    :return: List of Client objects
+    """
+    groups = ClientGroup.objects.all()
+    return TemplateResponse(request, 'settings/groups/groups.html', {
+        'groups': groups,
+        'test': 'test'
+    })
 
 @login_required
 def clients_list(request):
@@ -147,6 +161,31 @@ def add_edit_client(request, client_id=None):
     })
 
 
+class ItemsList(ListView):
+    queryset = Item.active.all()
+    template_name = "settings/items/items_list.html"
+    context_object_name = 'items'
+
+@login_required
+def delete_item(self, item_id):
+    """
+    This method is in use to mark some item as deleted. This means that
+    this item isn't visible anymore, but informations are still saved in
+    the database
+    :param item_id: Id of the specific Client
+    :type item_id: Integer
+    :return: HttpResponseRedirect
+    """
+
+    item = get_object_or_404(Item, pk=item_id)
+    try:
+        item.is_deleted = True
+        item.save()
+    except:
+        pass
+
+    return HttpResponseRedirect(reverse('settings:items_list'))
+
 @login_required
 def delete_client(self, client_id):
     """
@@ -166,6 +205,15 @@ def delete_client(self, client_id):
         pass
 
     return HttpResponseRedirect(reverse('settings:clients_list'))
+
+
+@login_required
+def add_edit_item(self, client_id=None):
+    item = Item()
+    if request.POST:
+        client_form = ClientForm(request.POST, instance=client)
+        if client_form.is_valid():
+            client_form.save()
 
 
 @login_required
@@ -191,7 +239,7 @@ def add_edit_alarm(request, alarm_id=None):
         alarm = get_object_or_404(Alarm, pk=alarm_id)
     else:
         alarm = Alarm()
-        alarm.client_id = request.GET["client_id"]
+        alarm.client_id = request.GET.get("client_id", None)
 
     if request.POST:
         alarm_form = AlarmForm(request.POST, instance=alarm)

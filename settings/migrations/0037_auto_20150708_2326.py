@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0029_auto_20150704_2157'),
+        ('settings', '0036_auto_20150708_2324'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='client',
-            name='group',
-            field=models.OneToOneField(related_name='ClientGroup', null=True, default=None, blank=True, to='settings.ClientGroup'),
+            model_name='item',
+            name='name',
+            field=models.CharField(max_length=30, verbose_name='Client group name'),
         ),
     ]

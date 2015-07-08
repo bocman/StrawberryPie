@@ -7,12 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0028_auto_20150621_1145'),
+        ('settings', '0035_item_is_deleted'),
     ]
 
     operations = [
-        migrations.RenameModel(
-            old_name='Group',
-            new_name='ClientGroup',
+        migrations.AlterModelTable(
+            name='item',
+            table='items',
         ),
     ]

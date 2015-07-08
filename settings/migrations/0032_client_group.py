@@ -7,13 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0029_auto_20150704_2157'),
+        ('settings', '0031_auto_20150708_1517'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='client',
             name='group',
-            field=models.OneToOneField(related_name='ClientGroup', null=True, default=None, blank=True, to='settings.ClientGroup'),
+            field=models.ForeignKey(default=None, to='settings.ClientGroup'),
+            preserve_default=False,
         ),
     ]

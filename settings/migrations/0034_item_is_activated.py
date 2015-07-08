@@ -7,12 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0028_auto_20150621_1145'),
+        ('settings', '0033_auto_20150708_1547'),
     ]
 
     operations = [
-        migrations.RenameModel(
-            old_name='Group',
-            new_name='ClientGroup',
+        migrations.AddField(
+            model_name='item',
+            name='is_activated',
+            field=models.BooleanField(default=False),
         ),
     ]

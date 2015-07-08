@@ -1,5 +1,5 @@
 from django.db import models
-from core.managers import ActiveClientsManager, OnlineClientsManager
+from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveItemsManager
 from django.utils.translation import ugettext as _
 from django.utils import timezone as tz
 import logging
@@ -68,8 +68,7 @@ class Client(models.Model):
         null=True, unique=False, default=None,
         help_text="Port number which is used to make connection with client"
     )
-    group = models.OneToOneField(
-        "ClientGroup", default=None, null=True, blank=True, related_name='ClientGroup')
+    group = models.ForeignKey(ClientGroup)
 
     deleted = models.BooleanField(
         default=False,
@@ -107,6 +106,54 @@ class Client(models.Model):
         now = tz.localtime(tz.now())
         last_active = tz.localtime(self.last_active)
         return True if last_active and (now - last_active).seconds < 60 else False
+
+
+class Item(models.Model):
+    """
+    Class is used to hold information about some specific item. Item can 
+    be related with client or not (Example: Webservice, which get data from web).
+    Item can be defined as object, which get info(Service, sensors on GPIO ...) or
+    can show result on the output.
+    """
+    class Meta:
+        db_table = 'items'
+
+    objects = models.Manager()
+    active = ActiveItemsManager()
+
+    name = models.CharField(
+        verbose_name=_('Client group name'),
+        max_length=30,
+    )
+    description = models.CharField(
+        verbose_name=_('Short description'),
+        max_length=30,
+        help_text="Short summary of the group"
+    )
+    is_general = models.BooleanField(
+        default=False,
+        blank=False, null=False
+        )
+    pin_number = models.PositiveIntegerField(
+        default=None, null=True
+        )
+    is_input = models.NullBooleanField(
+        default=False,
+        blank=True, null=True
+        )
+    client = models.ForeignKey(
+        Client, default=None,
+        blank=True, null=True
+        )
+    group = models.ForeignKey(ClientGroup, default=None)
+    is_activated = models.BooleanField(
+        default=False,
+        blank=False, null=False
+        )
+    is_deleted = models.BooleanField(
+        default=False,
+        help_text="Status which indicate if Item is assigned as deleted"
+    )
 
 
 class Alarm(models.Model):

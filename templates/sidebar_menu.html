@@ -23,6 +23,9 @@
                 {% endcomment %}
             </ul>
         </li>
+        <li>
+            <a href="{% url 'settings:add_alarm' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> Actions </a>
+        </li>
 
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#entertainment"><i class="fa fa-fw fa-arrows-v"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
@@ -31,10 +34,13 @@
                     <a href="{% url 'settings:general_settings' %}">General settings</a>
                 </li>
                 <li>
+                    <a href="{% url 'settings:groups_list' %}">Groups</a>
+                </li>
+                <li>
                     <a href="{% url 'settings:clients_list' %}">Clients</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:add_client' %}">Add client</a>
+                    <a href="{% url 'settings:items_list' %}">Events</a>
                 </li>
                 <li>
                     <a href="{% url 'settings:users_list'%}">Users</a>

@@ -2,7 +2,31 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 
-from models import Client, Alarm
+from models import ClientGroup, Client, Item, Alarm
+
+
+class GroupForm(ModelForm):
+
+    """ Form which is used to work with ClientGroup informations"""
+
+    class Meta:
+        model = ClientGroup
+        fields = [
+            'name', 'description'
+        ]
+
+
+class ItemForm(ModelForm):
+
+    """ Form which is used to work with Item informations"""
+
+    class Meta:
+        model = Item
+        fields = [
+            'name', 'description', 'is_general',
+            'pin_number', 'is_input', 'client',
+            'group', 'is_activated'
+        ]
 
 
 class ClientForm(ModelForm):
@@ -15,6 +39,7 @@ class ClientForm(ModelForm):
             'name', 'description', 'ip_address',
             'port', 'group'
         ]
+
 
 class AlarmForm(ModelForm):
     """
