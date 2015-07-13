@@ -8,7 +8,7 @@ import json
 import logging
 from django.templatetags.static import static
 import project.settings as global_settings
-from settings.models import Client
+from settings.models import Client, Item
 from dashboard.models import TemperatureLog
 
 log = logging.getLogger(__name__)
@@ -22,7 +22,8 @@ def dashboard(request):
     context = {
         'clients_online': Client.online.count(),
         'weather_data': weather_data if weather_data else None,
-        'icon': static('weather/Sunny.png')
+        'icon': static('weather/Sunny.png'),
+        #'action': Item.objects.latest('notification_time')
     }
     # log.info(weather_info(global_settings.WEATHER_API_LINK))
     return TemplateResponse(request, 'dashboard/dashboard.html', context)

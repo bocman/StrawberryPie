@@ -185,6 +185,10 @@ class Alarm(models.Model):
         "Client",
         blank=False, null=False
         )
+    passed = models.BooleanField(
+        default=False,
+        blank=False, null=False
+        )
 
     def __str__(self):
         pass

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block content %}
     <!-- Page Heading -->
@@ -21,7 +22,7 @@
             {% endif %}
         </div>
     </div>
-
+    <a href="{% url 'settings:add_client' %}" class="btn btn-sm btn-primary" role="button">{% trans "Add new" %} </a>
     <!-- /.row -->
     <hr>
         <div class="col-lg-14">
@@ -51,6 +52,7 @@
                             <td>{{group.id}}</td>
                             <td>{{group.name}}</td>
                             <td>{{group.description}}</td>
+                            <td></td>
                         </tr>
                     {% endfor %}
 

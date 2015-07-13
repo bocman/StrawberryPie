@@ -26,6 +26,3 @@ function updateClock ( )
   // Update the time display
   document.getElementsByClassName("navbar-brand")[0].innerHTML = currentTimeString;
 }
-
-// -->
-

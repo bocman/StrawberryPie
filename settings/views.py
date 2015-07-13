@@ -28,7 +28,8 @@ def general_settings(request):
     """
     TODO
     """
-    return TemplateResponse(request, 'settings/general_settings.html', {
+    template_name = 'settings/general_settings.html'
+    return TemplateResponse(request, template_name, {
     })
 
 
@@ -48,8 +49,9 @@ def users_list(request):
     """
     This method is in use to get all active users.
     """
+    template_name = 'settings/users/users_list.html'
     users = User.objects.all().filter(is_active=True)
-    return TemplateResponse(request, 'settings/users_list.html', {
+    return TemplateResponse(request, template_name, {
         'users': users,
     })
 
@@ -59,6 +61,7 @@ def add_edit_user(request, user_id=None):
     """
     TODO
     """
+    template_name = 'settings/users/add_edit_user.html'
     if user_id:
         user = get_object_or_404(User, pk=user_id)
     else:
@@ -75,7 +78,7 @@ def add_edit_user(request, user_id=None):
     else:
         form = UserForm(instance=user)
 
-    return TemplateResponse(request, 'settings/add_edit_user.html', {
+    return TemplateResponse(request, template_name, {
         'user_form': form,
         'user_id': user_id
     })
@@ -84,15 +87,15 @@ def add_edit_user(request, user_id=None):
 @login_required
 def groups_list(request):
     """
-    This method is used to get all Clients. At the moment, Clients are also sorted by
-    status, so Clients which are online are set before those which aren't
+    This method is used to get all Groups, which are not marked as deleted
     :return: List of Client objects
     """
+    template_name = 'settings/groups/groups.html'
     groups = ClientGroup.objects.all()
-    return TemplateResponse(request, 'settings/groups/groups.html', {
+    return TemplateResponse(request, template_name, {
         'groups': groups,
-        'test': 'test'
     })
+
 
 @login_required
 def clients_list(request):
@@ -101,8 +104,9 @@ def clients_list(request):
     status, so Clients which are online are set before those which aren't
     :return: List of Client objects
     """
+    template_name = 'settings/clients/clients.html'
     clients = Client.active.all().order_by('disabled')
-    return TemplateResponse(request, 'settings/clients.html', {
+    return TemplateResponse(request, template_name, {
         'clients': clients,
     })
 
@@ -115,7 +119,7 @@ def add_edit_client(request, client_id=None):
     :param client_id: ID of the client, which is edited
     :type client_id: Integer
     """
-
+    template_name = 'settings/clients/add_edit_client.html' 
     from_email = settings.EMAIL_HOST
     to_email = request.user.email
     text = {
@@ -154,37 +158,12 @@ def add_edit_client(request, client_id=None):
     else:
         client_form = ClientForm(instance=client)
 
-    return TemplateResponse(request, 'settings/add_edit_client.html', {
+    return TemplateResponse(request, template_name, {
         'client_form': client_form,
         'client_id': client_id if client_id else None,
         'client': client if client_id else None
     })
 
-
-class ItemsList(ListView):
-    queryset = Item.active.all()
-    template_name = "settings/items/items_list.html"
-    context_object_name = 'items'
-
-@login_required
-def delete_item(self, item_id):
-    """
-    This method is in use to mark some item as deleted. This means that
-    this item isn't visible anymore, but informations are still saved in
-    the database
-    :param item_id: Id of the specific Client
-    :type item_id: Integer
-    :return: HttpResponseRedirect
-    """
-
-    item = get_object_or_404(Item, pk=item_id)
-    try:
-        item.is_deleted = True
-        item.save()
-    except:
-        pass
-
-    return HttpResponseRedirect(reverse('settings:items_list'))
 
 @login_required
 def delete_client(self, client_id):
@@ -207,6 +186,33 @@ def delete_client(self, client_id):
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
 
+class ItemsList(ListView):
+    queryset = Item.active.all()
+    template_name = "settings/items/items_list.html"
+    context_object_name = 'items'
+
+
+@login_required
+def delete_item(self, item_id):
+    """
+    This method is in use to mark some item as deleted. This means that
+    this item isn't visible anymore, but informations are still saved in
+    the database
+    :param item_id: Id of the specific Client
+    :type item_id: Integer
+    :return: HttpResponseRedirect
+    """
+
+    item = get_object_or_404(Item, pk=item_id)
+    try:
+        item.is_deleted = True
+        item.save()
+    except:
+        pass
+
+    return HttpResponseRedirect(reverse('settings:items_list'))
+
+
 @login_required
 def add_edit_item(self, client_id=None):
     item = Item()
@@ -218,13 +224,15 @@ def add_edit_item(self, client_id=None):
 
 @login_required
 def edit_client_notification(request, client_id):
-    return TemplateResponse(request, 'settings/edit_client_notification.html', {
+    template_name = 'settings/edit_client_notification.html'
+    return TemplateResponse(request, template_name, {
         'client_id': client_id
     })
 
 
 def client_statistics(request, client_id):
-    return TemplateResponse(request, 'settings/client_statistics.html', {
+    template_name = 'settings/clients/client_statistics.html'
+    return TemplateResponse(request, template_name, {
         'client_id': client_id
     })
 
@@ -235,6 +243,7 @@ def add_edit_alarm(request, alarm_id=None):
     """
     TODO
     """
+    template_name = 'settings/actions/add_edit_alarm.html'
     if alarm_id:
         alarm = get_object_or_404(Alarm, pk=alarm_id)
     else:
@@ -254,9 +263,10 @@ def add_edit_alarm(request, alarm_id=None):
     else:
         alarm_form = AlarmForm()
 
-    return TemplateResponse(request, 'settings/alarm/add_edit_alarm.html', {
-        'alarm_form': alarm_form,
-        'alarms': Alarm.objects.filter(client_id=1)
+    return TemplateResponse(request, template_name, {
+        'action_form': alarm_form,
+        'actions': Alarm.objects.all(),
+        'items': Item.objects.values('name')
     })
 
 
@@ -266,7 +276,8 @@ def alarms_list(request, alarm_id=None):
     """
     TODO
     """
-    return TemplateResponse(request, 'settings/alarms_list.html', {
+    template_name = 'settings/actions/alarms_list.html'
+    return TemplateResponse(request, template_name, {
     })
 
 
