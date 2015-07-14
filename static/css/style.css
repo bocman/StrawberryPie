@@ -17,7 +17,7 @@
 
 .field_group  {
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 11px;
 }
 
 form input[type="text"],form input[type="email"], form input[type="number"]{
@@ -36,10 +36,28 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
 
 }
 
-.fieldset_content{
+.field_group .form-control {
+    width: 310px;
+    margin-right: 5px;
+    display: inline-block;
+}
+.field_group button {
+    width: 50px;
+    height: 34px;
+}
+
+.fieldset_content {
     display: none;
     margin-bottom: 10px;
 } 
+
+form .days_group button {
+    width: 75px;
+}
+
+form .validation_error{
+    color: #a94442;
+}
 
 .blink {
     display: none !important;

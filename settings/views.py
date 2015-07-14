@@ -252,7 +252,9 @@ def add_edit_alarm(request, alarm_id=None):
 
     if request.POST:
         alarm_form = AlarmForm(request.POST, instance=alarm)
+        log.info("sem 1")
         if alarm_form.is_valid():
+            log.info("sem 2")
             alarm_form.save()
             if alarm_id:
                 log.info("Alarm with id "+str(alarm_id)+" has been edited")
@@ -265,8 +267,8 @@ def add_edit_alarm(request, alarm_id=None):
 
     return TemplateResponse(request, template_name, {
         'action_form': alarm_form,
-        'actions': Alarm.objects.all(),
-        'items': Item.objects.values('name')
+        'actions': Alarm.objects.all().order_by('notification_time'),
+        'groups': ClientGroup.objects.all()
     })
 
 

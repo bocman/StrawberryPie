@@ -11,40 +11,46 @@
                 <div class="panel-body">
                     <form action="{% url 'settings:add_alarm' %}?client_id=1" method="post">
                         {% csrf_token %}
-                        <div class="control-labe col-md-12"/>
+                        <div class="field_group"/>
                             {{ action_form.notification_time.label }}
                             {{ action_form.notification_time }}
-                            {{ action_form.notification_time.help_text }}
-                            <small> {{ action_form_notification_time.help_text }} </small>
-                            {% if alarm.notification_time.errors %}
-                                {% for error in alarm_notification_time.errors %}
-                                    {{error}}
+                            {% if action_form.notification_time.errors %}
+                            <br>
+                                {% for error in action_form.notification_time.errors %}
+                                    <div class="validation_error" >
+                                        {{error}}
+                                    </div>
                                 {% endfor %}
-                                <br>
                             {% endif %}
+                            <small> {{ action_form.notification_time.help_text }} </small>
                         </div>
-                        {% comment %}
-                        <div class="dropdown" />
-                            <select name="selected_item">
-                            {% for item in items %}
-                                <option value="{{ item.id }}">{{ item.name }}</option>
-                            {% endfor %}
-                            </select>
+                        <div class="field_group" />
+                                <select id="selected_group" class="form-control">
+                                    {% for group in groups %}
+                                        <option value="{{ group.id }}">{{ group.name }}</option>
+                                    {% endfor %}
+                                </select> 
+                              
+                              <button type="button" class="btn btn-sm btn-primary">{% trans "Add" %}</button>
                         </div>
-                        {% endcomment %}
+                        <div class="field_group" />
+                            {{ action_form.is_periodically.label }}
+                            {{ action_form.is_periodically }}
+                        </div>
 
-
-
-<div class="field_group" />
-      <div class="col-sm-10">
-        <select id="company" class="form-control">
-            {% for item in items %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
-            {% endfor %}
-        </select> 
-      </div>
-      <button type="button" class="btn btn-sm btn-primary">{% trans "Add" %}</button>
-</div>
+                        <div class="days_group">
+                            <button id="monday" type="button" class="btn btn-xs btn-default">Monday</button>
+                            <button id="tuesday" type="button" class="btn btn-xs btn-default">Tuesday</button>
+                            <button id="wednesday" type="button" class="btn btn-xs btn-default">Wednesday</button>
+                            <button id="thursday" type="button" class="btn btn-xs btn-default">Thursday</button>
+                            <br>
+                            <button id="friday" type="button" class="btn btn-xs btn-default">Friday</button>
+                            <button id="saturday" type="button" class="btn btn-xs btn-default">Saturday</button>
+                            <button id="sunday" type="button" class="btn btn-xs btn-default">Sunday</button>
+                        
+                        <br><br>
+                        
+                        </div>
                         {% comment %}
                         {% for field in action_form  %}
                              <p class="field_group" />
@@ -75,7 +81,7 @@
                             </div>
                         </div>
                         {% endcomment %}
-                        <br> <br>
+                        
                         <button type="submit" class="btn btn-xs btn-primary">Submit</button>
                     </form>
                 </div>
@@ -107,5 +113,5 @@
                 </table>
             </div>
 
-        <script src="{{ STATIC_URL }}js/pages/add_edit_alarm.js"></script> 
-{% endblock %}        <script src="{{ STATIC_URL }}js/pages/add_edit_alarm.js"></script> 
+        <script src="{{ STATIC_URL }}js/pages/add_edit_action.js"></script> 
+{% endblock %}        

@@ -61,9 +61,10 @@
                         {{field}} </br>
                         {% if field.errors %}
                             {% for error in field.errors %}
-                                {{error}}
+                                <div class="validation_error" >
+                                    {{error}}
+                                </div>
                             {% endfor %}
-                            <br>
                         {% endif %}
                         <small>{{field.help_text}}</small> </br>
                     </div>

@@ -78,7 +78,7 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    last_active = models.DateTimeField(auto_now=True)
+    last_active = models.DateTimeField()
     created = models.DateTimeField(auto_now=True)
     realibility = models.PositiveSmallIntegerField(
         verbose_name=_('CLient realibility'), default=0,
@@ -175,21 +175,23 @@ class Alarm(models.Model):
         default=100
         )
     notification_time = models.CharField(
-        max_length=50
-        )
-    notified = models.BooleanField(
-        default=False,
-        blank=False, null=False
+        max_length=50,
+        help_text="Enter execution time in 'xx-xx-xx xx:xx' style"
         )
     client = models.ForeignKey(
         "Client",
         blank=False, null=False
         )
-    passed = models.BooleanField(
+    is_passed = models.BooleanField(
         default=False,
         blank=False, null=False
         )
-
+    is_periodically = models.BooleanField(
+        default=False,
+        blank=False, null=False,
+        verbose_name='Repet periodically'
+        )
+    
     def __str__(self):
         pass
         return self.client.name + str(self.notification_time)
