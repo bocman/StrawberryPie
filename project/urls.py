@@ -2,16 +2,14 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.conf.urls.i18n import i18n_patterns
 
 import logging
 
 
 log = logging.getLogger(__name__)
 
-urlpatterns = patterns('',
-                       # Examples:
-                       # url(r'^$', 'project.views.home', name='home'),
-                       # url(r'^blog/', include('blog.urls')),
+urlpatterns = i18n_patterns('',
 
   url(r'^admin/', include(admin.site.urls)),
   url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
@@ -27,4 +25,6 @@ urlpatterns = patterns('',
   url(r'^password/reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, 
         {'post_reset_redirect' : '/password/reset/complete/'}, name='password_reset_confirm'),
   url(r'^password/reset/complete/$', auth_views.password_reset_complete),
+  url(r'^i18n/', include('django.conf.urls.i18n'))
   )
+

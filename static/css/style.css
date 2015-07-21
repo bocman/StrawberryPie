@@ -62,3 +62,33 @@ form .validation_error{
 .blink {
     display: none !important;
 }
+
+
+
+
+
+
+
+
+/* Actions page*/
+/*----------------------------------------*/
+
+#added_actions tr th:nth-child(2), 
+#added_actions tr td:nth-child(2)  {
+    display: none;
+}
+
+#added_actions td {
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+

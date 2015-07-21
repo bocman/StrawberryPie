@@ -249,7 +249,8 @@ def add_edit_alarm(request, alarm_id=None):
     else:
         alarm = Alarm()
         alarm.client_id = request.GET.get("client_id", None)
-
+        alarm.group_id = request.POST.get("selected_group", None)
+    
     if request.POST:
         alarm_form = AlarmForm(request.POST, instance=alarm)
         log.info("sem 1")

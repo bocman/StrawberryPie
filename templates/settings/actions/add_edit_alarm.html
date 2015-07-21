@@ -25,14 +25,14 @@
                             <small> {{ action_form.notification_time.help_text }} </small>
                         </div>
                         <div class="field_group" />
-                                <select id="selected_group" class="form-control">
+                                <select name="selected_group" id="group" class="form-control">
                                     {% for group in groups %}
                                         <option value="{{ group.id }}">{{ group.name }}</option>
                                     {% endfor %}
                                 </select> 
-                              
-                              <button type="button" class="btn btn-sm btn-primary">{% trans "Add" %}</button>
+                              <button type="button" id='add_action' class="btn btn-sm btn-primary">{% trans "Add" %}</button>
                         </div>
+
                         <div class="field_group" />
                             {{ action_form.is_periodically.label }}
                             {{ action_form.is_periodically }}
@@ -86,6 +86,27 @@
                     </form>
                 </div>
         </div>
+        <div class="second_container">
+                            <div class="row" style="width:100%">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped" id="added_actions">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <td></td>
+                                            <th>Group</th>
+                                            <th>Notification time</th>
+                                            <th>Repeting event</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        </div>
     </div>
     </div>
     <br> <br>
@@ -94,7 +115,8 @@
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Notes</th> 
+                                <th></th>
+                                <th>Group</th> 
                                 <th>Volume</th>
                                 <th>Notification time</th>
                                 <th>Notified</th>
@@ -103,15 +125,22 @@
                         <tbody>
                         {% for action in actions  %}
                             <tr>
-                                    <td>{{action.note}}</td>
-                                    <td>{{action.alarm_volume}}</td>
-                                    <td>{{action.notification_time}}</td>
-                                    <td>{{action.notified}}</td>
+                                <td>
+                                    <a href="#" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
+                                </td>
+                                <td>{{action.group.name}}</td>
+                                <td>{{action.alarm_volume}}</td>
+                                <td>{{action.notification_time}}</td>
+                                <td>{{action.notified}}</td>
                             </tr>
                        {% endfor %} 
                     </tbody>
                 </table>
             </div>
 
-        <script src="{{ STATIC_URL }}js/pages/add_edit_action.js"></script> 
+        <script src="{{ STATIC_URL }}js/pages/add_edit_action.js"></script>
+        
+        <script type="text/javascript">
+            var remove_icon = "{% static 'remove.png' %}";
+        </script> 
 {% endblock %}        

@@ -154,7 +154,11 @@ class Item(models.Model):
         default=False,
         help_text="Status which indicate if Item is assigned as deleted"
     )
-
+    is_activated = models.BooleanField(
+        default=False,
+        null=False, blank=False,
+        help_text="Status which indicate if Item is activated"
+    )
 
 class Alarm(models.Model):
     """
@@ -182,6 +186,7 @@ class Alarm(models.Model):
         "Client",
         blank=False, null=False
         )
+    group = models.ForeignKey(ClientGroup)
     is_passed = models.BooleanField(
         default=False,
         blank=False, null=False
