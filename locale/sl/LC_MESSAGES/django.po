@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 22:05+0200\n"
+"POT-Creation-Date: 2015-07-21 20:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,33 +21,41 @@ msgstr ""
 
 #: dashboard/models.py:9
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 #: dashboard/models.py:13
 msgid "Humidity"
-msgstr ""
+msgstr "Vlaga"
 
 #: dashboard/models.py:17
 msgid "Wind"
-msgstr ""
+msgstr "Veter"
 
 #: dashboard/models.py:21
 msgid "City"
-msgstr ""
+msgstr "Mesto"
 
 #: dashboard/models.py:26
 msgid "Feels like"
-msgstr ""
+msgstr "Občutek"
 
 #: dashboard/models.py:30
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: dashboard/models.py:35
 msgid "Sea temperature"
-msgstr ""
+msgstr "Temperatura morja"
 
-#: settings/models.py:16 settings/models.py:125
+#: project/settings.py:117
+msgid "Slovenian"
+msgstr "Slovenščina"
+
+#: project/settings.py:118
+msgid "English"
+msgstr "Angleščina"
+
+#: settings/models.py:16
 msgid "Client group name"
 msgstr ""
 
@@ -65,15 +73,31 @@ msgstr ""
 
 #: settings/models.py:62
 msgid "IP address"
-msgstr ""
+msgstr "IP naslov"
 
 #: settings/models.py:67
 msgid "Port number"
-msgstr ""
+msgstr "Številka porta"
 
 #: settings/models.py:84
 msgid "CLient realibility"
 msgstr ""
+
+#: settings/models.py:125
+msgid "Name of the item"
+msgstr ""
+
+#: settings/models.py:181
+msgid "Short notes about this alarm"
+msgstr ""
+
+#: settings/models.py:189
+msgid "Enter execution time in 'xx-xx-xx xx:xx' style"
+msgstr "Vnesite začetek aktivacije v 'xxxx-xx-xx xx:xx obliki'"
+
+#: settings/models.py:203
+msgid "Repet periodically"
+msgstr "Periodično ponavljaj"
 
 #: settings/views.py:126
 #, python-format
@@ -106,37 +130,66 @@ msgstr "Plošča"
 
 #: templates/registration/password_reset_done.html:98
 #: templates/registration/password_reset_form.html:112
+#: templates/settings/actions/add_edit_alarm.html:99
 msgid "Continue"
-msgstr ""
+msgstr "Nadaljuj"
 
 #: templates/settings/actions/add_edit_alarm.html:33
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
+
+#: templates/settings/actions/add_edit_alarm.html:43
+msgid "Monday"
+msgstr "Ponedeljek"
+
+#: templates/settings/actions/add_edit_alarm.html:45
+msgid "Tuesday"
+msgstr "Torek"
+
+#: templates/settings/actions/add_edit_alarm.html:47
+msgid "Wednesday"
+msgstr "Sreda"
+
+#: templates/settings/actions/add_edit_alarm.html:50
+msgid "Thursday"
+msgstr "Četrtek"
+
+#: templates/settings/actions/add_edit_alarm.html:54
+msgid "Friday"
+msgstr "Petek"
+
+#: templates/settings/actions/add_edit_alarm.html:57
+msgid "Saturday"
+msgstr "Sobota"
+
+#: templates/settings/actions/add_edit_alarm.html:60
+msgid "Sunday"
+msgstr "Nedelja"
 
 #: templates/settings/clients/add_edit_client.html:11
 #: templates/settings/groups/add_edit_group.html:11
 msgid "Clients"
-msgstr ""
+msgstr "Odjemalci"
 
 #: templates/settings/clients/add_edit_client.html:13
 #: templates/settings/groups/add_edit_group.html:13
 msgid " Edit client"
-msgstr ""
+msgstr "Uredi odjemalca"
 
 #: templates/settings/clients/add_edit_client.html:15
 #: templates/settings/groups/add_edit_group.html:15
 msgid " Add new"
-msgstr ""
+msgstr "Dodaj"
 
 #: templates/settings/clients/add_edit_client.html:28
 #: templates/settings/groups/add_edit_group.html:28
 msgid "Online"
-msgstr ""
+msgstr "Dosegljiv"
 
 #: templates/settings/clients/add_edit_client.html:30
 #: templates/settings/groups/add_edit_group.html:30
 msgid "Offline"
-msgstr ""
+msgstr "Nedosegljiv"
 
 #: templates/settings/clients/add_edit_client.html:36
 #: templates/settings/groups/add_edit_group.html:36
@@ -146,7 +199,7 @@ msgstr ""
 #: templates/settings/clients/add_edit_client.html:37
 #: templates/settings/groups/add_edit_group.html:37
 msgid "Shutdown"
-msgstr ""
+msgstr "Zaustavitev"
 
 #: templates/settings/clients/add_edit_client.html:73
 #: templates/settings/groups/add_edit_group.html:72
@@ -156,7 +209,7 @@ msgstr ""
 #: templates/settings/clients/add_edit_client.html:75
 #: templates/settings/groups/add_edit_group.html:74
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #: templates/settings/clients/add_edit_client.html:83
 msgid "Basic settings"

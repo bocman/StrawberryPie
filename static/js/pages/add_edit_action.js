@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    
-    $( ".days_group" ).hide();
-    $('#added_actions').hide()
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
 
     $('#monday, #tuesday, #thursday, #friday, #saturday, #wednesday, #sunday').click(function(){
         if ( $(this).hasClass('btn btn-xs btn-default')){
@@ -17,17 +18,17 @@ $(document).ready(function () {
 
     $('input[name="is_periodically"]').click(function() {
         if ( $(this).prop('checked') ) {
-            $( ".days_group" ).show();
+            $( "#days_group" ).show();
         }
         else{
-            $( ".days_group" ).hide();
+            $( "#days_group" ).hide();
         }
     });
 
 
     $('button#add_action').click(function() {
         var table = document.getElementById("added_actions");
-        var notification_time = $("#id_notification_time").val();
+        var notification_time = $("[name='notification_time']").val();
         var group = $("#group");
         var group_ID = group.children(':selected').val();
         var group_name = group.children(':selected').text()

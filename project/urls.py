@@ -12,6 +12,7 @@ log = logging.getLogger(__name__)
 urlpatterns = i18n_patterns('',
 
   url(r'^admin/', include(admin.site.urls)),
+  url(r'^i18n/', include('django.conf.urls.i18n')),
   url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
   url(r'^settings/', include('settings.urls', namespace='settings')),
   url(r'^webservice/', include('rest_services.urls', namespace="webservice")),
@@ -25,6 +26,6 @@ urlpatterns = i18n_patterns('',
   url(r'^password/reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, 
         {'post_reset_redirect' : '/password/reset/complete/'}, name='password_reset_confirm'),
   url(r'^password/reset/complete/$', auth_views.password_reset_complete),
-  url(r'^i18n/', include('django.conf.urls.i18n'))
+
   )
 

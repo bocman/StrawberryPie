@@ -1,6 +1,6 @@
 from django.db import models
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveItemsManager
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone as tz
 import logging
 
@@ -122,13 +122,13 @@ class Item(models.Model):
     active = ActiveItemsManager()
 
     name = models.CharField(
-        verbose_name=_('Client group name'),
+        verbose_name=_('Name of the item'),
         max_length=30,
     )
     description = models.CharField(
         verbose_name=_('Short description'),
         max_length=30,
-        help_text="Short summary of the group"
+        help_text="Short summary of the item"
     )
     is_general = models.BooleanField(
         default=False,
@@ -136,6 +136,12 @@ class Item(models.Model):
         )
     pin_number = models.PositiveIntegerField(
         default=None, null=True
+        )
+    interval = models.PositiveIntegerField(
+        default=0, null=True,
+        blank=False,
+        verbose_name="Time interval",
+        help_text="Time interval- need to complete"
         )
     is_input = models.NullBooleanField(
         default=False,
@@ -172,7 +178,7 @@ class Alarm(models.Model):
     note = models.CharField(
         max_length=50,
         verbose_name='Notes',
-        help_text='Short notes about this alarm'
+        help_text=_('Short notes about this alarm')
         )
 
     alarm_volume = models.PositiveIntegerField(
@@ -180,7 +186,7 @@ class Alarm(models.Model):
         )
     notification_time = models.CharField(
         max_length=50,
-        help_text="Enter execution time in 'xx-xx-xx xx:xx' style"
+        help_text=_("Enter execution time in 'xx-xx-xx xx:xx' style")
         )
     client = models.ForeignKey(
         "Client",
@@ -194,7 +200,7 @@ class Alarm(models.Model):
     is_periodically = models.BooleanField(
         default=False,
         blank=False, null=False,
-        verbose_name='Repet periodically'
+        verbose_name=_('Repet periodically')
         )
     
     def __str__(self):
