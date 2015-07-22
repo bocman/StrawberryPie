@@ -268,7 +268,7 @@ def add_edit_alarm(request, alarm_id=None):
 
     return TemplateResponse(request, template_name, {
         'action_form': alarm_form,
-        'actions': Alarm.objects.all().order_by('notification_time'),
+        'actions': Alarm.objects.all().order_by('start_time'),
         'groups': ClientGroup.objects.all()
     })
 

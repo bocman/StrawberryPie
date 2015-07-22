@@ -83,9 +83,6 @@ a:link {
 }
 
 </style>
-
-    <script src="js/prefixfree.min.js"></script>
-
 </head>
 
 <body>
@@ -117,31 +114,35 @@ a:link {
 	<div class="lost_password">
 		 <a href="{% url 'password_reset' %}" >Lost password?</a>
 	</div>
-	<img src="{% static 'flags/english.png' %}" alt='english' title="English" />
+	<a href="#" onclick="setLang('en');">
+		<img src="{% static 'flags/english.png' %}" alt='english' title="English" />
+	</a>
+	<a href="#" onclick="setLang('sl');">
 	<img src="{% static 'flags/slovenia.png' %}" alt='slovenian' title="Slovenian" />
-</div>
-
-<form action="{% url 'set_language' %}" method="post">
-{% csrf_token %}
-<input name="next" type="hidden" value="#" />
-<select name="language">
-{% get_language_info_list for LANGUAGES as languages %}
-{% for language in languages %}
-<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-    {{ language.name_local }} ({{ language.code }})
-</option>
-{% endfor %}
-</select>
-<input type="submit" value="Go" />
-</form>
-{{LANGUAGE_CODE}}
+	</a>
 
 
 
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+	<script type="text/javascript">
+	    function setLang(lang){
+	        $('#langForm select').val(lang); 
+	        $('#langForm').submit();
+	        return false;
+	    }
+	</script>
 
-  <script src="js/index.js"></script>
+	<form id="langForm" action="{% url 'set_language' %}" method="post" style="display:none" >
+		{% csrf_token %}
+		<input name="next" type="hidden" value="/" />
+		    <select name="language">
+		        <option value="sl">Slovenian</option>
+		        <option value="en">English</option>
+		    </select>
+		    <input type="submit" value="Go" />
+	</form>
 
-
+	</div>
 
 </body>
 

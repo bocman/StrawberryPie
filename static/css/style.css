@@ -10,14 +10,14 @@
 }
 
 .second_container{
-    width: 430px;
+    width: 530px;
     float: left; 
     margin-left: 20px;
 }
 
 .field_group  {
     display: block;
-    margin-bottom: 11px;
+    margin-bottom: 6px;
 }
 
 .field_group .form-control {
@@ -62,8 +62,9 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
 }
 
 .datetimeChooser{
+    margin-bottom: 6px;
     display: block;
-    margin-bottom: 11px;
+*/
 }
 
 .input-group.date {
@@ -78,7 +79,7 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
 }
 
 span.input-group-addon{
-    width:48px;
+    width:35px;
 }
 
 .fieldset_content {
@@ -105,10 +106,6 @@ form .validation_error{
 /* Actions page*/
 /*----------------------------------------*/
 
-#added_actions{
-    display: none
-}
-
 #days_group {
     display: none
 }
@@ -117,6 +114,9 @@ form #days_group button {
     width: 75px;
 }
 
+#added_actions{
+    display: none
+}
 #added_actions tr th:nth-child(2), 
 #added_actions tr td:nth-child(2)  {
     display: none;

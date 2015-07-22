@@ -48,8 +48,9 @@ class AlarmForm(ModelForm):
     class Meta:
         model = Alarm
         fields = [
-            'notification_time',
-            'is_periodically'
+            'start_time',
+            'is_periodically',
+            'end_time'
         ]
 
 class UserForm(ModelForm):

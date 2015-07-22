@@ -3,6 +3,9 @@ $(document).ready(function () {
     $(function () {
         $('#datetimepicker1').datetimepicker();
     });
+    $(function () {
+        $('#end_time_picker').datetimepicker();
+    });
 
     $('#monday, #tuesday, #thursday, #friday, #saturday, #wednesday, #sunday').click(function(){
         if ( $(this).hasClass('btn btn-xs btn-default')){
@@ -28,7 +31,8 @@ $(document).ready(function () {
 
     $('button#add_action').click(function() {
         var table = document.getElementById("added_actions");
-        var notification_time = $("[name='notification_time']").val();
+        var start_time = $("[name='start_time']").val();
+        var end_time = $("[name='end_time']").val();
         var group = $("#group");
         var group_ID = group.children(':selected').val();
         var group_name = group.children(':selected').text()
@@ -38,8 +42,9 @@ $(document).ready(function () {
         var cell1 = row.insertCell(0).innerHTML="<img src="+ remove_icon +" alt='Remove' title='Remove' class='remove_icon'/> </a>";
         var cell2 = row.insertCell(1).innerHTML=group_ID;
         var cell3 = row.insertCell(2).innerHTML=group_name;
-        var cell4 = row.insertCell(3).innerHTML=notification_time;
-        var cell5 = row.insertCell(4).innerHTML=is_periodically;
+        var cell4 = row.insertCell(3).innerHTML=start_time;
+        var cell5 = row.insertCell(4).innerHTML=end_time;
+        var cell6 = row.insertCell(5).innerHTML=is_periodically;
 
         if ( table.rows.length > 1){
             $('#added_actions').show()

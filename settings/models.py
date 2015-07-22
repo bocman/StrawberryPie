@@ -184,9 +184,9 @@ class Alarm(models.Model):
     alarm_volume = models.PositiveIntegerField(
         default=100
         )
-    notification_time = models.CharField(
-        max_length=50,
-        help_text=_("Enter execution time in 'xx-xx-xx xx:xx' style")
+    start_time = models.DateTimeField(
+        )
+    end_time = models.DateTimeField(
         )
     client = models.ForeignKey(
         "Client",
@@ -203,6 +203,12 @@ class Alarm(models.Model):
         verbose_name=_('Repet periodically')
         )
     
+    def execution_time(self):
+        if self.start_time and self.end_time:
+            return self.end_time - self.start_time
+        else:
+            return "N/A"
+
     def __str__(self):
         pass
-        return self.client.name + str(self.notification_time)
+        return self.client.name + str(self.start_time)
