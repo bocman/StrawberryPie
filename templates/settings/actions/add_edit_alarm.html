@@ -107,10 +107,10 @@
                                 <tr>
                                     <th></th>
                                     <td></td>
-                                    <th>Group</th>
-                                    <th>Start time</th>
-                                    <th>End time</th>
-                                    <th>Repeate</th>
+                                    <th> {% trans "Group" %}</th>
+                                    <th>{% trans "Start time" %}</th>
+                                    <th>{% trans "End time" %}</th>
+                                    <th>{% trans "Repeat" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,11 +129,11 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Group</th> 
-                                <th>Volume</th>
-                                <th>Start time</th>
-                                <th>End time</th>
-                                <th>Execution time</th>
+                                <th>{% trans "Group" %}</th> 
+                                <th>{% trans "Volume" %}</th>
+                                <th>{% trans "Start time" %}</th>
+                                <th>{% trans "End time" %}</th>
+                                <th>{% trans "Execution time" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,6 +162,7 @@
             var remove_icon = "{% static 'remove.png' %}";
         </script> 
 {% endblock %}        
+
 
 
 

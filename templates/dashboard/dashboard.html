@@ -6,7 +6,7 @@
               <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            {% trans "Dashboard" %}<small>Statistics Overview</small>
+                            {% trans "Dashboard" %} <small>Statistics Overview</small>
                         </h1>
 
 
@@ -16,17 +16,6 @@
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
-
-<!-- Small modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       ...
     </div>
@@ -88,8 +77,8 @@
                                         <div> {{ weather_data.city }} </div>
                                     </div>
                                 </div>
-                                <i> Humudity: {{ weather_data.humidity }}% </i> <br>
-                                <i> Wind: {{ weather_data.wind }}% </i> <br>
+                                <i>{% trans "Humidity" %}: {{ weather_data.humidity }}% </i> <br>
+                                <i>{% trans "Wind" %}: {{ weather_data.wind }}% </i> <br>
                                 <small> {{weather_data.timestamp}}</small>
                             </div>
                             <a href="{% url 'dashboard:weather_full' %}">

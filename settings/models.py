@@ -1,8 +1,12 @@
 from django.db import models
-from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveItemsManager
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 from django.utils import timezone as tz
+from datetime import timedelta
 import logging
+
+from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveItemsManager
+from core.utils import format_time_interval
 
 log = logging.getLogger(__name__)
 
@@ -152,10 +156,6 @@ class Item(models.Model):
         blank=True, null=True
         )
     group = models.ForeignKey(ClientGroup, default=None)
-    is_activated = models.BooleanField(
-        default=False,
-        blank=False, null=False
-        )
     is_deleted = models.BooleanField(
         default=False,
         help_text="Status which indicate if Item is assigned as deleted"
@@ -204,11 +204,15 @@ class Alarm(models.Model):
         )
     
     def execution_time(self):
-        if self.start_time and self.end_time:
-            return self.end_time - self.start_time
-        else:
-            return "N/A"
+        return format_time_interval(self.start_time, self.end_time)
 
-    def __str__(self):
-        pass
-        return self.client.name + str(self.start_time)
+    def clean(self):
+        raise ValidationError(_('Invalid value'), code='invalid')
+        if self.start_time > self.end:
+            raise ValidationError(_('Invalid value'), code='invalid')
+   
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Alarm, self).save(*args, **kwargs)
+
+

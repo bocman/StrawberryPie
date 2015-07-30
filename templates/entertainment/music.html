@@ -7,16 +7,15 @@
         <b>  Test page music </b>
         <br><br>
         <br><br>
-        {% for element in data %}
-            {{ element }} <br>
-        {% endfor %}
+        
+
+        {{ data }}
     </div>
 
 
 
-<input type="button" onclick="window.location = '/en/' ">
-
-
+<a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
+<a href="#" data-toggle="tooltip" data-placement="left" title="Hooray!">Hover</a>
 
 
 {% endblock %}

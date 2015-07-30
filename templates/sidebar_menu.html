@@ -1,9 +1,11 @@
+{% load i18n %}
+
 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li class="active">
-            <a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            <a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-fw fa-dashboard"></i> {% trans "Dashboard" %}</a>
         </li>
         {% comment %}
             <li>
@@ -11,10 +13,10 @@
             </li>
         {% endcomment %}
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> testing <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>
-                    <a href="{% url 'entertainment:music' %}">Play music</a>
+                    <a href="{% url 'entertainment:music' %}">Testing page</a>
                 </li>
                 {% comment %}
                 <li>
@@ -24,12 +26,12 @@
             </ul>
         </li>
         <li>
-            <a href="{% url 'settings:add_alarm' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> Actions </a>
+            <a href="{% url 'settings:add_alarm' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> Events </a>
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#entertainment"><i class="fa fa-fw fa-arrows-v"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="entertainment" class="collapse">
+            <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-arrows-v"></i> {% trans "Settings" %}<i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="settings" class="collapse">
                 <li>
                     <a href="{% url 'settings:general_settings' %}">General settings</a>
                 </li>

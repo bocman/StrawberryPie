@@ -12,7 +12,9 @@ from django.utils.translation import ugettext as _
 from django.views.generic import ListView
 
 import logging
-from rest_framework import viewsets
+import requests
+import json
+from rest_services.serializers import *
 import project.settings as settings
 
 from forms import ClientForm, ItemForm, AlarmForm, UserForm
@@ -111,6 +113,20 @@ def clients_list(request):
     })
 
 
+def get_items(client_id, url=None):
+    """
+    This method make request on client to get list of all items.
+    """
+    if not url:
+        url = "http://localhost:8002/rest/gpio/all"
+    r = requests.get(url)
+    items = json.loads(r.text)
+    for i in items:
+        group_id = i.get('group', None)
+        i['group'] = ClientGroup.objects.get(id=group_id)
+    return items
+
+
 @login_required
 def add_edit_client(request, client_id=None):
     """
@@ -130,7 +146,6 @@ def add_edit_client(request, client_id=None):
             'created_log': _("Email after creation sended for client '%s' with id=%s"),
             'created_success': _('Additional info were sended on email'),
             'edited': "Client '%s' with id=%s has been edited"
-
     }
 
     if client_id:
@@ -161,7 +176,8 @@ def add_edit_client(request, client_id=None):
     return TemplateResponse(request, template_name, {
         'client_form': client_form,
         'client_id': client_id if client_id else None,
-        'client': client if client_id else None
+        'client': client if client_id else None,
+        'items': get_items(client_id) if client_id else None
     })
 
 
@@ -192,6 +208,26 @@ class ItemsList(ListView):
     context_object_name = 'items'
 
 
+def send_data(page_url, data=None, action_type=None):
+    """
+    TODO
+    """
+    data = json.dumps(data)
+    headers = {'Content-type': 'application/json'}
+    result = requests.patch(url=page_url, data=data, headers=headers)
+
+def activate_item(request, pin_number=None, status=None):
+    data ={
+        'is_activated': status
+    }
+    page_url= "http://localhost:8002/rest/gpio/update/"+ str(pin_number) +"/"
+    try:
+        send_data(page_url, data)
+    except:
+        pass
+    return HttpResponseRedirect(reverse('settings:clients_list'))
+
+
 @login_required
 def delete_item(self, item_id):
     """
@@ -212,14 +248,6 @@ def delete_item(self, item_id):
 
     return HttpResponseRedirect(reverse('settings:items_list'))
 
-
-@login_required
-def add_edit_item(self, client_id=None):
-    item = Item()
-    if request.POST:
-        client_form = ClientForm(request.POST, instance=client)
-        if client_form.is_valid():
-            client_form.save()
 
 
 @login_required
@@ -282,12 +310,3 @@ def alarms_list(request, alarm_id=None):
     template_name = 'settings/actions/alarms_list.html'
     return TemplateResponse(request, template_name, {
     })
-
-
-class ClientViewSet(viewsets.ModelViewSet):
-
-    """
-    API endpoint that allows Clients to be viewed or edited.
-    """
-    queryset = Client.objects.all()
-    # serializer_class = ClientSerializer

@@ -37,7 +37,7 @@ class ClientForm(ModelForm):
         model = Client
         fields = [
             'name', 'description', 'ip_address',
-            'port', 'group'
+            'port', 'group', 'key'
         ]
 
 

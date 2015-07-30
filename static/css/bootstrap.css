@@ -2982,6 +2982,25 @@ fieldset[disabled] .btn-info.active {
   color: #5bc0de;
   background-color: #fff;
 }
+
+.btn-activated {
+  background-color: #FFD800;
+  color: #333;;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border-color: #46b8da;
+}
+.btn-activated:hover, .btn-yellow:focus {
+  background: rgb(252, 255, 179);
+  border-color: #269abc;
+}
+.btn-activated:active {
+  background: rgb(247, 255, 71);
+  border-color: #269abc;
+}
+
+
 .btn-warning {
   color: #fff;
   background-color: #f0ad4e;
