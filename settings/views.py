@@ -118,12 +118,12 @@ def get_items(client_id, url=None):
     This method make request on client to get list of all items.
     """
     if not url:
-        url = "http://localhost:8002/rest/gpio/all"
+        url = "http://192.168.1.130:8002/rest/gpio/all/"
     r = requests.get(url)
     items = json.loads(r.text)
     for i in items:
         group_id = i.get('group', None)
-        i['group'] = ClientGroup.objects.get(id=group_id)
+        #i['group'] = ClientGroup.objects.get(id=group_id)
     return items
 
 
@@ -220,10 +220,11 @@ def activate_item(request, pin_number=None, status=None):
     data ={
         'is_activated': status
     }
-    page_url= "http://localhost:8002/rest/gpio/update/"+ str(pin_number) +"/"
+    page_url= "http://192.168.1.130:8002/rest/gpio/update/"+ str(pin_number)+ "/"
     try:
         send_data(page_url, data)
     except:
+        print "i Failed with activation"
         pass
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
