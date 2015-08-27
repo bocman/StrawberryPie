@@ -1,16 +1,15 @@
-from collections import OrderedDict
 import os
+import json
+import logging
 
 #from settings.models import Client
+#from project.setting.models import Client
 
 
-#def dashboard_data():
- #   data = OrderedDict()
+import requests
 
-  #  data['clients_online'] = Client.objects.count()
 
-   # return data
-
+log = logging.getLogger(__name__)
 
 def format_time_interval(start_time, end_time):
     """
@@ -84,4 +83,54 @@ class FileDirectory(object):
 
     def is_directory():
         return self.is_directory
-        
+
+
+
+def send_data(page_url, data=None, action_type=None):
+    """
+    TODO
+    """
+    data = json.dumps(data)
+    headers = {'Content-type': 'application/json'}
+    request = requests.patch(url=page_url, data=data, headers=headers)
+    return request.status_code
+
+
+def activation(request, status, client_id=None, pin_number=None):
+    """
+    Function is used to activate specific modul on specific client.
+    As parameter we get modul pin number and id of parent client. Then we
+    fill those values in prepared url string, to get activation url.
+    If activation was successfully we get status code 200 and
+    we make note into the logs, otherway we make notes about failed activation
+    :param client_id: Id of the client, if modul have a parent
+    :param pin_number: GPIO number which is used by modul
+    :param status: Value which tell as if we would like to activate
+                   or deactivate value (True=activate, False=deactivate)
+    :type client_id: Integer
+    :type pin_number: Integer
+    :type status: Boolean
+    """
+    data = {
+        "is_activated": status
+    }
+    client = Client.objects.get(id=client_id)
+    url = "http://{0}/rest/gpio/update/{1}/".format(
+        client.ip_address, pin_number
+        )
+    try:
+        if send_data(url, data) == 200:
+            if status == 'True':
+                log.info(
+                    "Activated modul with pin {0} on client {1}".format(
+                        pin_number, client.name
+                        )
+                    )
+            else:
+               log.info("Dectivated modul with pin {0} on client {1}".format(pin_number, client.name)) 
+    except:
+        log.info( "Failed to activate modul with pin{0} on client{1}".format(pin_number, client.name) )
+
+    return HttpResponseRedirect(reverse('settings:clients_list'))
+
+

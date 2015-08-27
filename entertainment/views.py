@@ -17,14 +17,12 @@ def music(request):
     TODO
     """
     data ={
-        'pin_number': 9,
-        'is_activated': False,
-        'is_input': False,
-        'interval': 0,
-        'is_general': True
+
+        'is_activated': True,
+
     }
     headers = {'Content-type': 'application/json'}
-    r = requests.patch('http://localhost:8002/rest/gpio/update/6/', data =json.dumps(data), headers=headers)
+    r = requests.patch('http://192.168.1.130/rest/gpio/update/3/', data =json.dumps(data), headers=headers)
     data = r.text
 
 

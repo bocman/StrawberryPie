@@ -1,3 +1,5 @@
+
+from __future__ import absolute_import
 """
 Django settings for project project.
 
@@ -12,19 +14,21 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 import djcelery
 djcelery.setup_loader()
-BROKER_URL = 'django://'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-v0nscxua4k3&mrr)gy#1_y(*&_-(5h33u-l&d-(-ut2^&@ro_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 
 TEMPLATE_DEBUG = True
 
@@ -46,11 +50,13 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_services',
     'widget_tweaks',
-    'settings',
+    'setting',
     'dashboard',
     'entertainment'
 
 )
+
+DJANGO_SETTINGS_MODULE = "project.settings"
 
 TEMPLATE_DIRS = (
     "%s/templates" % BASE_DIR,
@@ -138,12 +144,13 @@ APPEND_SLASH = True
 
 STATIC_URL = '/static/'
 
-STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
     '%s/static/images' % BASE_DIR,
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Link which is in use to stream radio
 RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
@@ -251,3 +258,11 @@ LOGGING = {
         }
     }
 }
+
+
+BROKER_URL = 'django://'
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend' 
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_APP="proj"
+CELERYD_NODES="worker"
+CELERY_TIMEZONE = TIME_ZONE

@@ -106,8 +106,8 @@ a:link {
 	{% if form.errors %}
 		<p>{% trans "Your username or password didn't match. Please try again." %}</p>
 	{% endif %}
-	    {% render_field form.username placeholder='Username' %}
-	    {% render_field form.password placeholder='Password' %}
+	    {% render_field form.username placeholder='Uporabniško ime' %}
+	    {% render_field form.password placeholder='Geslo' %}
 	    <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Let me in" %}</button>
 	</form>
 
@@ -115,10 +115,10 @@ a:link {
 		 <a href="{% url 'password_reset' %}" >{% trans "Lost password?" %}</a>
 	</div>
 	<a href="#" onclick="setLang('en');">
-		<img src="{% static 'flags/english.png' %}" alt='english' title="English" />
+		<img src="{% static 'images/flags/english.png' %}" alt='english' title="English" />
 	</a>
 	<a href="#" onclick="setLang('sl');">
-	<img src="{% static 'flags/slovenia.png' %}" alt='slovenian' title="Slovenian" />
+	<img src="{% static 'images/flags/slovenia.png' %}" alt='Slovenščina' title="Slovenščina" />
 	</a>
 
 

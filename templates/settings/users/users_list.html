@@ -38,18 +38,18 @@
                        
                             {% if user.is_active == True %}
                                 <tr class="success">                
-                               <td stye="width:30px"> <img class="myDivv" src="{% static 'ok_icon.png' %}" title='Active'></td>
+                               <td stye="width:30px"> <img class="myDivv" src="{% static 'images/ok_icon.png' %}" title='Active'></td>
                             {% else %}
                                 <tr>
                                 <td style="width:80px"></td>
                             {% endif %}
                             <td>
-                                <a href="{% url 'settings:edit_user' user.id %}"><img src="{% static 'edit.png' %}" alt='Edit' /></a>
+                                <a href="{% url 'settings:edit_user' user.id %}"><img src="{% static 'images/edit.png' %}" alt='Edit' /></a>
 
-                                <a href="#" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
+                                <a href="#" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
 
                                 <a href="#" >
-                                <img src="{% static 'lock.png' %}" alt="Notification settings" title="Notification settings" /></a>
+                                <img src="{% static 'images/lock.png' %}" alt="Notification settings" title="Notification settings" /></a>
 
                             </td>
                             

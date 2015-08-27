@@ -46,18 +46,18 @@
                     {% for client in clients%}                
                             {% if client.is_active and client.last_active %}
                                 <tr class="success">                
-                               <td stye="width:100px"> <img class="myDiv" src="{% static 'ok_icon.png' %}" title='Connected'></td>
+                               <td stye="width:100px"> <img class="myDiv" src="{% static 'images/ok_icon.png' %}" title='Connected'></td>
                             {% else %}
                                 <tr>
                                 <td style="width:35px"></td>
                             {% endif %}
                             <td>
-                                <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static 'edit.png' %}" alt='Edit' /></a>
+                                <a href="{%url 'settings:edit_client' client.id%}" ><img src="{% static 'images/edit.png' %}" alt='Edit' /></a>
 
-                                <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
+                                <a href="{%url 'settings:delete_client' client.id%}" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
 
                                 <a href="{%url 'settings:edit_client_notification' client.id%}" >
-                                <img src="{% static 'mute.png' %}" alt="Notification settings" title="Notification settings" /></a>
+                                <img src="{% static 'images/mute.png' %}" alt="Notification settings" title="Notification settings" /></a>
                             </td>
                             <td>{{client.id}}</td>
                             <td>{{client.name}}</td>

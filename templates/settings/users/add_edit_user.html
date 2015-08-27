@@ -7,7 +7,7 @@
         <div class="main_container">
             <div class="first_container" />
 
-                <img src="{% static 'avatar/woman' %}" style="width:250px; height:120px; margin-left:60px">        
+                <img src="{% static 'images/avatar/woman.jpg' %}" style="width:250px; height:120px; margin-left:60px">        
                 <br><br>
                 <form action= "{% url 'settings:edit_user' user_id %}" method="post"> 
                     {% csrf_token %}

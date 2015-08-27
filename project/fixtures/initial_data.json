@@ -1,0 +1,14 @@
+[
+  {
+    "model": "project.setting.TemperatureLog",
+    "pk": 1,
+    "fields": {
+      "temp": 20,
+      "humidity": 60,
+      "city": "Izola",
+      "feels_like": 21,
+      "description": "Test case for temperature",
+      "sea_temp": 35
+    }
+  }
+]

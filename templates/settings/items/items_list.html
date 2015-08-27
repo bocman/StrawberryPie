@@ -22,8 +22,28 @@
             {% endif %}
         </div>
     </div>
-    <a href="" class="btn btn-sm btn-primary" role="button">{% trans "Add new" %} </a>
+    <div class="col-md-3">
+        <a href="" class="btn btn-sm btn-primary" role="button">{% trans "Add new" %} </a>
+    </div>
     <!-- /.row -->
+    
+
+
+<div class="row">
+  <div class="col-md-3">
+   <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search</button>
+      </span>
+    </div><!-- /input-group -->
+</div><!-- /.row -->
+
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+
     <hr>
         <div class="col-lg-14">
             <div class="table-responsive">
@@ -48,9 +68,9 @@
                     {% for item in items%}                
                         <tr>
                             <td>
-                                <a href="" ><img src="{% static 'edit.png' %}" alt='Edit' /></a>
+                                <a href="" ><img src="{% static 'images/edit.png' %}" alt='Edit' /></a>
 
-                                <a href="{% url 'settings:delete_item' item.id %}" ><img src="{% static 'remove.png' %}" alt='Remove' title='Remove' /> </a>
+                                <a href="{% url 'settings:delete_item' item.id %}" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
                             </td>  
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
@@ -70,5 +90,24 @@
             </div>
         </div>
     <hr>
-    <script src="{{ STATIC_URL }}js/pages/clients.js"></script>  
+    {{ item_names}}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+  <script>
+
+  $(function() {
+    var availableTags = ['{{ item_names }}'];
+    console.log(availableTags);
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+  </script> 
 {% endblock %}

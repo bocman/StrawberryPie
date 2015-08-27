@@ -33,11 +33,11 @@ class OnlineClientsManager(models.Manager):
     def count(self):
         return len(self.get_queryset())
 
-class ActiveItemsManager(models.Manager):
+class ActiveModulsManager(models.Manager):
 
     def get_queryset(self):
         """
-        Method return all Items which have status set to 
+        Method return all Moduls which have status set to 
         none deleted
         """
-        return super(ActiveItemsManager, self).get_queryset().filter(is_deleted=False)
+        return super(ActiveModulsManager, self).get_queryset().filter(is_deleted=False)

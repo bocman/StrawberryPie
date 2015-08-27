@@ -1,0 +1,5 @@
+run worker in development
+    python manage.py celery worker --loglevel=info
+    or debug - --loglevel=DEBUG
+
+    celery -A project beat -S djcelery.schedulers.DatabaseScheduler

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-26 15:02+0200\n"
+"POT-Creation-Date: 2015-08-11 18:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: dashboard/models.py:13 templates/dashboard/dashboard.html:98
+#: dashboard/models.py:13 templates/dashboard/dashboard.html:80
 msgid "Humidity"
 msgstr "Vlaga"
 
-#: dashboard/models.py:17 templates/dashboard/dashboard.html:99
+#: dashboard/models.py:17 templates/dashboard/dashboard.html:81
 msgid "Wind"
 msgstr "Veter"
 
@@ -47,84 +47,72 @@ msgstr "Opis"
 msgid "Sea temperature"
 msgstr "Temperatura morja"
 
-#: project/settings.py:121
-msgid "Slovenian"
-msgstr "Slovenščina"
-
-#: project/settings.py:122
-msgid "English"
-msgstr "Angleščina"
-
-#: settings/models.py:18
+#: setting/models.py:20
 msgid "Client group name"
 msgstr ""
 
-#: settings/models.py:22 settings/models.py:59 settings/models.py:131
+#: setting/models.py:24 setting/models.py:61 setting/models.py:133
 msgid "Short description"
 msgstr "Kratek opis"
 
-#: settings/models.py:27
+#: setting/models.py:29
 msgid "Number of clients"
 msgstr ""
 
-#: settings/models.py:54
+#: setting/models.py:56
 msgid "Client name"
 msgstr "Ime odjemalca"
 
-#: settings/models.py:64
+#: setting/models.py:66
 msgid "IP address"
 msgstr "IP naslov"
 
-#: settings/models.py:69
+#: setting/models.py:71
 msgid "Port number"
 msgstr "Številka porta"
 
-#: settings/models.py:86
+#: setting/models.py:88
 msgid "CLient realibility"
 msgstr ""
 
-#: settings/models.py:127
+#: setting/models.py:129
 msgid "Name of the item"
 msgstr "Ime modula"
 
-#: settings/models.py:183
-msgid "Short notes about this alarm"
+#: setting/models.py:181
+msgid "Short notes about this event"
 msgstr ""
 
-#: settings/models.py:205
+#: setting/models.py:198
 msgid "Repet periodically"
 msgstr "Periodično ponavljaj"
 
-#: settings/models.py:215 settings/models.py:217
-msgid "Invalid value"
-msgstr ""
-
-#: settings/views.py:126
+#: setting/views.py:161
 #, python-format
 msgid ""
 "New client has been successfully created on %s. To authorize "
 "it                                          use this generated key %s ."
 msgstr ""
 
-#: settings/views.py:128
+#: setting/views.py:163
 msgid "New client has been successfully created"
 msgstr ""
 
-#: settings/views.py:129
+#: setting/views.py:164
 #, python-format
 msgid "Client '%s' with id=%s has been created"
 msgstr ""
 
-#: settings/views.py:130
+#: setting/views.py:165
 #, python-format
 msgid "Email after creation sended for client '%s' with id=%s"
 msgstr ""
 
-#: settings/views.py:131
+#: setting/views.py:166
 msgid "Additional info were sended on email"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:16 templates/sidebar_menu.html:8
+#: templates/dashboard/dashboard.html:9 templates/sidebar_menu.html:8
 msgid "Dashboard"
 msgstr "Plošča"
 
@@ -140,161 +128,149 @@ msgstr "Prijava"
 msgid "Your username or password didn't match. Please try again."
 msgstr "Vnešeno uporabniško ime ali geslo se ne ujemata. Poskusite znova."
 
-#: templates/project/index.html:112
+#: templates/project/index.html:114
 msgid "Let me in"
 msgstr "Vstopi"
 
-#: templates/project/index.html:116
+#: templates/project/index.html:118
 msgid "Lost password?"
 msgstr "Pozabljeno geslo?"
 
 #: templates/registration/password_reset_done.html:98
 #: templates/registration/password_reset_form.html:112
-#: templates/settings/actions/add_edit_alarm.html:97
+#: templates/settings/events/add_edit_event.html:96
 msgid "Continue"
 msgstr "Nadaljuj"
 
-#: templates/settings/actions/add_edit_alarm.html:34
-msgid "Enter the time when action should be started."
-msgstr "Določite začetni čas izvajanja dogodka."
-
-#: templates/settings/actions/add_edit_alarm.html:54
-msgid "Enter the time, when action should be ended."
-msgstr "Določite čas zaključka dogodka."
-
-#: templates/settings/actions/add_edit_alarm.html:63
-msgid "Add"
-msgstr "Dodaj"
-
-#: templates/settings/actions/add_edit_alarm.html:73
-msgid "Monday"
-msgstr "Ponedeljek"
-
-#: templates/settings/actions/add_edit_alarm.html:75
-msgid "Tuesday"
-msgstr "Torek"
-
-#: templates/settings/actions/add_edit_alarm.html:77
-msgid "Wednesday"
-msgstr "Sreda"
-
-#: templates/settings/actions/add_edit_alarm.html:80
-msgid "Thursday"
-msgstr "Četrtek"
-
-#: templates/settings/actions/add_edit_alarm.html:84
-msgid "Friday"
-msgstr "Petek"
-
-#: templates/settings/actions/add_edit_alarm.html:87
-msgid "Saturday"
-msgstr "Sobota"
-
-#: templates/settings/actions/add_edit_alarm.html:90
-msgid "Sunday"
-msgstr "Nedelja"
-
-#: templates/settings/actions/add_edit_alarm.html:110
-#: templates/settings/actions/add_edit_alarm.html:132
-msgid "Group"
-msgstr "Skupina"
-
-#: templates/settings/actions/add_edit_alarm.html:111
-#: templates/settings/actions/add_edit_alarm.html:134
-msgid "Start time"
-msgstr "Začetek"
-
-#: templates/settings/actions/add_edit_alarm.html:112
-#: templates/settings/actions/add_edit_alarm.html:135
-msgid "End time"
-msgstr "Konec"
-
-#: templates/settings/actions/add_edit_alarm.html:113
-msgid "Repeat"
-msgstr "Ponavljaj"
-
-#: templates/settings/actions/add_edit_alarm.html:133
-msgid "Volume"
-msgstr "Glasnost"
-
-#: templates/settings/actions/add_edit_alarm.html:136
-msgid "Execution time"
-msgstr "Čas izvajanja"
-
-#: templates/settings/clients/add_edit_client.html:11
+#: templates/settings/clients/add_edit_client.html:10
 #: templates/settings/groups/add_edit_group.html:11
 msgid "Clients"
 msgstr "Odjemalci"
 
-#: templates/settings/clients/add_edit_client.html:13
+#: templates/settings/clients/add_edit_client.html:12
 #: templates/settings/groups/add_edit_group.html:13
 msgid " Edit client"
 msgstr "Uredi odjemalca"
 
-#: templates/settings/clients/add_edit_client.html:15
+#: templates/settings/clients/add_edit_client.html:14
 #: templates/settings/groups/add_edit_group.html:15
 msgid " Add new"
 msgstr "Dodaj"
 
-#: templates/settings/clients/add_edit_client.html:28
+#: templates/settings/clients/add_edit_client.html:27
 #: templates/settings/groups/add_edit_group.html:28
 msgid "Online"
 msgstr "Dosegljiv"
 
-#: templates/settings/clients/add_edit_client.html:30
+#: templates/settings/clients/add_edit_client.html:29
 #: templates/settings/groups/add_edit_group.html:30
 msgid "Offline"
 msgstr "Nedosegljiv"
 
-#: templates/settings/clients/add_edit_client.html:36
+#: templates/settings/clients/add_edit_client.html:35
 #: templates/settings/groups/add_edit_group.html:36
 msgid "Reboot"
 msgstr "Ponovni zagon"
 
-#: templates/settings/clients/add_edit_client.html:37
+#: templates/settings/clients/add_edit_client.html:36
 #: templates/settings/groups/add_edit_group.html:37
 msgid "Shutdown"
 msgstr "Zaustavitev"
 
-#: templates/settings/clients/add_edit_client.html:73
-#: templates/settings/groups/add_edit_group.html:72
-msgid "Test connection"
-msgstr "Preizkusi povezavo"
-
-#: templates/settings/clients/add_edit_client.html:75
+#: templates/settings/clients/add_edit_client.html:87
 #: templates/settings/groups/add_edit_group.html:74
 msgid "Save"
 msgstr "Shrani"
 
-#: templates/settings/clients/add_edit_client.html:83
+#: templates/settings/clients/add_edit_client.html:95
 msgid "Basic settings"
 msgstr "Osnovne nastavitve"
 
-#: templates/settings/clients/add_edit_client.html:92
-msgid "Wake me"
+#: templates/settings/clients/add_edit_client.html:105
+msgid "Items"
 msgstr ""
 
-#: templates/settings/clients/add_edit_client.html:96
-msgid "New alarm"
-msgstr ""
+#: templates/settings/clients/add_edit_client.html:112
+#: templates/settings/events/add_edit_event.html:62
+msgid "Add"
+msgstr "Dodaj"
 
-#: templates/settings/clients/add_edit_client.html:98
-msgid "List of alarms"
+#: templates/settings/clients/add_edit_client.html:113
+msgid "Reset all"
 msgstr ""
-
-#: templates/settings/clients/add_edit_client.html:104
-msgid "Timetable"
-msgstr ""
-
-#: templates/settings/clients/add_edit_client.html:167
-msgid "New entry"
-msgstr "Nov vnos"
 
 #: templates/settings/clients/clients.html:25
 #: templates/settings/groups/groups.html:25
-#: templates/settings/items/items_list.html:25
+#: templates/settings/items/items_list.html:26
 msgid "Add new"
 msgstr "Dodaj"
+
+#: templates/settings/events/add_edit_event.html:33
+msgid "Enter the time when action should be started."
+msgstr "Določite začetni čas izvajanja dogodka."
+
+#: templates/settings/events/add_edit_event.html:53
+msgid "Enter the time, when action should be ended."
+msgstr "Določite čas zaključka dogodka."
+
+#: templates/settings/events/add_edit_event.html:72
+msgid "Monday"
+msgstr "Ponedeljek"
+
+#: templates/settings/events/add_edit_event.html:74
+msgid "Tuesday"
+msgstr "Torek"
+
+#: templates/settings/events/add_edit_event.html:76
+msgid "Wednesday"
+msgstr "Sreda"
+
+#: templates/settings/events/add_edit_event.html:79
+msgid "Thursday"
+msgstr "Četrtek"
+
+#: templates/settings/events/add_edit_event.html:83
+msgid "Friday"
+msgstr "Petek"
+
+#: templates/settings/events/add_edit_event.html:86
+msgid "Saturday"
+msgstr "Sobota"
+
+#: templates/settings/events/add_edit_event.html:89
+msgid "Sunday"
+msgstr "Nedelja"
+
+#: templates/settings/events/add_edit_event.html:109
+#: templates/settings/events/add_edit_event.html:131
+msgid "Group"
+msgstr "Skupina"
+
+#: templates/settings/events/add_edit_event.html:110
+#: templates/settings/events/add_edit_event.html:133
+msgid "Start time"
+msgstr "Začetek"
+
+#: templates/settings/events/add_edit_event.html:111
+#: templates/settings/events/add_edit_event.html:134
+msgid "End time"
+msgstr "Konec"
+
+#: templates/settings/events/add_edit_event.html:112
+msgid "Repeat"
+msgstr "Ponavljaj"
+
+#: templates/settings/events/add_edit_event.html:132
+msgid "Volume"
+msgstr "Glasnost"
+
+#: templates/settings/events/add_edit_event.html:135
+msgid "Execution time"
+msgstr "Čas izvajanja"
+
+#: templates/settings/groups/add_edit_group.html:72
+msgid "Test connection"
+msgstr "Preizkusi povezavo"
 
 #: templates/sidebar_menu.html:35
 msgid "Settings"
@@ -984,3 +960,12 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/pip/_vendor/html5lib/treewalkers/lxmletree.py:172
 msgid "Text nodes have no children"
 msgstr ""
+
+#~ msgid "Slovenian"
+#~ msgstr "Slovenščina"
+
+#~ msgid "English"
+#~ msgstr "Angleščina"
+
+#~ msgid "New entry"
+#~ msgstr "Nov vnos"

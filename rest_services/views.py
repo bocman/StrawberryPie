@@ -7,7 +7,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from settings.models import Client
+from setting.models import Client
 from serializers import ClientSerializer
 
 import json
@@ -16,7 +16,7 @@ import logging
 log = logging.getLogger(__name__)
 
 
-@csrf_exempt
+
 @api_view(['GET', 'POST'])
 def clients(request, format=None):
     """
@@ -28,27 +28,21 @@ def clients(request, format=None):
         return Response(serializer.data)
 
 
-@csrf_exempt
 @api_view(['GET', 'PATCH'])
 def client_detail(request, key, data=None,):
     log.info("Im in the client detail")
+    log.info(request.method)
     """
     Get or update client information/s
     """
     try:
+        log.info("sem pred pridobi podatke")
         client = Client.objects.get(key=key)
+        log.info(" ----------------------" )
     except Client.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'GET':
-        try:
-            serializer = ClientSerializer(client)
-            return Response(serializer.data, status=HTTP_200_OK)
-        except:
-            log.info("Failed to get Client '%s' data", (client.name))
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'PATCH':
+    if request.method == 'PATCH':
         new_data = request.data
         try:
             log.info("i' get data, sucesss")
