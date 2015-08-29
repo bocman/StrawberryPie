@@ -12,8 +12,12 @@
     <div class="main_container">
         <div class="first_container" />
             <div class="panel-body">
-                <form action="{% url 'settings:add_alarm' %}?client_id=1" method="post">
+                <form action="{% url 'settings:add_event' %}" method="post">
                     {% csrf_token %}
+                        <div class="field_group" />
+                        {{ form.name.label}}
+                        {{ form.name }}
+                        </div>
                         <div class="datetimeChooser" >
                             {{ form.start_time.label }}
                             <div class="form-group">
@@ -130,8 +134,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>{% trans "Group" %}</th> 
-                        <th>{% trans "Volume" %}</th>
+                        <th>{% trans "Name" %}</th> 
                         <th>{% trans "Start time" %}</th>
                         <th>{% trans "End time" %}</th>
                         <th>{% trans "Execution time" %}</th>
@@ -143,8 +146,7 @@
                         <td>
                             <a href="#" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
                         </td>
-                        <td>{{ event.group.name }}</td>
-                        <td>{{ event.alarm_volume }}</td>
+                        <td>{{ event.name }}</td>
                         <td>{{ event.start_time }}</td>
                         <td>{{ event.end_time }}</td>
                         <td>{{ event.execution_time }}</td>

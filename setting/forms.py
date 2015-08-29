@@ -6,9 +6,10 @@ from models import ElementGroup, Client, Modul, Event
 
 
 class ElementForm(ModelForm):
-
-    """ Form which is used to create/edit informations about group 
-    which hold"""
+    """
+    Form which is used to create/edit informations
+    about group which hold
+    """
 
     class Meta:
         model = ElementGroup
@@ -18,8 +19,9 @@ class ElementForm(ModelForm):
 
 
 class ModulForm(ModelForm):
-
-    """ Form which is used to work with Modul informations"""
+    """
+    Form which is used to work with Modul informations
+    """
 
     class Meta:
         model = Modul
@@ -31,8 +33,9 @@ class ModulForm(ModelForm):
 
 
 class ClientForm(ModelForm):
-
-    """ Form which is used to add/edit some client"""
+    """
+    Form which is used to add/edit some client
+    """
 
     class Meta:
         model = Client
@@ -49,10 +52,10 @@ class EventForm(ModelForm):
     class Meta:
         model = Event
         fields = [
-            'start_time',
-            'is_periodically',
-            'end_time'
+            'name', 'start_time',
+            'is_periodically', 'end_time'
         ]
+
 
 class UserForm(ModelForm):
     """
@@ -72,7 +75,7 @@ class UserForm(ModelForm):
         )
     confirm_password = forms.CharField(
         max_length=50
-        )       
+        )
 
 
 

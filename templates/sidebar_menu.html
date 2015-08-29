@@ -26,26 +26,26 @@
             </ul>
         </li>
         <li>
-            <a href="{% url 'settings:add_alarm' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> Events </a>
+            <a href="{% url 'settings:add_event' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> {% trans "Events" %} </a>
         </li>
 
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-arrows-v"></i> {% trans "Settings" %}<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="settings" class="collapse">
                 <li>
-                    <a href="{% url 'settings:general_settings' %}">General settings</a>
+                    <a href="{% url 'settings:general_settings' %}">{% trans "General settings" %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:groups_list' %}">Groups</a>
+                    <a href="{% url 'settings:groups_list' %}">{% trans "Groups" %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:clients_list' %}">Clients</a>
+                    <a href="{% url 'settings:clients_list' %}">{% trans "Clients" %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:moduls_list' %}">Moduls</a>
+                    <a href="{% url 'settings:moduls_list' %}">{% trans "Moduls" %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:users_list'%}">Users</a>
+                    <a href="{% url 'settings:users_list'%}">{% trans "Users" %}</a>
                 </li>
             </ul>
         </li>

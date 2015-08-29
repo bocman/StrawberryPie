@@ -102,6 +102,11 @@ def groups_list(request):
     })
 
 
+class AddEditElementalGroupView(CreateView):
+    pass
+
+
+
 @login_required
 def clients_list(request):
     """
@@ -282,10 +287,6 @@ def activate_modul(request, status, client_id=None, pin_number=None):
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
 
-def activate_group(request, moduls):
-    pass
-
-
 @login_required
 def delete_modul(self, modul_id):
     """
@@ -303,7 +304,6 @@ def delete_modul(self, modul_id):
         modul.save()
     except:
         pass
-
     return HttpResponseRedirect(reverse('settings:moduls_list'))
 
 
@@ -328,6 +328,8 @@ class AddEventView(FormView, CreateView):
     success_url = "/settings/clients"
 
     def form_valid(self, form):
+        name = form.cleaned_data
+        log.info(name)
         start = form.cleaned_data['start_time']
         end = form.cleaned_data['end_time']
         group_id = self.request.POST.get('activation_group', None)
@@ -353,13 +355,3 @@ class AddEventView(FormView, CreateView):
     def get_success_url(self):
         return reverse('settings:clients_list')
 
-
-@login_required
-def alarms_list(request, alarm_id=None):
-
-    """
-    TODO
-    """
-    template_name = 'settings/actions/alarms_list.html'
-    return TemplateResponse(request, template_name, {
-    })

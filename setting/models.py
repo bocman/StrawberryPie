@@ -4,6 +4,9 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
+
+from dateutil.parser import parse
+from datetime import date
 import logging
 
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
@@ -168,6 +171,7 @@ class Modul(models.Model):
         help_text="Status which indicate if modul is activated"
     )
 
+
 class Event(models.Model):
     """
     This model is used to represent Event
@@ -176,18 +180,22 @@ class Event(models.Model):
     class Meta:
         db_table = 'event'
 
+    name = models.CharField(
+        max_length=30,
+        null=False,
+        blank=False,
+        default=None,
+        verbose_name='Event name',
+        help_text=_('Name tag of the event')
+        )
     note = models.CharField(
         max_length=50,
         verbose_name='Notes',
         help_text=_('Short notes about this event')
         )
-
-    alarm_volume = models.PositiveIntegerField(
-        default=100
-        )
     task_id = models.CharField(
-        max_length = 36,
-        null = True
+        max_length=36,
+        null=True
         )
     start_time = models.DateTimeField(
         )
@@ -202,23 +210,20 @@ class Event(models.Model):
         blank=False, null=False,
         verbose_name=_('Repet periodically')
         )
-    
+
     def execution_time(self):
         return format_time_interval(self.start_time, self.end_time)
 
-#    def clean(self):
- #       raise ValidationError(_('Invalid value'), code='invalid')
-  #      if self.start_time > self.end:
-   #         raise ValidationError(_('Invalid value'), code='invalid')
-   
-  #  def save(self, *args, **kwargs):
-   #     self.full_clean()
-    #    super(Alarm, self).save(*args, **kwargs)
+    def format_start_date(self):
+        if self.start_time.date() == date.today():
+            return self.start_time.strftime('Today, %H:%M')
+        else:
+            return self.start_time
 
 
 class EventActivationElements(models.Model):
     """
-    Class is used to store relationship between event and
+    Class is used to store relationships between event and
     Moduls/groups which will cooperate in activaton
     """
     class Meta:
@@ -239,10 +244,6 @@ class EventActivationElements(models.Model):
         null=True,
         blank=True
         )
-
-    def create_activation(self, event=None, group=None, modul=None):
-        pass
-
 
 
 

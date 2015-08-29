@@ -27,7 +27,5 @@ urlpatterns = patterns('',
 
     url(r'^moduls/activate/(?P<client_id>[0-9]+)/(?P<pin_number>[0-9]+)/(?P<status>[A-Za-z]+)/$', views.activate_modul, name='activate_modul'), 
 
-    url(r'^alarms/add/$', views.AddEventView.as_view(), name='add_alarm'),
-    #url(r'^alarms/edit/(?P<alarm_id>[0-9]+)/$', views.AddEditEventView.as_view(), name='edit_alarm'),
-    url(r'^alarms/all/$', views.alarms_list, name='alarms_list'),
+    url(r'^events/add/$', views.AddEventView.as_view(), name='add_event'),
 )
