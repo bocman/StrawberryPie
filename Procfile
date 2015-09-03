@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi --log-file -
+web: gunicorn enigmatic-lowlands-6442.wsgi --log-file -
