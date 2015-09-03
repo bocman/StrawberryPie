@@ -1,21 +1,18 @@
 
 Django==1.8.2
+
 Markdown==2.6.2
-MarkupSafe==0.23
 MySQL-python==1.2.3
 
+gunicorn==19.3.0
+celery==3.1.18
 django-celery==3.1.16
 django-extensions==1.5.5
 django-filter==0.10.0
 django-widget-tweaks==1.3
 djangorestframework==3.1.3
-gTTS==1.0.4
-kombu==3.0.26
-
 psutil==3.0.1
-pyquery==1.2.9
 python-dateutil==2.4.2
 pytz==2015.4
 requests==2.2.1
 wolframalpha==1.2
-
