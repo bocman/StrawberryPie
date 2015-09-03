@@ -96,19 +96,10 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project',
-        'USER': 'root',
-        'PASSWORD': 'bostjanNovak1',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'OPTIONS': {
-            "init_command": "SET foreign_key_checks = 0;",
-        },
-    }
-}
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
