@@ -15,11 +15,18 @@
                 <form action="{% url 'settings:add_event' %}" method="post">
                     {% csrf_token %}
                         <div class="field_group" />
-                        {{ form.name.label}}
+                        {{ form.name.label_tag}}
                         {{ form.name }}
+                         {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <div class="validation_error" >
+                                    {{error}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         </div>
                         <div class="datetimeChooser" >
-                            {{ form.start_time.label }}
+                            {{ form.start_time.label_tag }}
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' name="start_time" class="form-control" />
@@ -27,8 +34,8 @@
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                                {% if form.start_time.errors %}
-                                    {% for error in action_form.start_time.errors %}
+                                 {% if form.start_time.errors %}
+                                    {% for error in form.start_time.errors %}
                                         <div class="validation_error" >
                                             {{error}}
                                         </div>
@@ -38,7 +45,7 @@
                             </div>
                         </div>
                         <div class="datetimeChooser" >
-                            {{ action_form.end_time.label }} 
+                            {{ form.end_time.label_tag }} 
                             <div class="form-group">
                                 <div class='input-group date' id='end_time_picker'>
                                     <input type='text' name="end_time" class="form-control" />
@@ -46,8 +53,8 @@
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                                {% if action_form.end_time.errors %}
-                                    {% for error in action_form.end_time.errors %}
+                                {% if form.end_time.errors %}
+                                    {% for error in form.end_time.errors %}
                                         <div class="validation_error" >
                                             {{error}}
                                         </div>
@@ -147,8 +154,8 @@
                             <a href="#" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
                         </td>
                         <td>{{ event.name }}</td>
-                        <td>{{ event.start_time }}</td>
-                        <td>{{ event.end_time }}</td>
+                        <td>{{ event.get_start_time }}</td>
+                        <td>{{ event.get_end_time }}</td>
                         <td>{{ event.execution_time }}</td>
                     </tr>
                {% endfor %} 

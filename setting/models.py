@@ -6,11 +6,11 @@ from datetime import timedelta
 from djcelery.models import TaskState
 
 from dateutil.parser import parse
-from datetime import date
 import logging
+from collections import defaultdict
 
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
-from core.utils import format_time_interval
+from core.utils import format_time_interval, format_datetime
 
 log = logging.getLogger(__name__)
 
@@ -118,6 +118,7 @@ class Client(models.Model):
         return True if last_active and (now - last_active).seconds < 60 else False
 
 
+
 class Modul(models.Model):
     """
     Class is used to hold information about some specific modul. modul can 
@@ -193,10 +194,14 @@ class Event(models.Model):
         verbose_name='Notes',
         help_text=_('Short notes about this event')
         )
-    task_id = models.CharField(
+    start_task_id = models.CharField(
         max_length=36,
         null=True
         )
+    end_task_id = models.CharField(
+        max_length=36,
+        null=True
+        )   
     start_time = models.DateTimeField(
         )
     end_time = models.DateTimeField(
@@ -210,15 +215,32 @@ class Event(models.Model):
         blank=False, null=False,
         verbose_name=_('Repet periodically')
         )
+    is_active = models.BooleanField(
+        default=False,
+        blank=False, null=False
+        )
 
     def execution_time(self):
         return format_time_interval(self.start_time, self.end_time)
 
-    def format_start_date(self):
-        if self.start_time.date() == date.today():
-            return self.start_time.strftime('Today, %H:%M')
-        else:
-            return self.start_time
+    def get_start_time(self):
+        return format_datetime(self.start_time)
+
+    def get_end_time(self):
+        return format_datetime(self.end_time)
+
+    def is_activated(self):
+        return True if self.is_active else False
+
+    def clean(self):
+        errors = defaultdict()
+        if self.start_time > self.end_time:
+            errors['start_time'] = _('Start time should be lesser then end time.')
+        if self.end_time < self.start_time: 
+            errors['end_time'] = _('End time should be greater then start time.')       
+        
+        raise ValidationError(errors)       
+
 
 
 class EventActivationElements(models.Model):

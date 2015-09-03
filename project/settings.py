@@ -152,6 +152,10 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+FIXTURE_DIRS = (
+    set(os.path.join(BASE_DIR, 'project/fixtures/'))
+)
+
 # Link which is in use to stream radio
 RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
 # Link which is used to stream video
@@ -266,3 +270,6 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_APP="proj"
 CELERYD_NODES="worker"
 CELERY_TIMEZONE = TIME_ZONE
+
+
+

@@ -17,7 +17,7 @@
 
 .field_group  {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .field_group .form-control {
@@ -62,7 +62,7 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
 }
 
 .datetimeChooser{
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     display: block;
 */
 }

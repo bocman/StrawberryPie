@@ -20,10 +20,11 @@ from requests.exceptions import ConnectionError
 from dateutil.parser import parse
 
 import project.settings as settings
+from core.utils import activation
 from forms import ClientForm, ModulForm, EventForm, UserForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from rest_services.serializers import *
-from .tasks import schedule_event
+from .tasks import handle_event
 
 
 log = logging.getLogger(__name__)
@@ -59,33 +60,6 @@ def users_list(request):
     users = User.objects.all().filter(is_active=True)
     return TemplateResponse(request, template_name, {
         'users': users,
-    })
-
-
-@login_required
-def add_edit_user(request, user_id=None):
-    """
-    TODO
-    """
-    template_name = 'settings/users/add_edit_user.html'
-    if user_id:
-        user = get_object_or_404(User, pk=user_id)
-    else:
-        user = User()
-
-    if request.POST:
-        form = UserForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('dashboard:dashboard'),
-                                        {'messages': messages}
-                                        )
-    else:
-        form = UserForm(instance=user)
-
-    return TemplateResponse(request, template_name, {
-        'user_form': form,
-        'user_id': user_id
     })
 
 
@@ -132,11 +106,13 @@ def get_moduls(client_id, url=None):
         url = "http://{0}/rest/gpio/all/".format(client.ip_address)
     try:
         r = requests.get(url)
+
         moduls = json.loads(r.text)
         for i in moduls:
             group_id = i.get('group', None)
             #i['group'] = ClientGroup.objects.get(id=group_id)
         return moduls
+
     except ConnectionError as e:
         return None
 
@@ -172,6 +148,7 @@ def add_edit_client(request, client_id=None):
             'edited': "Client '%s' with id=%s has been edited"
     }
 
+    log.info("---------------------")
     if client_id:
         client = get_object_or_404(Client, pk=client_id)
     else:
@@ -203,7 +180,7 @@ def add_edit_client(request, client_id=None):
         'client_form': client_form,
         'client_id': client_id if client_id else None,
         'client': client if client_id else None,
-        'moduls': get_moduls(client_id) if client_id else None
+        'moduls': get_moduls(client_id)
     })
 
 
@@ -275,12 +252,13 @@ def activate_modul(request, status, client_id=None, pin_number=None):
     }
     client = Client.objects.get(id=client_id)
     url = "http://{0}/rest/gpio/update/{1}/".format(client.ip_address, pin_number)
+    log.info("PREPARE to activate modul with pin {0} on client {1}".format(pin_number, client.name))
     try:
         if send_data(url, data) == 200:
             if status == 'True':
-                log.info("Activated modul with pin {0} on client {1}".format(pin_number, client.name))
+                log.info("ACTIVATED modul with pin {0} on client {1}".format(pin_number, client.name))
             else:
-               log.info("Dectivated modul with pin {0} on client {1}".format(pin_number, client.name)) 
+               log.info("DEACTIVATED modul with pin {0} on client {1}".format(pin_number, client.name)) 
     except:
         log.info( "Failed to activate modul with pin{0} on client{1}".format(pin_number, client.name) )
 
@@ -327,22 +305,28 @@ class AddEventView(FormView, CreateView):
     template_name = "settings/events/add_edit_event.html"
     success_url = "/settings/clients"
 
+    def __init__(self):
+        log.info("sem v viewu bostjan")
+
     def form_valid(self, form):
-        name = form.cleaned_data
-        log.info(name)
         start = form.cleaned_data['start_time']
         end = form.cleaned_data['end_time']
         group_id = self.request.POST.get('activation_group', None)
         modul_id = self.request.POST.get('activation_modul', None)
-        task = schedule_event.apply_async(eta=start)
-        form.instance.task_id = task.task_id
+        modul_id = 1
+
+        start_task = handle_event.apply_async(eta=start)
+        end_task = handle_event.apply_async(eta=end)
+        form.instance.start_task_id = start_task.task_id
+        form.instance.end_task_id = end_task.task_id
         form.instance.save()
+
         activation = EventActivationElements()
         activation.event = form.instance
         if group_id:
             activation.group_id = group_id
-        elif modul_id:
-            activation.modul = modul_id
+        if modul_id:
+            activation.modul_id = modul_id
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
@@ -353,5 +337,5 @@ class AddEventView(FormView, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('settings:clients_list')
+        return reverse('dashboard:dashboard')
 

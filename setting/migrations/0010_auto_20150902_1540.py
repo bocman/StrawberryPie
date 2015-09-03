@@ -7,17 +7,18 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('setting', '0005_auto_20150826_2044'),
+        ('setting', '0009_event_is_active'),
     ]
 
     operations = [
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='event',
-            name='alarm_volume',
+            old_name='task_id',
+            new_name='end_task_id',
         ),
         migrations.AddField(
             model_name='event',
-            name='name',
-            field=models.CharField(default=None, help_text='Name tag of the event', max_length=30, verbose_name=b'Event name'),
+            name='start_task_id',
+            field=models.CharField(max_length=36, null=True),
         ),
     ]

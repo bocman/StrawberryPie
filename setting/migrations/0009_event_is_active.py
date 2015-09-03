@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('setting', '0007_auto_20150828_1545'),
+        ('setting', '0008_auto_20150828_1547'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='event',
-            name='name',
-            field=models.CharField(default=None, help_text='Name tag of the event', max_length=30, verbose_name=b'Event name'),
+            name='is_active',
+            field=models.BooleanField(default=False),
         ),
     ]

@@ -13,10 +13,10 @@
             </li>
         {% endcomment %}
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> testing <i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Test page <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>
-                    <a href="{% url 'entertainment:music' %}">Testing page</a>
+                    <a href="{% url 'entertainment:music' %}">Test page</a>
                 </li>
                 {% comment %}
                 <li>
@@ -26,11 +26,11 @@
             </ul>
         </li>
         <li>
-            <a href="{% url 'settings:add_event' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-arrows-v"></i> {% trans "Events" %} </a>
+            <a href="{% url 'settings:add_event' %}" data-toggle="collapse" data-target="#actions"><i class="fa fa-fw fa-table"></i> {% trans "Events" %} </a>
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-arrows-v"></i> {% trans "Settings" %}<i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> {% trans "Settings" %}<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="settings" class="collapse">
                 <li>
                     <a href="{% url 'settings:general_settings' %}">{% trans "General settings" %}</a>
@@ -42,7 +42,7 @@
                     <a href="{% url 'settings:clients_list' %}">{% trans "Clients" %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'settings:moduls_list' %}">{% trans "Moduls" %}</a>
+                    <a href="{% url 'settings:moduls_list' %}">{% trans "All moduls" %}</a>
                 </li>
                 <li>
                     <a href="{% url 'settings:users_list'%}">{% trans "Users" %}</a>

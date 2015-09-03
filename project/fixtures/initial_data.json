@@ -1,14 +1,2385 @@
 [
   {
-    "model": "project.setting.TemperatureLog",
-    "pk": 1,
     "fields": {
-      "temp": 20,
-      "humidity": 60,
+      "model": "logentry",
+      "app_label": "admin"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "model": "permission",
+      "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "model": "group",
+      "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "model": "user",
+      "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "model": "contenttype",
+      "app_label": "contenttypes"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "model": "session",
+      "app_label": "sessions"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "model": "taskmeta",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "model": "tasksetmeta",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "model": "intervalschedule",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "model": "crontabschedule",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "model": "periodictasks",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "model": "periodictask",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "model": "workerstate",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "model": "taskstate",
+      "app_label": "djcelery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "model": "queue",
+      "app_label": "kombu_transport_django"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "model": "message",
+      "app_label": "kombu_transport_django"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "model": "elementgroup",
+      "app_label": "setting"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "model": "client",
+      "app_label": "setting"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "model": "modul",
+      "app_label": "setting"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "model": "event",
+      "app_label": "setting"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "model": "eventactivationelements",
+      "app_label": "setting"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "model": "temperaturelog",
+      "app_label": "dashboard"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "expire_date": "2015-09-14T15:38:53Z",
+      "session_data": "MTA0YzI4MzE4ZTY3MjA2OTA0ZTY5YmI3YTA0OGU0ZjI3YmE3OGE1Mjp7Il9hdXRoX3VzZXJfaGFzaCI6IjE0YWRhYTBlZjg3NWJhZjVhYTk2ODYwMmU5OTQzYmFlNWU2NzFlYzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "bvd1j6hfevov41qhdk2jhekissbnged1"
+  },
+  {
+    "fields": {
+      "expire_date": "2015-09-13T09:24:36Z",
+      "session_data": "MzcxNGQ3ZGUwYWFjYTNlOTQ5MjE5YTFjZmI3ZDIwOTQzNjA3NzVlYTp7fQ=="
+    },
+    "model": "sessions.session",
+    "pk": "dgob2d4scfg4j6ud804cyvi02lvflnij"
+  },
+  {
+    "fields": {
+      "expire_date": "2015-09-13T09:24:37Z",
+      "session_data": "MzcxNGQ3ZGUwYWFjYTNlOTQ5MjE5YTFjZmI3ZDIwOTQzNjA3NzVlYTp7fQ=="
+    },
+    "model": "sessions.session",
+    "pk": "tj4lz1sn7may5gsq4k6cy7xzi1su67ax"
+  },
+  {
+    "fields": {
+      "expire_date": "2015-09-14T09:13:22Z",
+      "session_data": "YWE3MTExMjZkNDdhZTE3YTgyMjk5ZmJkMzBlYjQ4MjkzZjc4NDBhYzp7Il9sYW5ndWFnZSI6ImVuIiwiX2F1dGhfdXNlcl9oYXNoIjoiMTRhZGFhMGVmODc1YmFmNWFhOTY4NjAyZTk5NDNiYWU1ZTY3MWVjOSIsIl9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQifQ=="
+    },
+    "model": "sessions.session",
+    "pk": "ucxrt723wzpvmloyj17fpgrwdn3y4tpe"
+  },
+  {
+    "fields": {
+      "expire_date": "2015-09-14T15:38:53Z",
+      "session_data": "MzcxNGQ3ZGUwYWFjYTNlOTQ5MjE5YTFjZmI3ZDIwOTQzNjA3NzVlYTp7fQ=="
+    },
+    "model": "sessions.session",
+    "pk": "uxb62h189kf9akiiaeobghpenhbv1jqx"
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "a100b07a-f9f8-43f5-8ad9-333138c60e4e",
+      "date_done": "2015-08-30T10:15:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "14e41aaa-973e-4dc8-9f22-3006b45f9a6d",
+      "date_done": "2015-08-30T12:51:12Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "e31e3d9b-c080-4e15-a3b4-b481092a2974",
+      "date_done": "2015-08-30T12:57:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "97d8a568-539e-40fe-bd99-c77a8e212ebd",
+      "date_done": "2015-08-30T12:57:15Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "aca54772-6676-47f7-81a8-a075147294c4",
+      "date_done": "2015-08-30T13:05:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "54f9b1cf-cd6a-434d-862d-eb5a828e8544",
+      "date_done": "2015-08-30T13:05:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "1936f96f-3342-4040-a077-717d4e7890fb",
+      "date_done": "2015-08-30T13:05:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "e5fb3aaa-0696-4c6f-9c0c-375ad50de5a5",
+      "date_done": "2015-08-30T13:15:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 27, in schedule_event\n    if activations.modul:\nAttributeError: 'QuerySet' object has no attribute 'modul'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUqJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWwncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "00cfc986-fb30-49ba-9970-2ebf11ee5cc7",
+      "date_done": "2015-08-30T13:15:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 27, in schedule_event\n    if activations.modul:\nAttributeError: 'QuerySet' object has no attribute 'modul'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUqJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWwncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "bbf7ef4f-c1cc-4b50-a534-218572ce052f",
+      "date_done": "2015-08-30T13:16:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 27, in schedule_event\n    if activations.modul:\nAttributeError: 'QuerySet' object has no attribute 'modul'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUqJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWwncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "53370c8c-0253-4029-b3d5-c3af32640f77",
+      "date_done": "2015-08-30T13:19:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activations.modul:\nAttributeError: 'QuerySet' object has no attribute 'modul'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUqJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWwncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "42e0e51f-950c-4b11-a175-46df2018302e",
+      "date_done": "2015-08-30T13:20:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activations.modul_id:\nAttributeError: 'QuerySet' object has no attribute 'modul'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUqJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWwncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "90ac6094-d30b-42e4-9fae-ee3b722b9a2d",
+      "date_done": "2015-08-30T13:20:25Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activations.modul_id:\nAttributeError: 'QuerySet' object has no attribute 'modul_id'\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZXhjZXB0aW9ucwpBdHRyaWJ1dGVFcnJvcgpxAVUtJ1F1ZXJ5U2V0JyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnbW9kdWxfaWQncQKFcQNScQQu",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "28cd4165-477e-43a4-9b64-9baa867465e2",
+      "date_done": "2015-08-30T13:22:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activation.modul:\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/fields/related.py\", line 602, in __get__\n    rel_obj = qs.get()\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "1a15b58d-ca48-4fa0-805b-d5bb0b569412",
+      "date_done": "2015-08-30T13:24:00Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activation.modul:\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/fields/related.py\", line 602, in __get__\n    rel_obj = qs.get()\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "23e803f1-224a-470a-a840-8bde9e5488b2",
+      "date_done": "2015-08-30T13:25:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "05b1299b-a79b-4a1e-a7ca-1008d5e1b654",
+      "date_done": "2015-08-30T13:26:12Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 28, in schedule_event\n    if activation.modul:\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/fields/related.py\", line 602, in __get__\n    rel_obj = qs.get()\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "3c5e15bd-57e9-423a-8c77-04620655539b",
+      "date_done": "2015-08-30T13:26:51Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "93cd7de3-c3b5-496e-97cf-130117e54168",
+      "date_done": "2015-08-30T13:27:56Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "d72b3130-3012-4577-a495-3bc8e50842cb",
+      "date_done": "2015-08-30T13:28:57Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "28ea3068-97e8-4bd5-8892-04fbe1657863",
+      "date_done": "2015-08-30T13:30:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "5c5c15bd-5328-4ab8-8b8f-43e3af7dfd0e",
+      "date_done": "2015-08-30T13:31:15Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 30, in schedule_event\n    modul = Modul.objects.get(id=activation.modul_id)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py\", line 127, in manager_method\n    return getattr(self.get_queryset(), name)(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "4e8955ee-e05a-472f-b337-9dba5c081f04",
+      "date_done": "2015-08-30T17:15:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "status": "SUCCESS",
+      "task_id": "a5fa26b4-3414-4c1a-9d07-7403f40592b4",
+      "date_done": "2015-08-30T17:15:00Z",
+      "traceback": null,
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": null,
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "18727d03-a4e2-4dfe-a190-3912f4fbe90f",
+      "date_done": "2015-08-30T20:05:21Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 21, in schedule_event\n    event = Event.objects.get(task_id=self.request.id)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py\", line 127, in manager_method\n    return getattr(self.get_queryset(), name)(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Event matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpFdmVudApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRFdmVudCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "15c42082-c2b1-44dd-a99b-3b61dc8ca5f3",
+      "date_done": "2015-08-30T20:07:08Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 21, in schedule_event\n    event = Event.objects.get(task_id=self.request.id)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py\", line 127, in manager_method\n    return getattr(self.get_queryset(), name)(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Event matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpFdmVudApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRFdmVudCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "3b5fc738-3aa1-40f7-84bc-4746530155ca",
+      "date_done": "2015-08-30T20:56:03Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 30, in schedule_event\n    #activation(status, client_id, pin_number)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py\", line 127, in manager_method\n    return getattr(self.get_queryset(), name)(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "status": "FAILURE",
+      "task_id": "94c9acce-cb40-410e-bee7-9891346e7200",
+      "date_done": "2015-08-30T20:56:08Z",
+      "traceback": "Traceback (most recent call last):\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/celery/app/trace.py\", line 438, in __protected_call__\n    return self.run(*args, **kwargs)\n  File \"/var/www/StrawberryPie/setting/tasks.py\", line 30, in schedule_event\n    #activation(status, client_id, pin_number)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py\", line 127, in manager_method\n    return getattr(self.get_queryset(), name)(*args, **kwargs)\n  File \"/usr/local/lib/python2.7/dist-packages/django/db/models/query.py\", line 334, in get\n    self.model._meta.object_name\nDoesNotExist: Modul matching query does not exist.\n",
+      "meta": "eJxrYKotZIzgYGBgSM7IzEkpSs2LLdYDADylBhk=",
+      "result": "gAJjZGphbmdvLmRiLm1vZGVscy5iYXNlCnVucGlja2xlX2lubmVyX2V4Y2VwdGlvbgpxAWNzZXR0aW5nLm1vZGVscwpNb2R1bApxAlUMRG9lc05vdEV4aXN0cQOGUnEEVSRNb2R1bCBtYXRjaGluZyBxdWVyeSBkb2VzIG5vdCBleGlzdC6FcQViLg==",
+      "hidden": false
+    },
+    "model": "djcelery.taskmeta",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "name": "celery"
+    },
+    "model": "kombu_transport_django.queue",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "celery@bostjan-HP-Pavilion-dv6-Notebook-PC.celery.pidbox"
+    },
+    "model": "kombu_transport_django.queue",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": false,
+      "sent_at": "2015-08-30T20:07:06Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDE1YzQyMDgyLWMyYjEtNDRkZC1hOTliLTNiNjFkYzhjYTVmM3ELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wNy0yMlQxODozMDowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"headers\": {}, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"correlation_id\": \"15c42082-c2b1-44dd-a99b-3b61dc8ca5f3\", \"reply_to\": \"1c243439-e775-35e8-929f-d530120cc7de\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"delivery_tag\": \"2ae181e9-9346-4496-a7cd-f961895b376d\"}, \"content-encoding\": \"binary\"}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 90
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": false,
+      "sent_at": "2015-08-30T20:55:58Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDNiNWZjNzM4LTNhYTEtNDBmNy04NGJjLTQ3NDY1MzAxNTVjYXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0wOVQxMzoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"headers\": {}, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"correlation_id\": \"3b5fc738-3aa1-40f7-84bc-4746530155ca\", \"reply_to\": \"392d4beb-4ef7-33f2-9a2f-fd4d8df3c88b\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"delivery_tag\": \"451c07ec-0cfe-4d77-b57b-3a5aeeba6a7a\"}, \"content-encoding\": \"binary\"}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 91
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": false,
+      "sent_at": "2015-08-30T20:56:04Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDk0YzlhY2NlLWNiNDAtNDEwZS1iZWU3LTk4OTEzNDZlNzIwMHELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0wOVQxMzoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"headers\": {}, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"correlation_id\": \"94c9acce-cb40-410e-bee7-9891346e7200\", \"reply_to\": \"392d4beb-4ef7-33f2-9a2f-fd4d8df3c88b\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"delivery_tag\": \"c537497b-df49-4717-8036-a4d2dd2fdb69\"}, \"content-encoding\": \"binary\"}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 92
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": false,
+      "sent_at": "2015-08-30T20:57:15Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDdmM2Q4NWExLTI1YTgtNGMwMy04NTMzLTczMzBiY2NmOGUxOXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMTg5OS0xMi0zMVQwMDowMDowMCswMToyMnERVQZrd2FyZ3NxEn1xE3Uu\", \"headers\": {}, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"correlation_id\": \"7f3d85a1-25a8-4c03-8533-7330bccf8e19\", \"reply_to\": \"392d4beb-4ef7-33f2-9a2f-fd4d8df3c88b\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"delivery_tag\": \"161f82dc-7154-4262-bd27-aa6ef322b601\"}, \"content-encoding\": \"binary\"}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 93
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDdmM2Q4NWExLTI1YTgtNGMwMy04NTMzLTczMzBiY2NmOGUxOXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMTg5OS0xMi0zMVQwMDowMDowMCswMToyMnERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"7f3d85a1-25a8-4c03-8533-7330bccf8e19\", \"reply_to\": \"392d4beb-4ef7-33f2-9a2f-fd4d8df3c88b\", \"delivery_tag\": \"161f82dc-7154-4262-bd27-aa6ef322b601\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 94
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDI5YWI4YTI3LTc4MTEtNGZjYy05ZGU1LWMwODNmMDE0MjY1YnELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxNDoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"29ab8a27-7811-4fcc-9de5-c083f014265b\", \"reply_to\": \"4735c5f7-22ee-3123-8a9d-257f3097af2f\", \"delivery_tag\": \"26b720a9-2a6c-4122-9d13-06b40f79e77c\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 95
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDA0NDFkNjY2LTFiOTItNDFhYy1hNTYyLTliZWU5NzQ2NDU5NXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxNDoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"0441d666-1b92-41ac-a562-9bee97464595\", \"reply_to\": \"ee1034f5-bb45-3529-ab77-92ac107cebba\", \"delivery_tag\": \"12683264-2d8f-4c76-847a-62d8f4e76311\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 96
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDA0MGNkNWY5LWQ2ZmUtNDBmMi1hM2I4LWUyZmE4NzdmMzA2OHELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxNDoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"040cd5f9-d6fe-40f2-a3b8-e2fa877f3068\", \"reply_to\": \"ee1034f5-bb45-3529-ab77-92ac107cebba\", \"delivery_tag\": \"a9c8ca48-3cb2-4ae6-8f69-1cf5be59856d\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 97
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJGE5ZjNlYjQ1LTUwMjAtNDJlMC1hMmE3LWE3NzNhOGUwNDcxOXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQyMzo1NTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"a9f3eb45-5020-42e0-a2a7-a773a8e04719\", \"reply_to\": \"3954dca2-0fc6-3d93-b422-f5be095fc21e\", \"delivery_tag\": \"23ef8097-ff2f-477f-a122-ab72a2370009\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 98
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDE3YWQ4ZTY4LTY1YWQtNGI2MC04NDk5LTkwOGI4YmM3YmIxYXELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxMzoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"17ad8e68-65ad-4b60-8499-908b8bc7bb1a\", \"reply_to\": \"8ad5ebd6-0b49-3224-9b84-eecd30196bf1\", \"delivery_tag\": \"18c612a7-9bae-490f-909f-f785d20ffd67\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 99
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-30T20:57:19Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJDNlMTcyZjc2LWQ2M2ItNGI2Yi04NGNiLWExNWIzZmExMzcyNnELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxMzoyNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"content-encoding\": \"binary\", \"headers\": {}, \"redelivered\": true, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"correlation_id\": \"3e172f76-d63b-4b6b-84cb-a15b3fa13726\", \"reply_to\": \"807a6b3d-00a0-3d20-9451-4f86d1fffdd4\", \"delivery_tag\": \"02db5db1-06fe-4fb8-ae34-ef890e5de2e8\"}}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 100
+  },
+  {
+    "fields": {
+      "queue": 1,
+      "visible": true,
+      "sent_at": "2015-08-31T09:30:24Z",
+      "payload": "{\"body\": \"gAJ9cQEoVQdleHBpcmVzcQJOVQN1dGNxA4hVBGFyZ3NxBF1xBVUFY2hvcmRxBk5VCWNhbGxiYWNrc3EHTlUIZXJyYmFja3NxCE5VB3Rhc2tzZXRxCU5VAmlkcQpVJGNhYzliMmJiLThkZmMtNGNhZi05NGQ0LWYyYzhmZmVkODk5MnELVQdyZXRyaWVzcQxLAFUEdGFza3ENVRxzZXR0aW5nLnRhc2tzLnNjaGVkdWxlX2V2ZW50cQ5VCXRpbWVsaW1pdHEPTk6GVQNldGFxEFUZMjAxNS0wOC0zMVQxMTozNTowMCswMjowMHERVQZrd2FyZ3NxEn1xE3Uu\", \"headers\": {}, \"content-type\": \"application/x-python-serialize\", \"properties\": {\"body_encoding\": \"base64\", \"correlation_id\": \"cac9b2bb-8dfc-4caf-94d4-f2c8ffed8992\", \"reply_to\": \"aa81ad77-b4c2-3142-8a5c-6a3b71584474\", \"delivery_info\": {\"priority\": 0, \"routing_key\": \"celery\", \"exchange\": \"celery\"}, \"delivery_mode\": 2, \"delivery_tag\": \"03fa8471-ed4d-4a2d-a510-df73bea00e45\"}, \"content-encoding\": \"binary\"}"
+    },
+    "model": "kombu_transport_django.message",
+    "pk": 101
+  },
+  {
+    "fields": {
+      "clients_number": 0,
+      "name": "Music group",
+      "description": ""
+    },
+    "model": "setting.elementgroup",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "Raspberry",
+      "last_active": "2015-08-30T20:13:11Z",
+      "created": "2015-08-30T20:13:23Z",
+      "deleted": false,
+      "type": "Normal",
+      "realibility": 0,
+      "disabled": false,
+      "key": null,
+      "ip_address": null,
+      "port": null,
+      "description": ""
+    },
+    "model": "setting.client",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "After work music",
+      "task_id": "a9f3eb45-5020-42e0-a2a7-a773a8e04719",
+      "start_time": "2015-08-31T21:55:00Z",
+      "note": "",
+      "end_time": "2015-08-31T21:55:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Test",
+      "task_id": "a100b07a-f9f8-43f5-8ad9-333138c60e4e",
+      "start_time": "2015-08-30T10:15:00Z",
+      "note": "",
+      "end_time": "2015-08-30T10:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test123",
+      "task_id": "a5fa26b4-3414-4c1a-9d07-7403f40592b4",
+      "start_time": "2015-08-30T17:15:00Z",
+      "note": "",
+      "end_time": "2015-08-30T17:20:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test123",
+      "task_id": "4e8955ee-e05a-472f-b337-9dba5c081f04",
+      "start_time": "2015-08-30T17:15:00Z",
+      "note": "",
+      "end_time": "2015-08-30T17:20:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "after work music",
+      "task_id": "42e0e51f-950c-4b11-a175-46df2018302e",
+      "start_time": "2015-08-30T13:20:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:25:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "17ad8e68-65ad-4b60-8499-908b8bc7bb1a",
+      "start_time": "2015-08-31T11:25:00Z",
+      "note": "",
+      "end_time": "2015-08-31T11:25:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "3e172f76-d63b-4b6b-84cb-a15b3fa13726",
+      "start_time": "2015-08-31T11:25:00Z",
+      "note": "",
+      "end_time": "2015-08-31T11:25:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "14e41aaa-973e-4dc8-9f22-3006b45f9a6d",
+      "start_time": "2015-08-30T12:51:00Z",
+      "note": "",
+      "end_time": "2015-08-30T12:51:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "e31e3d9b-c080-4e15-a3b4-b481092a2974",
+      "start_time": "2015-08-30T12:57:00Z",
+      "note": "",
+      "end_time": "2015-08-30T12:58:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "97d8a568-539e-40fe-bd99-c77a8e212ebd",
+      "start_time": "2015-08-30T12:57:00Z",
+      "note": "",
+      "end_time": "2015-08-30T12:58:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "54f9b1cf-cd6a-434d-862d-eb5a828e8544",
+      "start_time": "2015-08-30T13:05:00Z",
+      "note": "",
+      "end_time": "2015-08-29T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "aca54772-6676-47f7-81a8-a075147294c4",
+      "start_time": "2015-08-30T13:05:00Z",
+      "note": "",
+      "end_time": "2015-08-29T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "1936f96f-3342-4040-a077-717d4e7890fb",
+      "start_time": "2015-08-30T13:05:00Z",
+      "note": "",
+      "end_time": "2015-08-29T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "00cfc986-fb30-49ba-9970-2ebf11ee5cc7",
+      "start_time": "2015-08-30T13:15:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "e5fb3aaa-0696-4c6f-9c0c-375ad50de5a5",
+      "start_time": "2015-08-30T13:15:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "bbf7ef4f-c1cc-4b50-a534-218572ce052f",
+      "start_time": "2015-08-30T13:16:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:15:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "53370c8c-0253-4029-b3d5-c3af32640f77",
+      "start_time": "2015-08-30T13:19:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:19:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "90ac6094-d30b-42e4-9fae-ee3b722b9a2d",
+      "start_time": "2015-08-30T13:20:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:20:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "28cd4165-477e-43a4-9b64-9baa867465e2",
+      "start_time": "2015-08-30T13:22:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:22:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "1a15b58d-ca48-4fa0-805b-d5bb0b569412",
+      "start_time": "2015-08-30T13:24:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:24:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "23e803f1-224a-470a-a840-8bde9e5488b2",
+      "start_time": "2015-08-30T13:25:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:25:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "05b1299b-a79b-4a1e-a7ca-1008d5e1b654",
+      "start_time": "2015-08-30T13:26:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:26:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "3c5e15bd-57e9-423a-8c77-04620655539b",
+      "start_time": "2015-08-30T13:26:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:26:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "93cd7de3-c3b5-496e-97cf-130117e54168",
+      "start_time": "2015-08-30T13:27:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:27:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "test",
+      "task_id": "d72b3130-3012-4577-a495-3bc8e50842cb",
+      "start_time": "2015-08-30T13:28:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:28:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "dasd",
+      "task_id": "28ea3068-97e8-4bd5-8892-04fbe1657863",
+      "start_time": "2015-08-30T13:30:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:30:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "dasd",
+      "task_id": "5c5c15bd-5328-4ab8-8b8f-43e3af7dfd0e",
+      "start_time": "2015-08-30T13:31:00Z",
+      "note": "",
+      "end_time": "2015-08-30T13:31:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "sads",
+      "task_id": "29ab8a27-7811-4fcc-9de5-c083f014265b",
+      "start_time": "2015-08-31T12:25:00Z",
+      "note": "",
+      "end_time": "2015-08-31T12:25:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "ssaasa",
+      "task_id": "3b5fc738-3aa1-40f7-84bc-4746530155ca",
+      "start_time": "2015-08-09T11:25:00Z",
+      "note": "",
+      "end_time": "2015-08-20T09:55:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "ssaasa",
+      "task_id": "94c9acce-cb40-410e-bee7-9891346e7200",
+      "start_time": "2015-08-09T11:25:00Z",
+      "note": "",
+      "end_time": "2015-08-20T09:55:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "ssaasa",
+      "task_id": "7f3d85a1-25a8-4c03-8533-7330bccf8e19",
+      "start_time": "1899-12-30T22:38:00Z",
+      "note": "",
+      "end_time": "1899-12-30T22:38:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 31
+  },
+  {
+    "fields": {
+      "is_periodically": false,
+      "name": "Music after work",
+      "task_id": "cac9b2bb-8dfc-4caf-94d4-f2c8ffed8992",
+      "start_time": "2015-08-31T09:35:00Z",
+      "note": "",
+      "end_time": "2015-08-31T17:50:00Z",
+      "is_passed": false
+    },
+    "model": "setting.event",
+    "pk": 32
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 1
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 2
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 3
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 4
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 5
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 6
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 7
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 8
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 9
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 10
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 11
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 13
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 14
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 15
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 16
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 17
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 18
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 19
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 20
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 21
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 22
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 23
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 24
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 25
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 26
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 27
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 28
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 29
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 30
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 31
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "modul": null,
+      "group": 1,
+      "event": 32
+    },
+    "model": "setting.eventactivationelements",
+    "pk": 31
+  },
+  {
+    "fields": {
       "city": "Izola",
-      "feels_like": 21,
-      "description": "Test case for temperature",
-      "sea_temp": 35
-    }
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-30T10:00:02Z",
+      "sea_temp": null,
+      "humidity": 69,
+      "feels_like": 35,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 31,
+      "timestamp": "2015-08-30T11:00:02Z",
+      "sea_temp": null,
+      "humidity": 68,
+      "feels_like": 36,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "partlycloudy",
+      "temp": 30,
+      "timestamp": "2015-08-30T12:00:02Z",
+      "sea_temp": null,
+      "humidity": 70,
+      "feels_like": 35,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "partlycloudy",
+      "temp": 30,
+      "timestamp": "2015-08-30T13:00:02Z",
+      "sea_temp": null,
+      "humidity": 63,
+      "feels_like": 34,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "partlycloudy",
+      "temp": 31,
+      "timestamp": "2015-08-30T14:00:03Z",
+      "sea_temp": null,
+      "humidity": 62,
+      "feels_like": 35,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 31,
+      "timestamp": "2015-08-30T15:00:02Z",
+      "sea_temp": null,
+      "humidity": 57,
+      "feels_like": 34,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-30T16:00:01Z",
+      "sea_temp": null,
+      "humidity": 68,
+      "feels_like": 34,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 28,
+      "timestamp": "2015-08-30T17:00:03Z",
+      "sea_temp": null,
+      "humidity": 71,
+      "feels_like": 30,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 26,
+      "timestamp": "2015-08-30T18:00:01Z",
+      "sea_temp": null,
+      "humidity": 76,
+      "feels_like": 28,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 25,
+      "timestamp": "2015-08-30T19:00:01Z",
+      "sea_temp": null,
+      "humidity": 90,
+      "feels_like": 25,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 24,
+      "timestamp": "2015-08-30T20:00:03Z",
+      "sea_temp": null,
+      "humidity": 83,
+      "feels_like": 24,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 25,
+      "timestamp": "2015-08-30T21:00:02Z",
+      "sea_temp": null,
+      "humidity": 61,
+      "feels_like": 26,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-31T09:00:02Z",
+      "sea_temp": null,
+      "humidity": 55,
+      "feels_like": 32,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-31T10:00:01Z",
+      "sea_temp": null,
+      "humidity": 54,
+      "feels_like": 31,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-31T11:00:03Z",
+      "sea_temp": null,
+      "humidity": 51,
+      "feels_like": 31,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 30,
+      "timestamp": "2015-08-31T12:00:02Z",
+      "sea_temp": null,
+      "humidity": 52,
+      "feels_like": 32,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 28,
+      "timestamp": "2015-08-31T13:00:02Z",
+      "sea_temp": null,
+      "humidity": 65,
+      "feels_like": 30,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 28,
+      "timestamp": "2015-08-31T14:00:02Z",
+      "sea_temp": null,
+      "humidity": 67,
+      "feels_like": 30,
+      "wind": 5
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 27,
+      "timestamp": "2015-08-31T15:00:02Z",
+      "sea_temp": null,
+      "humidity": 67,
+      "feels_like": 28,
+      "wind": 3
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 26,
+      "timestamp": "2015-08-31T16:00:02Z",
+      "sea_temp": null,
+      "humidity": 65,
+      "feels_like": 27,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 26,
+      "timestamp": "2015-08-31T17:00:02Z",
+      "sea_temp": null,
+      "humidity": 66,
+      "feels_like": 28,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 26,
+      "timestamp": "2015-08-31T18:00:02Z",
+      "sea_temp": null,
+      "humidity": 78,
+      "feels_like": 27,
+      "wind": 0
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 25,
+      "timestamp": "2015-08-31T19:00:02Z",
+      "sea_temp": null,
+      "humidity": 72,
+      "feels_like": 26,
+      "wind": 5
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "city": "Izola",
+      "description": "clear",
+      "temp": 25,
+      "timestamp": "2015-08-31T20:00:02Z",
+      "sea_temp": null,
+      "humidity": 59,
+      "feels_like": 26,
+      "wind": 2
+    },
+    "model": "dashboard.temperaturelog",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "codename": "add_logentry",
+      "name": "Can add log entry",
+      "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "codename": "change_logentry",
+      "name": "Can change log entry",
+      "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "codename": "delete_logentry",
+      "name": "Can delete log entry",
+      "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "codename": "add_permission",
+      "name": "Can add permission",
+      "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "codename": "change_permission",
+      "name": "Can change permission",
+      "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "codename": "delete_permission",
+      "name": "Can delete permission",
+      "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "codename": "add_group",
+      "name": "Can add group",
+      "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "codename": "change_group",
+      "name": "Can change group",
+      "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "codename": "delete_group",
+      "name": "Can delete group",
+      "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "codename": "add_user",
+      "name": "Can add user",
+      "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "codename": "change_user",
+      "name": "Can change user",
+      "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "codename": "delete_user",
+      "name": "Can delete user",
+      "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "codename": "add_contenttype",
+      "name": "Can add content type",
+      "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "codename": "change_contenttype",
+      "name": "Can change content type",
+      "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "codename": "delete_contenttype",
+      "name": "Can delete content type",
+      "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "codename": "add_session",
+      "name": "Can add session",
+      "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "codename": "change_session",
+      "name": "Can change session",
+      "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "codename": "delete_session",
+      "name": "Can delete session",
+      "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "codename": "add_taskmeta",
+      "name": "Can add task state",
+      "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "codename": "change_taskmeta",
+      "name": "Can change task state",
+      "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "codename": "delete_taskmeta",
+      "name": "Can delete task state",
+      "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "codename": "add_tasksetmeta",
+      "name": "Can add saved group result",
+      "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "codename": "change_tasksetmeta",
+      "name": "Can change saved group result",
+      "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "codename": "delete_tasksetmeta",
+      "name": "Can delete saved group result",
+      "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "codename": "add_intervalschedule",
+      "name": "Can add interval",
+      "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "codename": "change_intervalschedule",
+      "name": "Can change interval",
+      "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "codename": "delete_intervalschedule",
+      "name": "Can delete interval",
+      "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "codename": "add_crontabschedule",
+      "name": "Can add crontab",
+      "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "codename": "change_crontabschedule",
+      "name": "Can change crontab",
+      "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "codename": "delete_crontabschedule",
+      "name": "Can delete crontab",
+      "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "codename": "add_periodictasks",
+      "name": "Can add periodic tasks",
+      "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 31
+  },
+  {
+    "fields": {
+      "codename": "change_periodictasks",
+      "name": "Can change periodic tasks",
+      "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 32
+  },
+  {
+    "fields": {
+      "codename": "delete_periodictasks",
+      "name": "Can delete periodic tasks",
+      "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 33
+  },
+  {
+    "fields": {
+      "codename": "add_periodictask",
+      "name": "Can add periodic task",
+      "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 34
+  },
+  {
+    "fields": {
+      "codename": "change_periodictask",
+      "name": "Can change periodic task",
+      "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 35
+  },
+  {
+    "fields": {
+      "codename": "delete_periodictask",
+      "name": "Can delete periodic task",
+      "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 36
+  },
+  {
+    "fields": {
+      "codename": "add_workerstate",
+      "name": "Can add worker",
+      "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 37
+  },
+  {
+    "fields": {
+      "codename": "change_workerstate",
+      "name": "Can change worker",
+      "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 38
+  },
+  {
+    "fields": {
+      "codename": "delete_workerstate",
+      "name": "Can delete worker",
+      "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 39
+  },
+  {
+    "fields": {
+      "codename": "add_taskstate",
+      "name": "Can add task",
+      "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 40
+  },
+  {
+    "fields": {
+      "codename": "change_taskstate",
+      "name": "Can change task",
+      "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 41
+  },
+  {
+    "fields": {
+      "codename": "delete_taskstate",
+      "name": "Can delete task",
+      "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 42
+  },
+  {
+    "fields": {
+      "codename": "add_queue",
+      "name": "Can add queue",
+      "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 43
+  },
+  {
+    "fields": {
+      "codename": "change_queue",
+      "name": "Can change queue",
+      "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 44
+  },
+  {
+    "fields": {
+      "codename": "delete_queue",
+      "name": "Can delete queue",
+      "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 45
+  },
+  {
+    "fields": {
+      "codename": "add_message",
+      "name": "Can add message",
+      "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 46
+  },
+  {
+    "fields": {
+      "codename": "change_message",
+      "name": "Can change message",
+      "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 47
+  },
+  {
+    "fields": {
+      "codename": "delete_message",
+      "name": "Can delete message",
+      "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 48
+  },
+  {
+    "fields": {
+      "codename": "add_elementgroup",
+      "name": "Can add element group",
+      "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 49
+  },
+  {
+    "fields": {
+      "codename": "change_elementgroup",
+      "name": "Can change element group",
+      "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 50
+  },
+  {
+    "fields": {
+      "codename": "delete_elementgroup",
+      "name": "Can delete element group",
+      "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 51
+  },
+  {
+    "fields": {
+      "codename": "add_client",
+      "name": "Can add client",
+      "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 52
+  },
+  {
+    "fields": {
+      "codename": "change_client",
+      "name": "Can change client",
+      "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 53
+  },
+  {
+    "fields": {
+      "codename": "delete_client",
+      "name": "Can delete client",
+      "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 54
+  },
+  {
+    "fields": {
+      "codename": "add_modul",
+      "name": "Can add modul",
+      "content_type": 19
+    },
+    "model": "auth.permission",
+    "pk": 55
+  },
+  {
+    "fields": {
+      "codename": "change_modul",
+      "name": "Can change modul",
+      "content_type": 19
+    },
+    "model": "auth.permission",
+    "pk": 56
+  },
+  {
+    "fields": {
+      "codename": "delete_modul",
+      "name": "Can delete modul",
+      "content_type": 19
+    },
+    "model": "auth.permission",
+    "pk": 57
+  },
+  {
+    "fields": {
+      "codename": "add_event",
+      "name": "Can add event",
+      "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 58
+  },
+  {
+    "fields": {
+      "codename": "change_event",
+      "name": "Can change event",
+      "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 59
+  },
+  {
+    "fields": {
+      "codename": "delete_event",
+      "name": "Can delete event",
+      "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 60
+  },
+  {
+    "fields": {
+      "codename": "add_eventactivationelements",
+      "name": "Can add event activation elements",
+      "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 61
+  },
+  {
+    "fields": {
+      "codename": "change_eventactivationelements",
+      "name": "Can change event activation elements",
+      "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 62
+  },
+  {
+    "fields": {
+      "codename": "delete_eventactivationelements",
+      "name": "Can delete event activation elements",
+      "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 63
+  },
+  {
+    "fields": {
+      "codename": "add_temperaturelog",
+      "name": "Can add temperature log",
+      "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 64
+  },
+  {
+    "fields": {
+      "codename": "change_temperaturelog",
+      "name": "Can change temperature log",
+      "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 65
+  },
+  {
+    "fields": {
+      "codename": "delete_temperaturelog",
+      "name": "Can delete temperature log",
+      "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 66
+  },
+  {
+    "fields": {
+      "username": "bostjan",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2015-08-31T15:38:53Z",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$20000$7YgxAx8KtzKe$Zpu8pNOgqBLCPRofkXZg5MuC3B29AIILlJfl7wqabns=",
+      "email": "bocman@siol.net",
+      "date_joined": "2015-08-30T09:24:30Z"
+    },
+    "model": "auth.user",
+    "pk": 1
   }
 ]

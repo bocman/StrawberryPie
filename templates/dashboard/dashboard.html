@@ -79,16 +79,22 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-support fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div> <b> {% trans "Upcoming event" %} </b></div>
                             <br>
-                            {% comment %}
-                                Today, 12.33 PM
-                            {% endcomment %}
-                            <div><small> {{ event.format_start_date}} </small></div>
-                            <div>{{ event.name }}</div>
+                            {% if event %}
+                                <div>
+                                    <small> {{ event.get_start_time}} </small>
+                                </div>
+                                <div>{{ event.name }}</div>                              
+                            {% else %}
+                                <div>
+                                    <small>No upcoming events to display</small>
+                                </div> 
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
