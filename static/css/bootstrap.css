@@ -4292,22 +4292,16 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #C3C3E5;
-  font-family: 'Open Sans';
-  font-weight: 600;
-  color: white;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #fff;
-
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  font-family: 'Open Sans';
-  font-weight: 600;
-  color: white;
+  color: #F1F0FF;
   background-color: #080808;
 }
 .navbar-inverse .navbar-nav > .disabled > a,

@@ -36,16 +36,16 @@ def get_next_event():
     now = tz.localtime(tz.now())
     try:
         return Event.objects.filter(start_time__gt=now).order_by('start_time')[0]
-    except:
+    except Event.DoesNotExist:
         return None
 
 def weather_widget(country_name=None):
     """
     TODO
     """
-    try:
+    if TemperatureLog.objects.latest('timestamp'):
         return TemperatureLog.objects.latest('timestamp')
-    except TemperatureLog.DoesNotExist:
+    else:
         return None
 
 

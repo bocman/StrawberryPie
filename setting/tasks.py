@@ -6,9 +6,9 @@ from celery.task.schedules import crontab
 from celery.decorators import periodic_task
 from celery.utils.log import get_task_logger
 
-from .models import Event, EventActivationElements, Modul
+from .models import Event, EventActivationElements
 #from views import activate_modul
-from core.utils import activation
+
 
 
 import logging
@@ -17,34 +17,15 @@ logger = get_task_logger(__name__)
 
 
 @task(bind=True)
-def handle_event(self):
-    try:
-        event = Event.objects.get(start_task_id=self.request.id)
-    except:
-        try:
-            event = Event.objects.get(end_task_id=self.request.id)
-        except:
-            event = None
-    if event:
-        if not event.is_active:
-            event.is_active = True
-        else:
-            event.is_active = False
-        event.save()
-        activations = EventActivationElements.objects.filter(event=event)
-        for activation in activations:
-            if activation.modul_id:
-                if not event.is_active:
-                    logger.info("READY to ACTIVATE modul")
-                else:
-                    logger.info("READY to DEACTIVATE modul")
-            if activation.group:
-                if not event.is_active:
-                    logger.info("READY to ACTIVATE group")
-                else:
-                    logger.info("READY to DEACTIVATE group")
-    else:
-        logger.info("Event does not exist with this arguments")
+def schedule_event(self):
+    event = Event.objects.get(task_id=self.request.id)
+    #log.info(
+     #   "Started AUTOMATIC EVENT with id{0}".format(event.id)
+      #  )
+    activations = EventActivationElements.objects.filter(event=event)
+
+    logger.info("--------------------")
+
 
 
 # A periodic task that will run every minute (the symbol "*" means every)

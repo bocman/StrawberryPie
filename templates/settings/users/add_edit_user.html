@@ -9,10 +9,7 @@
 
                 <img src="{% static 'images/avatar/woman.jpg' %}" style="width:250px; height:120px; margin-left:60px">        
                 <br><br>
-                {% comment %}
-                    {% url 'settings:edit_user' user_id %}
-                {% endcomment %}
-                <form action= "" method="post"> 
+                <form action= "{% url 'settings:edit_user' user_id %}" method="post"> 
                     {% csrf_token %}
                     {% for field in user_form  %}
                         <div class="field_group" />

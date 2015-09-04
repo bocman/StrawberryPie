@@ -9,8 +9,8 @@ urlpatterns = patterns('',
     url(r'^general_settings/$', views.general_settings, name='general_settings'),
 
     url(r'^users/$', views.users_list, name='users_list'),
- #   url(r'^users/add/$', views.add_edit_user, name='add_user'),
- #   url(r'^users/edit/(?P<user_id>[0-9]+)/$', views.add_edit_user, name='edit_user'),
+    url(r'^users/add/$', views.add_edit_user, name='add_user'),
+    url(r'^users/edit/(?P<user_id>[0-9]+)/$', views.add_edit_user, name='edit_user'),
 
     url(r'^groups/$', views.groups_list, name='groups_list'), 
 
