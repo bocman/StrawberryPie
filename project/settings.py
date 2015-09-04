@@ -2,10 +2,8 @@
 from __future__ import absolute_import
 """
 Django settings for project project.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
@@ -96,10 +94,19 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project',
+        'USER': 'root',
+        'PASSWORD': 'bostjanNovak1',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
+        },
+    }
+}
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
@@ -142,6 +149,10 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+FIXTURE_DIRS = (
+    set(os.path.join(BASE_DIR, 'project/fixtures/'))
+)
 
 # Link which is in use to stream radio
 RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
@@ -207,7 +218,7 @@ LOGGING = {
         'production_file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'strawberry_info.log',
+            'filename': '/var/log/StrawberryPie/strawberry_info.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 7,
             'formatter': 'main_formatter',
@@ -216,7 +227,7 @@ LOGGING = {
         'debug_file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'strawberry.log',
+            'filename': '/var/log/StrawberryPie/strawberry.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 7,
             'formatter': 'main_formatter',

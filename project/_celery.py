@@ -7,8 +7,8 @@ from celery import Celery
 from django.conf import settings
 
 import sys
-#sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "/var/www/StrawberryPie/")))
-#sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "/var/www/StrawberryPie/project/")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "/var/www/StrawberryPie/")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "/var/www/StrawberryPie/project/")))
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')

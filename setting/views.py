@@ -23,7 +23,7 @@ import project.settings as settings
 from forms import ClientForm, ModulForm, EventForm, UserForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from rest_services.serializers import *
-from .tasks import schedule_event
+from .tasks import handle_event
 
 
 log = logging.getLogger(__name__)
@@ -327,22 +327,28 @@ class AddEventView(FormView, CreateView):
     template_name = "settings/events/add_edit_event.html"
     success_url = "/settings/clients"
 
+    def __init__(self):
+        log.info("sem v viewu bostjan")
+
     def form_valid(self, form):
-        name = form.cleaned_data
-        log.info(name)
         start = form.cleaned_data['start_time']
         end = form.cleaned_data['end_time']
         group_id = self.request.POST.get('activation_group', None)
         modul_id = self.request.POST.get('activation_modul', None)
-        task = schedule_event.apply_async(eta=start)
-        form.instance.task_id = task.task_id
+        modul_id = 1
+
+        start_task = handle_event.apply_async(eta=start)
+        end_task = handle_event.apply_async(eta=end)
+        form.instance.start_task_id = start_task.task_id
+        form.instance.end_task_id = end_task.task_id
         form.instance.save()
+
         activation = EventActivationElements()
         activation.event = form.instance
         if group_id:
             activation.group_id = group_id
-        elif modul_id:
-            activation.modul = modul_id
+        if modul_id:
+            activation.modul_id = modul_id
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
@@ -353,5 +359,4 @@ class AddEventView(FormView, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('settings:clients_list')
-
+        return reverse('dashboard:dashboard')
