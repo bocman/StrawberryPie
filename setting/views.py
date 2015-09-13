@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, View
 from django.views.generic.edit import FormView
 from django.utils import timezone as tz
 
@@ -102,11 +102,6 @@ def groups_list(request):
     })
 
 
-class AddEditElementalGroupView(CreateView):
-    pass
-
-
-
 @login_required
 def clients_list(request):
     """
@@ -121,6 +116,38 @@ def clients_list(request):
     })
 
 
+def all_moduls():
+    clients = Client.objects.all()
+    moduls = []
+    for client in clients:
+        result = get_moduls(client.id)
+        if result:
+            moduls += result
+
+    return moduls
+
+
+def active_moduls(client_id):
+    moduls = []
+    log.info("sem v funkciji")
+    for modul in get_moduls(client_id):
+        if modul['is_used']:
+            moduls.append(modul)
+    if moduls:
+        return moduls
+    else:
+        return None
+
+def free_moduls(client_id):
+    moduls = []
+    for modul in get_moduls(client_id):
+        if not modul['is_used']:
+            moduls.append(modul)
+    if moduls:
+        return moduls
+    else:
+        return None
+
 def get_moduls(client_id, url=None):
     """
     This method make request on client to get list of all moduls.
@@ -131,13 +158,16 @@ def get_moduls(client_id, url=None):
     else:
         url = "http://{0}/rest/gpio/all/".format(client.ip_address)
     try:
-        r = requests.get(url)
+        r = requests.get(url, timeout=3.0)
         moduls = json.loads(r.text)
+
         for i in moduls:
             group_id = i.get('group', None)
             #i['group'] = ClientGroup.objects.get(id=group_id)
         return moduls
     except ConnectionError as e:
+        return None
+    except requests.exceptions.Timeout:
         return None
 
 
@@ -229,20 +259,41 @@ def delete_client(self, client_id):
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
 
-class ModulList(ListView):
-    queryset = Modul.active.all()
+class ModulList(View):
     template_name = "settings/moduls/moduls_list.html"
-    context_object_name = 'moduls'
 
-    def get_context_data(self, **kwargs):
-        context = super(ModulList, self).get_context_data(**kwargs)
-        # names = [name.get('name', None) for name in Item.objects.all().values('name') ]
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context['moduls'] = all_moduls()
         names = []
-        for name in Modul.objects.all().values('name'):
+        for name in context['moduls']:
             names.append(name.get('name', None) )
         context['modul_names'] = names
-        return context
 
+        return TemplateResponse(
+            request,
+            self.template_name,
+            context
+        )
+
+class ModulCreateView(FormView):
+    form_class = ModulForm
+    template_name = "settings/moduls/add_edit_modul.html"
+    success_url = "/settings/moduls"
+
+    def get(self, *args, **kwargs):
+        # You can access url variables from kwargs
+        # url: /email_preferences/geeknam > kwargs['username'] = 'geeknam'
+        # Assign to self.subscriber to be used later
+        return TemplateResponse(
+            self.request,
+            self.template_name, {
+                'form': self.form_class
+            })
+
+    def post(self, request, *args, **kwargs):
+        # Process view when the form gets POSTed
+        pass
 
 
 def send_data(page_url, data=None, action_type=None):
@@ -327,15 +378,12 @@ class AddEventView(FormView, CreateView):
     template_name = "settings/events/add_edit_event.html"
     success_url = "/settings/clients"
 
-    def __init__(self):
-        log.info("sem v viewu bostjan")
-
     def form_valid(self, form):
         start = form.cleaned_data['start_time']
         end = form.cleaned_data['end_time']
-        group_id = self.request.POST.get('activation_group', None)
-        modul_id = self.request.POST.get('activation_modul', None)
-        modul_id = 1
+        #group_id = self.request.POST.get('act_element', None)
+        group_id = None
+        modul_id = self.request.POST.get('act_element', None)
 
         start_task = handle_event.apply_async(eta=start)
         end_task = handle_event.apply_async(eta=end)
@@ -354,7 +402,8 @@ class AddEventView(FormView, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        context['element_groups'] = ElementGroup.objects.all()
+        moduls = active_moduls(1)
+        context['moduls'] = moduls if moduls else None
         context['events'] = Event.objects.all()
         return context
 

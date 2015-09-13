@@ -65,22 +65,22 @@
                         </tr>
                     </thead>
                     <tbody>                  
-                    {% for item in items%}                
+                    {% for modul in moduls%}                
                         <tr>
                             <td>
                                 <a href="" ><img src="{% static 'images/edit.png' %}" alt='Edit' /></a>
 
-                                <a href="{% url 'settings:delete_item' item.id %}" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
+                                <a href="{% url 'settings:delete_modul' modul.id %}" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
                             </td>  
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.description}}</td>
-                            <td>{{item.is_general}}</td>
-                            <td>{{item.pin_number}}</td>
-                            <td>{{item.is_input}}</td>
-                            <td>{{item.client}}</td>
-                            <td>{{item.group}}</td>
-                            <td>{{item.is_activated}}</td>
+                            <td>{{modul.id}}</td>
+                            <td>{{modul.name}}</td>
+                            <td>{{modul.description}}</td>
+                            <td>{{modul.is_general}}</td>
+                            <td>{{modul.pin_number}}</td>
+                            <td>{{modul.is_input}}</td>
+                            <td>{{modul.client}}</td>
+                            <td>{{modul.group}}</td>
+                            <td>{{modul.is_activated}}</td>
                         </tr>
                     {% endfor %}
 
@@ -90,7 +90,7 @@
             </div>
         </div>
     <hr>
-    {{ item_names}}
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

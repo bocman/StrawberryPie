@@ -25,7 +25,6 @@ SECRET_KEY = '-v0nscxua4k3&mrr)gy#1_y(*&_-(5h33u-l&d-(-ut2^&@ro_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 
 TEMPLATE_DEBUG = True
@@ -50,7 +49,8 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'setting',
     'dashboard',
-    'entertainment'
+    'entertainment',
+    'djangosecure'
 
 )
 
@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djangosecure.middleware.SecurityMiddleware'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS =( 
@@ -88,6 +89,8 @@ LOCALE_PATHS = (
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+SECURE_SSL_REDIRECT = True
 
 LOGIN_URL = "/"
 LOGIN_REDIRECT_URL = "/dashboard/"
@@ -117,7 +120,7 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 from django.utils.translation import ugettext_lazy as _
 

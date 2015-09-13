@@ -14,8 +14,9 @@ urlpatterns = patterns('',
 
     url(r'^groups/$', views.groups_list, name='groups_list'), 
 
-    url(r'^moduls/$', views.ModulList.as_view(), name='moduls_list'), 
-    url(r'^modulss/delete/(?P<modul_id>[0-9]+)/$', views.delete_modul, name='delete_modul'),
+    url(r'^moduls/$', views.ModulList.as_view(), name='moduls_list'),
+    url(r'^moduls/add/$', views.ModulCreateView.as_view(), name='add_modul'),
+    url(r'^moduls/delete/(?P<modul_id>[0-9]+)/$', views.delete_modul, name='delete_modul'),
 
     url(r'^clients/$', views.clients_list, name='clients_list'), 
     url(r'^clients/add/$', views.add_edit_client, name='add_client'),

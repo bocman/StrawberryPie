@@ -1,3 +1,10 @@
+
+a:forgoten_password
+
+a:link {
+    color: #FF0000;
+}
+
 .main {
     margin: auto;
 }
@@ -77,28 +84,22 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
     color: #555;
     background-image: none;
 }
-
+a.activation_button{
+    width:120px;
+}
 span.input-group-addon{
     width:35px;
 }
-
 .fieldset_content {
     display: none;
     margin-bottom: 10px;
 } 
-
 form .validation_error{
     color: #a94442;
 }
-
-
 .blink {
     display: none !important;
 }
-
-
-
-
 
 
 
@@ -126,12 +127,13 @@ form #days_group button {
     text-align:center;
 }
 
+.alarm_active{
+    color: gold;
+}
 
-
-
-
-
-
+.mail_active{
+    color: #10EEF6;
+}
 
 
 
