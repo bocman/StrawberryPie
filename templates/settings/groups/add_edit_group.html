@@ -3,82 +3,50 @@
 {% load i18n %}
 
 {% block content %}
-
     <!-- Page Heading -->
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                {% trans "Clients" %}
-                {% if client_id %}
-                    <small>{% trans " Edit client" %}</small>
-                {% else %}
-                    <small>{% trans " Add new" %}</small>
-                {% endif %}
-            </h1>
+        <div class="main_container">
+            <div class="first_container" />
+                <form action="{% url 'settings:add_group' %}" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-xs btn-primary">
+                        {% trans "Continue" %}
+                    </button>
+                </form>
 
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i>
-                    {% comment %}
-                        <a href="{% url 'settings:client_statistics' client_id %}">
-                    {% endcomment %}
-                     {% if client_id %} 
-                        {% if client.is_active %}                   
-                                <button type="button" class="btn btn-xs btn-success">{% trans "Online" %}</button> 
-                        {% else %}
-                            <button type="button" class="btn btn-xs btn-default">{% trans "Offline" %}</button>
-                        {% endif %}              
-                     {% endif %}
-                </li>
-                {% if client %} 
-                    <li class="system_buttons">
-                        <a href="." class="btn btn-xs btn-info" role="button">{% trans "Reboot" %}</a>
-                        <a href="." class="btn btn-xs btn-info" role="button">{% trans "Shutdown" %}</a>
-                    </li>
-                {% endif %}
-            </ol>
-            
+            </div>
         </div>
     </div>
-    <!-- /.row -->
-    <hr>
-    <div class="main_container">
-        <div class="first_container" />
-            <form action= "
-                        {% if client_id %}
-                            {% url 'settings:edit_client' client_id %}
-                        {% else %}
-                            {% url 'settings:add_client'%}
-                        {% endif %}
-                          "
-                        }
 
-                     method="post"> 
-                {% csrf_token %}
-                {% for field in group_form %}
-                    <div class="field_group" />
-                        {{field.label}} </br>
-                        {{field}} </br>
-                        {% if field.errors %}
-                            {% for error in field.errors %}
-                                {{error}}
-                            {% endfor %}
-                            <br>
-                        {% endif %}
-                        <small>{{field.help_text}}</small> </br>
-                    </div>
-                {% endfor %}
-                <button type="submit" class="btn btn-sm btn-default">{% trans "Test connection" %}</button>          
-                <hr>      
-                <button type="submit" class="btn btn-sm btn-primary">{% trans "Save" %}</button>
-            </form>
-        </div>
- 
-    </div>
-
-    <!--- Here we extend our own javascript librarys from the base html template-->
-    {% block js %}
-        {{ block.super }}
-    {% endblock %}
+    <br><br><br><br><br><br>
     
+    <div class="col-lg-14">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{% trans "Name" %}</th> 
+                        <th>{% trans "Start time" %}</th>
+                        <th>{% trans "End time" %}</th>
+                        <th>{% trans "Execution time" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for event in events  %}
+                    <tr>
+                        <td>
+                            <a href="#" ><img src="{% static 'images/remove.png' %}" alt='Remove' title='Remove' /> </a>
+                        </td>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.get_start_time }}</td>
+                        <td>{{ event.get_end_time }}</td>
+                        <td>{{ event.execution_time }}</td>
+                    </tr>
+               {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

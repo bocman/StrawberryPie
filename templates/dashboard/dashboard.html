@@ -6,13 +6,16 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            {% trans "Dashboard" %} <small>Statistics Overview</small>
+            {% trans "Dashboard" %} <small>Home automation system</small>
         </h1>
-        <ol class="breadcrumb">
+        {% comment %}
+          <ol class="breadcrumb">
             <li class="active">
                 <i class="fa fa-dashboard"></i> Dashboard
             </li>
-        </ol>
+        </ol>          
+        {% endcomment %}
+
         </div>
     </div>
     <!-- /.row -->
@@ -23,6 +26,34 @@
                 <i class="fa fa-info-circle"></i>  <strong>StrawberryPie development version</strong>
             </div>
         </div>
+
+
+    {% comment %}
+      <div id="jqmeter-container">
+        <strong></strong>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#jqmeter-container').circleProgress({
+                value: 0.6
+            }).on('circle-animation-progress', function(event, progress) {
+                $(this).find('strong').html(parseInt(100 * progress) + '<i>%</i>');
+            });
+
+        });
+    </script>      
+    {% endcomment %}
+
+
+
+
+
+    </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/circle-progress.js"></script>
+
+
     </div>
     <!-- /.row -->
     <div class="row">
@@ -98,9 +129,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="{% url 'settings:edit_event' event.id %}">
                     <div class="panel-footer">
-                        <span class="pull-left">More details</span>
+                        <span class="pull-left">Update event</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -132,7 +163,8 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
+{% comment %}
+     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -144,18 +176,53 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
+    <!-- /.row -->   
+{% endcomment %}
+
 
     <div class="row">
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="morris-donut-chart"></div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <span class="badge">just now</span>
+                            <i class="fa fa-fw fa-calendar"></i> Calendar updated
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">4 minutes ago</span>
+                            <i class="fa fa-fw fa-comment"></i> Commented on a post
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">23 minutes ago</span>
+                            <i class="fa fa-fw fa-truck"></i> Order 392 shipped
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">46 minutes ago</span>
+                            <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">1 hour ago</span>
+                            <i class="fa fa-fw fa-user"></i> A new user has been added
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">2 hours ago</span>
+                            <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">yesterday</span>
+                            <i class="fa fa-fw fa-globe"></i> Saved the world
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="badge">two days ago</span>
+                            <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
+                        </a>
+                    </div>
                     <div class="text-right">
-                        <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

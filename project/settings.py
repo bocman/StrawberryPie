@@ -90,7 +90,7 @@ ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
 
 LOGIN_URL = "/"
 LOGIN_REDIRECT_URL = "/dashboard/"

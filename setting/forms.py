@@ -44,6 +44,15 @@ class ClientForm(ModelForm):
             'port', 'key'
         ]
 
+class GroupForm(ModelForm):
+    """
+    Form is used to add/edit some Group
+    """
+    class Meta:
+        model = ElementGroup
+        fields = [
+            'name', 'description'
+        ]
 
 class EventForm(ModelForm):
     """

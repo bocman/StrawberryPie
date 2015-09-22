@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _
-from django.views.generic import ListView, CreateView, View
+from django.views.generic import ListView, CreateView, View, UpdateView
 from django.views.generic.edit import FormView
 from django.utils import timezone as tz
 
@@ -20,7 +20,7 @@ from requests.exceptions import ConnectionError
 from dateutil.parser import parse
 
 import project.settings as settings
-from forms import ClientForm, ModulForm, EventForm, UserForm
+from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from rest_services.serializers import *
 from .tasks import handle_event
@@ -101,6 +101,10 @@ def groups_list(request):
         'groups': groups,
     })
 
+class AddGroupView(FormView, CreateView):
+    form_class = GroupForm
+    template_name = "settings/groups/add_edit_group.html"
+    success_url = "/settings/groups/"
 
 @login_required
 def clients_list(request):
@@ -282,9 +286,6 @@ class ModulCreateView(FormView):
     success_url = "/settings/moduls"
 
     def get(self, *args, **kwargs):
-        # You can access url variables from kwargs
-        # url: /email_preferences/geeknam > kwargs['username'] = 'geeknam'
-        # Assign to self.subscriber to be used later
         return TemplateResponse(
             self.request,
             self.template_name, {
@@ -294,7 +295,9 @@ class ModulCreateView(FormView):
     def post(self, request, *args, **kwargs):
         # Process view when the form gets POSTed
         pass
-
+    form_class = GroupForm
+    template_name = "settings/events/add_edit_event.html"
+    success_url = "/settings/clients"
 
 def send_data(page_url, data=None, action_type=None):
     """
@@ -409,3 +412,8 @@ class AddEventView(FormView, CreateView):
 
     def get_success_url(self):
         return reverse('dashboard:dashboard')
+
+class EditEventView(FormView, UpdateView):
+    model = Event
+    form_class = EventForm
+    template_name = "settings/events/add_edit_event.html"

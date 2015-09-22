@@ -12,7 +12,8 @@ urlpatterns = patterns('',
     url(r'^users/add/$', views.add_edit_user, name='add_user'),
     url(r'^users/edit/(?P<user_id>[0-9]+)/$', views.add_edit_user, name='edit_user'),
 
-    url(r'^groups/$', views.groups_list, name='groups_list'), 
+    url(r'^groups/$', views.groups_list, name='groups_list'),
+    url(r'^groups/add/$', views.AddGroupView.as_view(), name='add_group'), 
 
     url(r'^moduls/$', views.ModulList.as_view(), name='moduls_list'),
     url(r'^moduls/add/$', views.ModulCreateView.as_view(), name='add_modul'),
@@ -29,4 +30,5 @@ urlpatterns = patterns('',
     url(r'^moduls/activate/(?P<client_id>[0-9]+)/(?P<pin_number>[0-9]+)/(?P<status>[A-Za-z]+)/$', views.activate_modul, name='activate_modul'), 
 
     url(r'^events/add/$', views.AddEventView.as_view(), name='add_event'),
+    url(r'^events/edit/(?P<pk>[0-9]+)/$', views.EditEventView.as_view(), name='edit_event'),
 )
