@@ -258,7 +258,7 @@ LOGGING = {
             'level':'DEBUG',
             },
         '': {
-            'handlers': ['console', 'production_file', 'debug_file'],
+            'handlers': ['console', 'production_file'], #'debug_file' add this in development
             'level': "DEBUG",
         }
     }
