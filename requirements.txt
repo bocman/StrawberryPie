@@ -1,3 +1,4 @@
+sudo pip install pytz // za django timezone priporoceno
 
 Django==1.8.2
 
@@ -16,4 +17,3 @@ python-dateutil==2.4.2
 pytz==2015.4
 requests==2.2.1
 wolframalpha==1.2
-pip install dj-database-url
