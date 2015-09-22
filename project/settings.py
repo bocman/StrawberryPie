@@ -221,7 +221,7 @@ LOGGING = {
         'production_file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/StrawberryPie/strawberry_info.log',
+            #'filename': '/var/log/StrawberryPie/strawberry_info.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 7,
             'formatter': 'main_formatter',
@@ -230,7 +230,7 @@ LOGGING = {
         'debug_file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/StrawberryPie/strawberry.log',
+            #'filename': '/var/log/StrawberryPie/strawberry.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 7,
             'formatter': 'main_formatter',
