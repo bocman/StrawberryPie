@@ -11,7 +11,6 @@ import logging
 from collections import defaultdict
 
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
-#from core.utils import format_time_interval, format_datetime
 
 log = logging.getLogger(__name__)
 
