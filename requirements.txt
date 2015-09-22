@@ -1,4 +1,4 @@
-sudo pip install pytz // za django timezone priporoceno
+pytz==1.4
 
 Django==1.8.2
 
