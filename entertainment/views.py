@@ -8,7 +8,6 @@ import json
 
 import project.settings as global_settings
 
-from core.utils import files_in_directory
 
 @login_required
 def music(request):   
