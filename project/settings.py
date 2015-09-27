@@ -29,9 +29,6 @@ ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -94,22 +91,13 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 LOGIN_URL = "/"
 LOGIN_REDIRECT_URL = "/dashboard/"
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project',
-        'USER': 'root',
-        'PASSWORD': 'bostjanNovak1',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'OPTIONS': {
-            "init_command": "SET foreign_key_checks = 0;",
-        },
-    }
-}
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
@@ -151,19 +139,14 @@ STATICFILES_DIRS = (
     '%s/static/images' % BASE_DIR,
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 FIXTURE_DIRS = (
     set(os.path.join(BASE_DIR, 'project/fixtures/'))
 )
-
-# Link which is in use to stream radio
-RADIO_STREAM_LINK = "http://malina.webhop.me:8008/"
-# Link which is used to stream video
-VIDEO_STREAM_LINK = ""
-#Directory which hold music files
-MUSIC_PATH = "/media/bostjan/USB_DISK/music"
-
 
 WEATHER_LOCATION = "Izola"
 WEATHER_API_KEY = "1e408decf36cd52f"
@@ -174,7 +157,6 @@ WEATHER_API_LINK = "http://api.wunderground.com/api/"+ WEATHER_API_KEY+"/conditi
 #          - CELSIUS
 #          - FAHRENHEIT
 TEMPERATURE_UNIT = "CELSIUS"
-
 
 # IP address of server
 IP_ADDRESS = "192.168.1.130"
