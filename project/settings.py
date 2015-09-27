@@ -99,8 +99,6 @@ DATABASES = {}
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
-
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
