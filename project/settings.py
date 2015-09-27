@@ -94,7 +94,7 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = []
+DATABASES = {}
 
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
