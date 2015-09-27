@@ -21,3 +21,4 @@ django-secure==1.0.1
 whitenoise
 gunicorn==19.3.0
 django-postgrespool
+dj-database-url==0.2.2
