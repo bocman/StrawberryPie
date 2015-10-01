@@ -9,32 +9,6 @@ from django.utils import timezone as tz
 log = logging.getLogger(__name__)
 
 
-
-def get_moduls(client_id, url=None):
-    """
-    This method make request on specific client to get list of all moduls.
-    """
-    from setting.models import Client
-
-    client = Client.objects.get(id=client_id)
-    if client.port:
-        url = "http://{0}:{1}/rest/gpio/all/".format(client.ip_address, client.port)
-    else:
-        url = "http://{0}/rest/gpio/all/".format(client.ip_address)
-    try:
-        r = requests.get(url)
-        moduls = json.loads(r.text)
-        for i in moduls:
-            group_id = i.get('group', None)
-            #i['group'] = ClientGroup.objects.get(id=group_id)
-        return moduls
-    except ConnectionError as e:
-        return None
-
-def get_clients():
-    from setting.models import Client
-    return Client.objects.all()
-
 def send_data(page_url, data=None, action_type=None):
     """
     TODO
