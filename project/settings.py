@@ -31,28 +31,34 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+)
+
+THIRD_PARTY_APPS = (
     'django_extensions',
     'djcelery',
     'kombu.transport.django',
     'rest_framework',
     'rest_services',
     'widget_tweaks',
+    'djangosecure'
+)
+
+# Apps specific for this project go here.
+LOCAL_APPS = (
     'setting',
     'dashboard',
-    'entertainment',
-    'djangosecure'
-
+    'entertainment'
 )
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 DJANGO_SETTINGS_MODULE = "project.settings"
 
@@ -148,10 +154,10 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
-    '%s/static/images' % BASE_DIR,
+    '%s/static/images' % BASE_DIR
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 FIXTURE_DIRS = (
     set(os.path.join(BASE_DIR, 'project/fixtures/'))
@@ -184,9 +190,15 @@ DOMAIN_NAME = "malina.webhop.me:8000"
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bocman.novak@gmail.com'
-EMAIL_HOST_PASSWORD = 'bocmanadmin'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+
+ADMINS = (
+    ('Bostjan Novak', 'bocman@siol.net'),
+)
+
+
 
 # LOGGING = {
 #     'version': 1,
@@ -271,3 +283,8 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_APP="proj"
 CELERYD_NODES="worker"
 CELERY_TIMEZONE = TIME_ZONE
+
+try:
+    from local import *
+except:
+    pass

@@ -38,6 +38,8 @@ def get_next_event():
         return Event.objects.filter(start_time__gt=now).order_by('start_time')[0]
     except Event.DoesNotExist:
         return None
+    except IndexError:
+        return None
 
 def weather_widget(country_name=None):
     """

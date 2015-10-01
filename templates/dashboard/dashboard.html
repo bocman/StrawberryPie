@@ -122,20 +122,25 @@
                                 <div>{{ event.name }}</div>                              
                             {% else %}
                                 <div>
-                                    <small>No upcoming events to display</small>
+                                    <small>No upcoming events</small>
                                 </div> 
                             {% endif %}
 
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'settings:edit_event' event.id %}">
-                    <div class="panel-footer">
-                        <span class="pull-left">Update event</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
+                
+                    <a href="
+                        {% if event%}
+                            {% url 'settings:edit_event' event.id %}
+                        {% endif %}
+                        ">
+                        <div class="panel-footer">
+                            <span class="pull-left">Update event</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
