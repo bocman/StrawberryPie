@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 import os
 import sys
 import djcelery
+from whitenoise.django import DjangoWhiteNoise
 
 djcelery.setup_loader()
 
@@ -21,4 +22,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
-
+application = DjangoWhiteNoise(application)
