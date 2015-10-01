@@ -29,11 +29,6 @@ ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 
 TEMPLATE_DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = []
-
-=======
->>>>>>> e7863d923d75426291f3b023b5d70029e285e07f
 # Application definition
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -151,14 +146,10 @@ STATICFILES_DIRS = (
     '%s/static/images' % BASE_DIR
 )
 
-<<<<<<< HEAD
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-=======
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
->>>>>>> e7863d923d75426291f3b023b5d70029e285e07f
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 FIXTURE_DIRS = (
     set(os.path.join(BASE_DIR, 'project/fixtures/'))
