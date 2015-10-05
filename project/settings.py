@@ -102,7 +102,7 @@ DATABASES = {}
 import dj_database_url
 
 
-    DATABASES = values.DatabaseURLValue('postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue')
+DATABASES = values.DatabaseURLValue('postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue')
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
