@@ -107,7 +107,7 @@ DATABASES = {
         "NAME": "d5rqm4oh7gvrpc",
         "USER": "upbsznbuvgxsoz",
         "PASSWORD": "H6sNFivM6lAcnCFJ0cXwGUknWt",
-        "HOST": "http://ec2-54-217-202-109.eu-west-1.compute.amazonaws.com",
+        "HOST": "ec2-54-217-202-109.eu-west-1.compute.amazonaws.com",
         "PORT": "5432",
     }
 }
