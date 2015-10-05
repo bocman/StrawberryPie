@@ -43,9 +43,9 @@ def weather_widget(country_name=None):
     """
     TODO
     """
-    if TemperatureLog.objects.latest('timestamp'):
+    try:
         return TemperatureLog.objects.latest('timestamp')
-    else:
+    except TemperatureLog.DoesNotExist:
         return None
 
 
