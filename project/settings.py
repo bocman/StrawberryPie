@@ -9,9 +9,12 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from configurations import values
 import os
 from os.path import join
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 import djcelery
 djcelery.setup_loader()
 
@@ -82,7 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS =(
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
+ 
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -97,7 +100,9 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 DATABASES = {}
 
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+
+
+    DATABASES = values.DatabaseURLValue('postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue')
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
