@@ -101,7 +101,18 @@ DATABASES = {}
 import dj_database_url
 
 
-DATABASES = 'postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue'
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "d5rqm4oh7gvrpc",
+        "USER": "upbsznbuvgxsoz",
+        "PASSWORD": "H6sNFivM6lAcnCFJ0cXwGUknWt",
+        "HOST": "http://ec2-54-217-202-109.eu-west-1.compute.amazonaws.com",
+        "PORT": "5432",
+    }
+}
+
+
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
