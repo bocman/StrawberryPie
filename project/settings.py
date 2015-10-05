@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from configurations import values
 import os
 from os.path import join
 
@@ -102,7 +101,7 @@ DATABASES = {}
 import dj_database_url
 
 
-DATABASES = values.DatabaseURLValue('postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue')
+DATABASES = 'postgres://bnclzsdsezevnj:kSrod9OdNIpkba2SqmKKGGn5_N@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/deof42qe238sue'
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
