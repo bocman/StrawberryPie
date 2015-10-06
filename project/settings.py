@@ -112,8 +112,6 @@ DATABASES = {
     }
 }
 
-
-
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
@@ -179,88 +177,12 @@ IP_ADDRESS = "192.168.1.130"
 # Domain name of server
 DOMAIN_NAME = "malina.webhop.me:8000"
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bocman.novak@gmail.com'
-EMAIL_HOST_PASSWORD = 'bocmanadmin'
+#EMAIL SETTINGS
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'app41680308@heroku.com'
+EMAIL_HOST_PASSWORD = 'ccqvqvpk7991'
 EMAIL_PORT = 587
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         },
-#         'require_debug_true': {
-#             '()': 'django.utils.log.RequireDebugTrue'
-#         }
-#     },
-#     'formatters': {
-#         'main_formatter': {
-#             'format': '%(levelname)s:%(name)s: %(message)s '
-#             '(%(asctime)s; %(filename)s:%(lineno)d)',
-#             'datefmt': "%Y-%m-%d %H:%M:%S",
-#         },
-#     },
-#     'handlers': {
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'filters': ['require_debug_false'],
-#             'class': 'django.utils.log.AdminEmailHandler'
-#         },
-#         'console': {
-#             'level': 'DEBUG',
-#             'filters': ['require_debug_true'],
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'main_formatter',
-#         },
-#         'production_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry_info.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_false'],
-#         },
-#         'debug_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_true'],
-#         },
-#         'null': {
-#             "class": 'django.utils.log.NullHandler',
-#         }
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['mail_admins', 'console'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#         'django': {
-#             'handlers': ['null', ],
-#         },
-#         'py.warnings': {
-#             'handlers': ['null', ],
-#         },
-#         'django.db.backends': {
-#             'handlers': ['null'],  # Quiet by default!
-#             'propagate': False,
-#             'level':'DEBUG',
-#             },
-#         '': {
-#             'handlers': ['console', 'production_file', 'debug_file'],
-#             'level': "DEBUG",
-#         }
-#     }
-# }
-
+EMAIL_USE_TLS = True
 
 REDIS_URL = "ec2-54-195-242-227.eu-west-1.compute.amazonaws.com"
 BROKER_URL = 'redis://h:pcaq1skmhhbgou5qk6t63iqik96@ec2-54-195-242-227.eu-west-1.compute.amazonaws.com:7739'
