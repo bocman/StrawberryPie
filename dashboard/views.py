@@ -36,9 +36,9 @@ def get_next_event():
     now = tz.localtime(tz.now())
     try:
         return Event.objects.filter(start_time__gt=now).order_by('start_time')[0]
-    except:
-        return None
     except IndexError:
+        return None
+    except:
         return None
 
 def weather_widget(country_name=None):
