@@ -32,26 +32,33 @@ ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 TEMPLATE_DEBUG = True
 
 # Application definition
-
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+)
+
+THIRD_PARTY_APPS = (
     'django_extensions',
     'djcelery',
     'kombu.transport.django',
     'rest_framework',
     'rest_services',
     'widget_tweaks',
+    'djangosecure'
+)
+
+# Apps specific for this project go here.
+LOCAL_APPS = (
     'setting',
     'dashboard',
-    'entertainment',
-    'djangosecure'
-
+    'entertainment'
 )
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 DJANGO_SETTINGS_MODULE = "project.settings"
 
@@ -96,10 +103,6 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = {}
-
-import dj_database_url
-
 
 DATABASES = {
     "default": {
@@ -111,7 +114,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
 
 
 # TODO permissions IsAdminUser
@@ -151,13 +153,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
-    '%s/static/images' % BASE_DIR,
+    '%s/static/images' % BASE_DIR
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 FIXTURE_DIRS = (
     set(os.path.join(BASE_DIR, 'project/fixtures/'))
@@ -181,9 +183,15 @@ DOMAIN_NAME = "malina.webhop.me:8000"
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bocman.novak@gmail.com'
-EMAIL_HOST_PASSWORD = 'bocmanadmin'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+
+ADMINS = (
+    ('Bostjan Novak', 'bocman@siol.net'),
+)
+
+
 
 # LOGGING = {
 #     'version': 1,
@@ -268,4 +276,9 @@ CELERY_RESULT_BACKEND= BROKER_URL
 #CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 #CELERY_APP="proj"
 #CELERYD_NODES="worker"
-CELERY_TIMEZONE = TIME_ZONE
+
+try:
+    from local import *
+except:
+    pass
+>>>>>>> 4908406e1aa741530dae66d75c4dc4c0499cfc47

@@ -10,6 +10,7 @@ from datetime import date
 import logging
 from collections import defaultdict
 
+from core.utils import format_time_interval, format_datetime
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
 
 log = logging.getLogger(__name__)
@@ -220,13 +221,13 @@ class Event(models.Model):
         )
 
     def execution_time(self):
-        return "Implement yet"
+        return format_time_interval(self.start_time, self.end_time)
 
     def get_start_time(self):
-        return "Implement yet"
+        return format_datetime(self.start_time)
 
     def get_end_time(self):
-        return "Implement yet"
+        return format_datetime(self.end_time)
 
     def is_activated(self):
         return True if self.is_active else False

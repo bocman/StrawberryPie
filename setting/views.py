@@ -12,11 +12,11 @@ from django.utils.translation import ugettext as _
 from django.views.generic import ListView, CreateView, View, UpdateView
 from django.views.generic.edit import FormView
 from django.utils import timezone as tz
+from django.core.exceptions import ObjectDoesNotExist
 
 import logging
 import requests
 import json
-from requests.exceptions import ConnectionError
 from dateutil.parser import parse
 
 import project.settings as settings
@@ -24,6 +24,7 @@ from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from rest_services.serializers import *
 from .tasks import handle_event
+from utils import used_moduls, get_moduls
 
 
 log = logging.getLogger(__name__)
@@ -101,15 +102,18 @@ def groups_list(request):
         'groups': groups,
     })
 
+
 class AddGroupView(FormView, CreateView):
     form_class = GroupForm
     template_name = "settings/groups/add_edit_group.html"
     success_url = "/settings/groups/"
 
+
 @login_required
 def clients_list(request):
     """
-    This method is used to get all Clients. At the moment, Clients are also sorted by
+    This method is used to get all Clients. At the moment, Clients are
+    also sorted by
     status, so Clients which are online are set before those which aren't
     :return: List of Client objects
     """
@@ -118,61 +122,6 @@ def clients_list(request):
     return TemplateResponse(request, template_name, {
         'clients': clients,
     })
-
-
-def all_moduls():
-    clients = Client.objects.all()
-    moduls = []
-    for client in clients:
-        result = get_moduls(client.id)
-        if result:
-            moduls += result
-
-    return moduls
-
-
-def active_moduls(client_id):
-    moduls = []
-    log.info("sem v funkciji")
-    for modul in get_moduls(client_id):
-        if modul['is_used']:
-            moduls.append(modul)
-    if moduls:
-        return moduls
-    else:
-        return None
-
-def free_moduls(client_id):
-    moduls = []
-    for modul in get_moduls(client_id):
-        if not modul['is_used']:
-            moduls.append(modul)
-    if moduls:
-        return moduls
-    else:
-        return None
-
-def get_moduls(client_id, url=None):
-    """
-    This method make request on client to get list of all moduls.
-    """
-    client = Client.objects.get(id=client_id)
-    if client.port:
-        url = "http://{0}:{1}/rest/gpio/all/".format(client.ip_address, client.port)
-    else:
-        url = "http://{0}/rest/gpio/all/".format(client.ip_address)
-    try:
-        r = requests.get(url, timeout=3.0)
-        moduls = json.loads(r.text)
-
-        for i in moduls:
-            group_id = i.get('group', None)
-            #i['group'] = ClientGroup.objects.get(id=group_id)
-        return moduls
-    except ConnectionError as e:
-        return None
-    except requests.exceptions.Timeout:
-        return None
 
 
 def shutdown_client(request, client_id):
@@ -268,10 +217,10 @@ class ModulList(View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['moduls'] = all_moduls()
+        context['moduls'] = used_moduls(1)
         names = []
         for name in context['moduls']:
-            names.append(name.get('name', None) )
+            names.append(name.get('name', None))
         context['modul_names'] = names
 
         return TemplateResponse(
@@ -279,6 +228,7 @@ class ModulList(View):
             self.template_name,
             context
         )
+
 
 class ModulCreateView(FormView):
     form_class = ModulForm
@@ -298,6 +248,7 @@ class ModulCreateView(FormView):
     form_class = GroupForm
     template_name = "settings/events/add_edit_event.html"
     success_url = "/settings/clients"
+
 
 def send_data(page_url, data=None, action_type=None):
     """
@@ -324,6 +275,11 @@ def activate_modul(request, status, client_id=None, pin_number=None):
     :type pin_number: Integer
     :type status: Boolean
     """
+    msg = {
+        'activated': 'Activated modul with pin {0} on client {1}',
+        'deactivated': '"Dectivated modul with pin {0} on client {1}',
+        'failed': 'Failed to activate modul with pin{0} on client{1}'
+    }
     data = {
         "is_activated": status
     }
@@ -332,11 +288,11 @@ def activate_modul(request, status, client_id=None, pin_number=None):
     try:
         if send_data(url, data) == 200:
             if status == 'True':
-                log.info("Activated modul with pin {0} on client {1}".format(pin_number, client.name))
+                log.info(msg['activated'].format(pin_number, client.name))
             else:
-               log.info("Dectivated modul with pin {0} on client {1}".format(pin_number, client.name)) 
+                log.info(msg['deactivated'].format(pin_number, client.name))
     except:
-        log.info( "Failed to activate modul with pin{0} on client{1}".format(pin_number, client.name) )
+        log.info(msg['failed'].format(pin_number, client.name))
 
     return HttpResponseRedirect(reverse('settings:clients_list'))
 
@@ -384,7 +340,7 @@ class AddEventView(FormView, CreateView):
     def form_valid(self, form):
         start = form.cleaned_data['start_time']
         end = form.cleaned_data['end_time']
-        #group_id = self.request.POST.get('act_element', None)
+        # group_id = self.request.POST.get('act_element', None)
         group_id = None
         modul_id = self.request.POST.get('act_element', None)
 
@@ -405,13 +361,14 @@ class AddEventView(FormView, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        moduls = active_moduls(1)
+        moduls = used_moduls(1)
         context['moduls'] = moduls if moduls else None
         context['events'] = Event.objects.all()
         return context
 
     def get_success_url(self):
         return reverse('dashboard:dashboard')
+
 
 class EditEventView(FormView, UpdateView):
     model = Event
