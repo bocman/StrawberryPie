@@ -262,9 +262,10 @@ EMAIL_PORT = 587
 # }
 
 
-BROKER_URL = 'django://'
-CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend' 
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-CELERY_APP="proj"
-CELERYD_NODES="worker"
+REDIS_URL = "ec2-54-195-242-227.eu-west-1.compute.amazonaws.com"
+BROKER_URL = 'redis://h:pcaq1skmhhbgou5qk6t63iqik96@ec2-54-195-242-227.eu-west-1.compute.amazonaws.com:7739'
+CELERY_RESULT_BACKEND= BROKER_URL
+#CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+#CELERY_APP="proj"
+#CELERYD_NODES="worker"
 CELERY_TIMEZONE = TIME_ZONE
