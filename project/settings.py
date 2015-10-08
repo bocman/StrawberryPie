@@ -156,8 +156,8 @@ STATICFILES_DIRS = (
     '%s/static/images' % BASE_DIR
 )
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#Enable it in production
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
@@ -191,83 +191,72 @@ ADMINS = (
     ('Bostjan Novak', 'bocman@siol.net'),
 )
 
-
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         },
-#         'require_debug_true': {
-#             '()': 'django.utils.log.RequireDebugTrue'
-#         }
-#     },
-#     'formatters': {
-#         'main_formatter': {
-#             'format': '%(levelname)s:%(name)s: %(message)s '
-#             '(%(asctime)s; %(filename)s:%(lineno)d)',
-#             'datefmt': "%Y-%m-%d %H:%M:%S",
-#         },
-#     },
-#     'handlers': {
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'filters': ['require_debug_false'],
-#             'class': 'django.utils.log.AdminEmailHandler'
-#         },
-#         'console': {
-#             'level': 'DEBUG',
-#             'filters': ['require_debug_true'],
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'main_formatter',
-#         },
-#         'production_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry_info.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_false'],
-#         },
-#         'debug_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_true'],
-#         },
-#         'null': {
-#             "class": 'django.utils.log.NullHandler',
-#         }
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['mail_admins', 'console'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#         'django': {
-#             'handlers': ['null', ],
-#         },
-#         'py.warnings': {
-#             'handlers': ['null', ],
-#         },
-#         'django.db.backends': {
-#             'handlers': ['null'],  # Quiet by default!
-#             'propagate': False,
-#             'level':'DEBUG',
-#             },
-#         '': {
-#             'handlers': ['console', 'production_file', 'debug_file'],
-#             'level': "DEBUG",
-#         }
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
+        }
+    },
+    'formatters': {
+        'main_formatter': {
+            'format': '%(levelname)s:%(name)s: %(message)s '
+            '(%(asctime)s; %(filename)s:%(lineno)d)',
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'main_formatter',
+        },
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/StrawberryPie/strawberry.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 7,
+            'formatter': 'main_formatter',
+            'filters': ['require_debug_true'],
+        },
+        'null': {
+            "class": 'django.utils.log.NullHandler',
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['null', ],
+        },
+        'py.warnings': {
+            'handlers': ['null', ],
+        },
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+            },
+        '': {
+            'handlers': ['console', 'debug_file'],
+            'level': "DEBUG",
+        }
+    }
+}
 
 
 BROKER_URL = 'django://'
