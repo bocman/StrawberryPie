@@ -270,3 +270,9 @@ try:
     from local import *
 except:
     pass
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'jagodni.piskotek@gmail.com'
+EMAIL_HOST_PASSWORD = 'piskotekJagodni1991'
+EMAIL_PORT = 587

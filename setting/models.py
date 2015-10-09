@@ -89,8 +89,8 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    last_active = models.DateTimeField()
-    created = models.DateTimeField(auto_now=True)
+    last_active = models.DateTimeField(default=None, null=True)
+    created = models.DateTimeField(auto_now_add=True)
     realibility = models.PositiveSmallIntegerField(
         verbose_name=_('CLient realibility'), default=0,
         help_text="Daily count of the client disconections"
@@ -115,6 +115,8 @@ class Client(models.Model):
 
     def is_active(self):
         now = tz.localtime(tz.now())
+        if not self.last_active:
+            return False
         last_active = tz.localtime(self.last_active)
         return True if last_active and (now - last_active).seconds < 60 else False
 

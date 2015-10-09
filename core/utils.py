@@ -52,6 +52,23 @@ def activation(status, client_id=None, pin_number=None):
         log.info( "Failed to activate modul with pin{0} on client{1}".format(pin_number, client.name) )
 
 
+def sunrise_time(datetime=None):
+    """
+    This method is used to return sunrise time for specific date,
+    which we get as argument. In case that date isn't specified, then 
+    function return today's sunrise time.
+    """
+    pass
+
+
+def sunset_time(datetime=None):
+    """
+    This method is used to return sunset time for specific date,
+    which we get as argument. In case that date isn't specified, then 
+    function return today's sunset time.
+    """ 
+    request = requests.get(url=link)
+
 
 def format_time_interval(start_time, end_time):
     """
