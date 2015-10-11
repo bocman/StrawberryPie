@@ -16,13 +16,14 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.0",
-    "angular": "~1.2.26",
+    "jquery": "~1.11.1",
+    "angular": "~1.4.7",
     "seiyria-bootstrap-slider": "~1.9.0",
     "toastr": "~2.1.0",
     "font-awesome": "~4.1.0",
     "chartjs": "1.0.1-beta.3",
-    "gauge.js": "~1.2.1"
+    "gauge.js": "~1.2.1",
+    "bootstrap-datetimepicker": "~0.0.11"
   }
 }
  
