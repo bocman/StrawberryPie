@@ -46,7 +46,8 @@ THIRD_PARTY_APPS = (
     'rest_framework',
     'rest_services',
     'widget_tweaks',
-    'djangosecure'
+    'djangosecure',
+    'debug_toolbar',
 )
 
 # Apps specific for this project go here.

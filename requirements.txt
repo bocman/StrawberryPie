@@ -18,6 +18,7 @@ pytz==2015.4
 requests==2.2.1
 wolframalpha==1.2
 django-secure==1.0.1
+django-debug-toolbar
 
 #Heroku production
 whitenoise
