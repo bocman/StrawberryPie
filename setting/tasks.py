@@ -1,18 +1,12 @@
 from celery import task
 from project._celery import app
 from celery.task.schedules import crontab
-from celery.decorators import periodic_task
 from celery.utils.log import get_task_logger
 
-from datetime import datetime
-import requests
 import logging
-import json
 
-import project.settings as settingsSSS
-from .models import Event, EventActivationElements, Modul, Client
-from dashboard.models import TemperatureLog
-#from views import activate_modul
+import project.settings as settings
+from .models import Event, EventActivationElements, Client
 from core.utils import activation as activate
 
 
@@ -63,32 +57,3 @@ def handle_event(self):
 
     event.save()
 # A periodic task that will run every minute (the symbol "*" means every)
-
-@periodic_task(run_every=(crontab(hour="*", minute="*", day_of_week="*")))
-def example():
-    print "sem ja"
-    logger.info("BOSTJAN NOVAK zacetek")
-    logger.info("BOSTJAN END")
-    log.info("sem logiral BOSTJAN")
-
-
-
-    WEATHER_LOCATION = "Izola"
-    WEATHER_API_KEY = "1e408decf36cd52f"
-    WEATHER_API_LINK = "http://api.wunderground.com/api/"+ WEATHER_API_KEY+"/conditions/q/CA/"+WEATHER_LOCATION +".json"
-
-
-    response = requests.get(url=WEATHER_API_LINK)
-    data = json.loads(response.text)
-    description = data["current_observation"]["icon"]
-
-    a = TemperatureLog()
-    a.city = str(data["current_observation"]["display_location"]["city"])
-    a.temp = data["current_observation"]["temp_c"]
-    a.description = str(data["current_observation"]["icon"])
-    a.timestamp =  datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    a.humidity = int(data["current_observation"]["relative_humidity"].replace("%", ""))
-    a.wind = data["current_observation"]["wind_kph"]
-    a.feels_like = float(data["current_observation"]["feelslike_c"])
-
-    a.save()
