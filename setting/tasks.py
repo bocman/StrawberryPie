@@ -1,11 +1,8 @@
 from celery import task
-from project._celery import app
-from celery.task.schedules import crontab
 from celery.utils.log import get_task_logger
 
 import logging
 
-import project.settings as settings
 from .models import Event, EventActivationElements, Client
 from core.utils import activation as activate
 
@@ -31,7 +28,7 @@ def handle_event(self):
                 client = Client.objects.get(id=1)
                 if not event.is_active:
                     logger.info("READY to ACTIVATE modul")
-                    logger.info("MODUL ID is "+ str(activation.modul_id))
+                    logger.info("MODUL ID is " + str(activation.modul_id))
                     activate(
                         status=True,
                         client_id=client.id,
@@ -56,4 +53,3 @@ def handle_event(self):
         logger.info("Event does not exist with this arguments")
 
     event.save()
-# A periodic task that will run every minute (the symbol "*" means every)
