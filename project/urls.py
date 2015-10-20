@@ -13,10 +13,13 @@ urlpatterns = i18n_patterns('',
 
   url(r'^admin/', include(admin.site.urls)),
   url(r'^i18n/', include('django.conf.urls.i18n')),
+  
+
   url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
   url(r'^settings/', include('setting.urls', namespace='settings')),
-  url(r'^webservice/', include('rest_services.urls', namespace="webservice")),
+  url(r'^webservice/', include('webservice.urls', namespace="webservice")),
   url(r'^entertainment/', include('entertainment.urls', namespace="entertainment")),
+  
   url(r'^$', auth_views.login, {'template_name': 'project/index.html'}, name="login"),
   url(r'password/reset/$', auth_views.password_reset, 
         {'post_reset_redirect' : '/password/reset/done/',

@@ -5,9 +5,11 @@ from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
 
+import logging
+import requests
+from requests.exceptions import ConnectionError
 from dateutil.parser import parse
 from datetime import date
-import logging
 from collections import defaultdict
 
 from core.utils import format_time_interval, format_datetime
@@ -89,7 +91,7 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    last_active = models.DateTimeField(default=None, null=True)
+    last_active = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     realibility = models.PositiveSmallIntegerField(
         verbose_name=_('CLient realibility'), default=0,
@@ -113,12 +115,16 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
-    def is_active(self):
-        now = tz.localtime(tz.now())
-        if not self.last_active:
+    def is_connected(self):
+        """
+        This function is used to ping client, to check if connected
+        """
+        try:
+            r = requests.get(url)
+            if r.status_code == requests.codes.ok:
+                return True
+        except ConnectionError:
             return False
-        last_active = tz.localtime(self.last_active)
-        return True if last_active and (now - last_active).seconds < 60 else False
 
 
 class Modul(models.Model):

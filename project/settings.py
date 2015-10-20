@@ -44,7 +44,7 @@ THIRD_PARTY_APPS = (
     'djcelery',
     'kombu.transport.django',
     'rest_framework',
-    'rest_services',
+    'webservice',
     'widget_tweaks',
     'djangosecure',
     'debug_toolbar',

@@ -22,7 +22,6 @@ from dateutil.parser import parse
 import project.settings as settings
 from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
-from rest_services.serializers import *
 from .tasks import handle_event
 from utils import used_moduls, get_moduls
 

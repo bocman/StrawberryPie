@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('setting', '0010_auto_20151008_1505'),
+        ('setting', '0001_initial'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='client',
-            name='last_active',
-            field=models.DateTimeField(default=None),
+            name='is_connected',
+            field=models.BooleanField(default=False),
         ),
     ]

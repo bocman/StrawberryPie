@@ -19,21 +19,23 @@
 
 -------------------------------------------------------------------------------
 
-2. In root directory run this command to install packages
+2.# In root directory run this command to install packages
      sudo pip -r install requirements.txt
 
-     # Run this to get into mysql terminal
+  # Run this to get into mysql terminal
      mysql -u -p<mysql_username> -p<mysql_password>
 
-     # Then execute this mysql command
+  # Then execute this mysql command
      "Create database project;"
 
-     # Exit mysql terminal and run this command in terminal
+  # Exit mysql terminal and run this command in terminal
      python manage.py syncdb
 
-     # When it ask you to create superuser, follow the steps
-     # and fill it with your informations
+  # When it ask you to create superuser, follow the steps
+  # and fill it with your informations (you'll use it for login)
 
+  # In root directory run
+    bower install
 -------------------------------------------------------------------------------
 
 3. Open settings.py file (located in directory /project) 
