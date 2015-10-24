@@ -23,6 +23,7 @@ import project.settings as settings
 from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from .tasks import handle_event
+from core.utils import codes
 from utils import used_moduls, get_moduls
 
 
@@ -185,7 +186,7 @@ def add_edit_client(request, client_id=None):
         'client_form': client_form,
         'client_id': client_id if client_id else None,
         'client': client if client_id else None,
-        'moduls': get_moduls(client_id) if client_id else None
+        'moduls': client.moduls() if client_id else None
     })
 
 
@@ -283,7 +284,7 @@ def activate_modul(request, status, client_id=None, pin_number=None):
         "is_activated": status
     }
     client = Client.objects.get(id=client_id)
-    url = "http://{0}/rest/gpio/update/{1}/".format(client.ip_address, pin_number)
+    url = "http://{0}/webservice/gpio/update/{1}/".format(client.ip_address, pin_number)
     try:
         if send_data(url, data) == 200:
             if status == 'True':
@@ -358,10 +359,23 @@ class AddEventView(FormView, CreateView):
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
+    def get_moduls(self):
+        moduls = []
+        online_clients = Client.online.all()
+        if online_clients:
+            for client in online_clients:
+                moduls += client.moduls()
+            if moduls:
+                return moduls
+            else:
+                return None
+        else:
+            return None
+
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        moduls = used_moduls(1)
-        context['moduls'] = moduls if moduls else None
+        moduls = self.get_moduls()
+        context['moduls'] = moduls
         context['events'] = Event.objects.all()
         return context
 

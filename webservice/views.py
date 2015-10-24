@@ -24,8 +24,3 @@ def clients(request, format=None):
         client = Client.objects.all()
         serializer = ClientSerializer(client, many=True)
         return Response(serializer.data)
-
-
-@api_view(['GET'])
-def ping(self):
-    return Response(status=status.HTTP_200_OK)
