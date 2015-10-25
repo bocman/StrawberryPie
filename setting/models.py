@@ -5,14 +5,13 @@ from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
 
-<<<<<<< HEAD
+
 from celery.result import AsyncResult
-=======
 import logging
 import requests
 import json
 from requests.exceptions import ConnectionError
->>>>>>> 4dac02dc14a974eb2c96d01449b2bde318c97d74
+
 from dateutil.parser import parse
 from datetime import date
 from collections import defaultdict
