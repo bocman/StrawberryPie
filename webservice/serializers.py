@@ -1,13 +1,9 @@
 from rest_framework import serializers
 
-from setting.models import Client
-
 class ClientSerializer(serializers.Serializer):
-
-
-    class Meta:
-        model = Client
-        
+    """
+    Class is used to serialize data to Client object
+    """
     pk = serializers.IntegerField()
     name = serializers.CharField(max_length=15)
     description = serializers.CharField(max_length=30)
@@ -17,14 +13,12 @@ class ClientSerializer(serializers.Serializer):
     disabled = serializers.BooleanField()
     key = serializers.CharField(max_length=80)
 
-    def create(self, validated_data):
-        """
-        Create and return a new `Snippet` instance, given the validated data.
-        """
-        return Client.objects.create(**validated_data)
-
-    def patch(self, instance, validated_data):
-        """
-        Update and return an existing `Snippet` instance, given the validated data.
-        """
-        return False
+class ModulSerializer(serializers.Serializer):
+    """
+    Class is used to serialize data to Modul object
+    """
+    name = serializers.CharField(max_length=30)
+    description = serializers.CharField(max_length=30)
+    is_general = serializers.BooleanField()
+    pin_number = serializers.IntegerField()
+    is_activated = serializers.BooleanField()

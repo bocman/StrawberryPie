@@ -28,7 +28,7 @@ class OnlineClientsManager(models.Manager):
         Method return all Clients, which are currently 
         connected (marked as online)
         """
-        return [x for x in super(OnlineClientsManager, self).get_queryset() if x.is_active()]
+        return [x for x in super(OnlineClientsManager, self).get_queryset() if x.is_connected()]
 
     def count(self):
         return len(self.get_queryset())

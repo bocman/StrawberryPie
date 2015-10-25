@@ -6,7 +6,6 @@ from . import views
 
 urlpatterns = patterns('',
     url(r'^clients/$', views.clients, name='clients'),
-    url(r'^clients/(?P<key>[0-9A-Za-z]+)/$', views.client_detail),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
