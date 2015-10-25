@@ -102,17 +102,17 @@ class Client(models.Model):
 
     def all_moduls(self):
         links ={
-            'http': "http://{0}:{1}/webservice/gpio/all/",
-            'https': "http://{0}/webservice/gpio/all/"
+            'port': "http://{0}:{1}/webservice/gpio/all/",
+            'no_port': "http://{0}/webservice/gpio/all/"
         }
         if not self.is_connected:
             return codes.error
         if self.port:
-            url = links['http'].format(
+            url = links['port'].format(
                 self.ip_address, self.port
                 )
         else:
-            url = links['https'].format(
+            url = links['no_port'].format(
                 self.ip_address
                 )
         try:
@@ -126,6 +126,8 @@ class Client(models.Model):
             else:
                 return codes.error
         except requests.exceptions.Timeout:
+            return codes.error
+        except requests.exceptions.ConnectionError:
             return codes.error
 
     def moduls(self):

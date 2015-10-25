@@ -24,20 +24,23 @@ from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from .tasks import handle_event
 from core.utils import codes
-from utils import used_moduls, get_moduls
+from utils import all_online_moduls
 
 
 log = logging.getLogger(__name__)
 
 
-@login_required
-def general_settings(request):
+class GeneralSettingsView(View):
     """
     TODO
     """
     template_name = 'settings/general_settings.html'
-    return TemplateResponse(request, template_name, {
-    })
+
+    def get(self, request, *args, **kwargs):
+
+        return TemplateResponse(
+            request, self.template_name
+        )
 
 
 def user_logout(request):
@@ -217,11 +220,12 @@ class ModulList(View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['moduls'] = used_moduls(1)
+        context['moduls'] = all_online_moduls()
         names = []
-        for name in context['moduls']:
-            names.append(name.get('name', None))
-        context['modul_names'] = names
+        if context['moduls']:
+            for name in context['moduls']:
+                names.append(name.get('name', None))
+            context['modul_names'] = names
 
         return TemplateResponse(
             request,
@@ -325,13 +329,6 @@ def edit_client_notification(request, client_id):
     })
 
 
-def client_statistics(request, client_id):
-    template_name = 'settings/clients/client_statistics.html'
-    return TemplateResponse(request, template_name, {
-        'client_id': client_id
-    })
-
-
 class AddEventView(FormView, CreateView):
     form_class = EventForm
     template_name = "settings/events/add_edit_event.html"
@@ -359,22 +356,12 @@ class AddEventView(FormView, CreateView):
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
-    def get_moduls(self):
-        moduls = []
-        online_clients = Client.online.all()
-        if online_clients:
-            for client in online_clients:
-                moduls += client.moduls()
-            if moduls:
-                return moduls
-            else:
-                return None
-        else:
-            return None
-
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        moduls = self.get_moduls()
+        # ----------------------------------------------- #
+        # tu ce so clienti ali ce so online clienti pogoj #
+        # ----------------------------------------------- #
+        moduls = all_online_moduls()
         context['moduls'] = moduls
         context['events'] = Event.objects.all()
         return context
