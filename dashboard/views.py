@@ -32,7 +32,7 @@ def dashboard(request):
     return TemplateResponse(request, 'dashboard/dashboard.html', context)
 
 def clients_online():
-    return Client.online.count()
+    return 1
 
 def next_event():
     now = tz.localtime(tz.now())
