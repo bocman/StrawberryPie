@@ -18,12 +18,13 @@ import logging
 import requests
 import json
 from dateutil.parser import parse
+from celery.result import AsyncResult
 
 import project.settings as settings
 from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
-from rest_services.serializers import *
 from .tasks import handle_event
+from core.utils import codes
 from utils import used_moduls, get_moduls
 
 
@@ -186,30 +187,35 @@ def add_edit_client(request, client_id=None):
         'client_form': client_form,
         'client_id': client_id if client_id else None,
         'client': client if client_id else None,
-        'moduls': get_moduls(client_id) if client_id else None
+        'moduls': client.moduls() if client_id else None
     })
 
 
-@login_required
-def delete_client(self, client_id):
+class ClientDeleteView(View):
     """
-    This method is in use to mark some client as deleted. This means that
-    this client isn't visible anymore, but informations are still saved in
-    the database
-    :param client_id: Id of the specific Client
-    :type client_id: Integer
-    :return: HttpResponseRedirect
+    Function which remove client from application. We use soft delete, so it's
+    only marked as deleted.
+    Client is removed from: - It's removed from all Groups
+                            - All his moduls are removed on server.
+                           #- Removed all moduls and clients if they appear in Events.
     """
-
-    client = get_object_or_404(Client, pk=client_id)
-    try:
+    def get(self, request, *args, **kwargs):
+        client_id = kwargs.get('client_id', None)
+        client = get_object_or_404(Client, pk=client_id)
         client.deleted = True
-        client.save()
-        log.info("Client {0} has been deleted".format(client.name))
-    except:
-        pass
+        self.remove_tasks(client_id)
+        # client.save()
+        return HttpResponseRedirect(reverse('settings:clients_list'))
 
-    return HttpResponseRedirect(reverse('settings:clients_list'))
+    def remove_tasks(self, client_id):
+        """
+        Support method, which remove all scheudeled tasks for some client on
+        delete. In that way, when some client is removed, there is no activations
+        or deactivations scheudeled for this client.
+        """
+        pass
+        #moduls = Event.objects.filter()
+        #start_task = AsyncResult()
 
 
 class ModulList(View):
@@ -284,7 +290,7 @@ def activate_modul(request, status, client_id=None, pin_number=None):
         "is_activated": status
     }
     client = Client.objects.get(id=client_id)
-    url = "http://{0}/rest/gpio/update/{1}/".format(client.ip_address, pin_number)
+    url = "http://{0}/webservice/gpio/update/{1}/".format(client.ip_address, pin_number)
     try:
         if send_data(url, data) == 200:
             if status == 'True':
@@ -315,7 +321,6 @@ def delete_modul(self, modul_id):
     except:
         pass
     return HttpResponseRedirect(reverse('settings:moduls_list'))
-
 
 @login_required
 def edit_client_notification(request, client_id):
@@ -359,10 +364,23 @@ class AddEventView(FormView, CreateView):
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
+    def get_moduls(self):
+        moduls = []
+        online_clients = Client.online.all()
+        if online_clients:
+            for client in online_clients:
+                moduls += client.moduls()
+            if moduls:
+                return moduls
+            else:
+                return None
+        else:
+            return None
+
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        moduls = used_moduls(1)
-        context['moduls'] = moduls if moduls else None
+        moduls = self.get_moduls()
+        context['moduls'] = moduls
         context['events'] = Event.objects.all()
         return context
 

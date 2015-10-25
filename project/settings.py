@@ -44,9 +44,10 @@ THIRD_PARTY_APPS = (
     'djcelery',
     'kombu.transport.django',
     'rest_framework',
-    'rest_services',
+    'webservice',
     'widget_tweaks',
-    'djangosecure'
+    'djangosecure',
+    'debug_toolbar',
 )
 
 # Apps specific for this project go here.
@@ -101,10 +102,20 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = {}
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project',
+        'USER': 'root',
+        'PASSWORD': 'bostjanNovak1',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
+        },
+    }
+}
 
 # TODO permissions IsAdminUser
 REST_FRAMEWORK = {
@@ -146,8 +157,8 @@ STATICFILES_DIRS = (
     '%s/static/images' % BASE_DIR
 )
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#Enable it in production
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
@@ -181,83 +192,72 @@ ADMINS = (
     ('Bostjan Novak', 'bocman@siol.net'),
 )
 
-
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         },
-#         'require_debug_true': {
-#             '()': 'django.utils.log.RequireDebugTrue'
-#         }
-#     },
-#     'formatters': {
-#         'main_formatter': {
-#             'format': '%(levelname)s:%(name)s: %(message)s '
-#             '(%(asctime)s; %(filename)s:%(lineno)d)',
-#             'datefmt': "%Y-%m-%d %H:%M:%S",
-#         },
-#     },
-#     'handlers': {
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'filters': ['require_debug_false'],
-#             'class': 'django.utils.log.AdminEmailHandler'
-#         },
-#         'console': {
-#             'level': 'DEBUG',
-#             'filters': ['require_debug_true'],
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'main_formatter',
-#         },
-#         'production_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry_info.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_false'],
-#         },
-#         'debug_file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/var/log/StrawberryPie/strawberry.log',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MB
-#             'backupCount': 7,
-#             'formatter': 'main_formatter',
-#             'filters': ['require_debug_true'],
-#         },
-#         'null': {
-#             "class": 'django.utils.log.NullHandler',
-#         }
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['mail_admins', 'console'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#         'django': {
-#             'handlers': ['null', ],
-#         },
-#         'py.warnings': {
-#             'handlers': ['null', ],
-#         },
-#         'django.db.backends': {
-#             'handlers': ['null'],  # Quiet by default!
-#             'propagate': False,
-#             'level':'DEBUG',
-#             },
-#         '': {
-#             'handlers': ['console', 'production_file', 'debug_file'],
-#             'level': "DEBUG",
-#         }
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
+        }
+    },
+    'formatters': {
+        'main_formatter': {
+            'format': '%(levelname)s:%(name)s: %(message)s '
+            '(%(asctime)s; %(filename)s:%(lineno)d)',
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'main_formatter',
+        },
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/StrawberryPie/strawberry.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 7,
+            'formatter': 'main_formatter',
+            'filters': ['require_debug_true'],
+        },
+        'null': {
+            "class": 'django.utils.log.NullHandler',
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['null', ],
+        },
+        'py.warnings': {
+            'handlers': ['null', ],
+        },
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+            },
+        '': {
+            'handlers': ['console', 'debug_file'],
+            'level': "DEBUG",
+        }
+    }
+}
 
 
 BROKER_URL = 'django://'
@@ -271,3 +271,9 @@ try:
     from local import *
 except:
     pass
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'jagodni.piskotek@gmail.com'
+EMAIL_HOST_PASSWORD = 'piskotekJagodni1991'
+EMAIL_PORT = 587

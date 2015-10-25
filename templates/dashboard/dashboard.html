@@ -28,31 +28,10 @@
         </div>
 
 
-    {% comment %}
-      <div id="jqmeter-container">
-        <strong></strong>
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#jqmeter-container').circleProgress({
-                value: 0.6
-            }).on('circle-animation-progress', function(event, progress) {
-                $(this).find('strong').html(parseInt(100 * progress) + '<i>%</i>');
-            });
-
-        });
-    </script>      
-    {% endcomment %}
-
-
-
-
 
     </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="{{ STATIC_URL }}js/circle-progress.js"></script>
-
 
     </div>
     <!-- /.row -->
@@ -129,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                
+                 
                     <a href="
                         {% if event%}
                             {% url 'settings:edit_event' event.id %}

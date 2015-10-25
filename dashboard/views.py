@@ -23,16 +23,18 @@ def dashboard(request):
     """
     weather_data = weather_widget()
     context = {
-        'clients_online': Client.online.count(),
+        'clients_online': clients_online(),
         'weather_data': weather_data if weather_data else None,
         'icon': static('images/weather/Sunny.png'),
-        'event': get_next_event()
+        'event': next_event()
     }
     # log.info(weather_info(global_settings.WEATHER_API_LINK))
     return TemplateResponse(request, 'dashboard/dashboard.html', context)
 
+def clients_online():
+    return Client.online.count()
 
-def get_next_event():
+def next_event():
     now = tz.localtime(tz.now())
     try:
         return Event.objects.filter(start_time__gt=now).order_by('start_time')[0]
@@ -45,9 +47,9 @@ def weather_widget(country_name=None):
     """
     TODO
     """
-    if TemperatureLog.objects.latest('timestamp'):
+    try:
         return TemperatureLog.objects.latest('timestamp')
-    else:
+    except:
         return None
 
 

@@ -25,7 +25,7 @@ class Common(Configuration):
         'djcelery',
         'kombu.transport.django',
         'rest_framework',
-        'rest_services',
+        'webservice',
         'widget_tweaks',
         'djangosecure'
     )

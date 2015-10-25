@@ -2,23 +2,28 @@ import requests
 from requests.exceptions import ConnectionError
 import json
 
+import logging
+
 from .models import Client
+
+log = logging.getLogger(__name__)
 
 
 def get_moduls(client_id, url=None):
     """
-    This method make request on specific client to get all moduls.
+    This method make request on specific client to get all his moduls.
     """
     try:
         client = Client.objects.get(id=client_id)
     except Client.DoesNotExist:
         return None
     if client.port:
-        url = "http://{0}:{1}/rest/gpio/all/".format(client.ip_address, client.port)
+        url = "http://{0}:{1}/webservice/gpio/all/".format(client.ip_address, client.port)
     else:
-        url = "http://{0}/rest/gpio/all/".format(client.ip_address)
+        url = "http://{0}/webservice/gpio/all/".format(client.ip_address)
     try:
         r = requests.get(url, timeout=3.0)
+        log.info(r.text)
         moduls = json.loads(r.text)
 
         for i in moduls:
@@ -76,6 +81,8 @@ def used_moduls(client_id):
     """
     moduls = []
     for modul in get_moduls(client_id):
+        log.info(modul)
+        log.info("-------------------------")
         if modul['is_used']:
             moduls.append(modul)
     if moduls:

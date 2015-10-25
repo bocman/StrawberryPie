@@ -3,3 +3,6 @@ local_settings.py
 local_settings.pyc
 
 celerybeat-schedule
+celerybeat.pid
+npm-debug.log
+bower_components

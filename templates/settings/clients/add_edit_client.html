@@ -169,9 +169,6 @@
         </div>
     </div>
 
-    <!--- Here we extend our own javascript librarys from the base html template-->
-    {% block js %}
-        {{ block.super }}
-    {% endblock %}
+    <script src="{{ STATIC_URL }}js/common/common.js"></script> 
     
 {% endblock %}

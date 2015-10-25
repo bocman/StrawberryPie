@@ -5,52 +5,28 @@ from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
 
+<<<<<<< HEAD
+from celery.result import AsyncResult
+=======
+import logging
+import requests
+import json
+from requests.exceptions import ConnectionError
+>>>>>>> 4dac02dc14a974eb2c96d01449b2bde318c97d74
 from dateutil.parser import parse
 from datetime import date
-import logging
 from collections import defaultdict
 
-from core.utils import format_time_interval, format_datetime
+from core.utils import codes, format_time_interval, format_datetime
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
 
 log = logging.getLogger(__name__)
 
 
-class ElementGroup(models.Model):
-
-    """
-    TODO
-    """
-    class Meta:
-        db_table = 'element_group'
-
-    name = models.CharField(
-        verbose_name=_('Group name'),
-        max_length=20,
-    )
-    description = models.CharField(
-        verbose_name=_('Short description'),
-        max_length=30,
-        help_text="Short summary of the group"
-    )
-    clients_number = models.PositiveSmallIntegerField(
-        verbose_name=_('Number of clients'),
-        default=0,
-        help_text="Number of clients in the group"
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        db_table = 'client_group'
-
-
 class Client(models.Model):
 
     """
-    This model is used to store Clients, which are in use to connect to
-    Strawberry Pie
+    This model represent Client
     """
 
     class Meta:
@@ -89,8 +65,8 @@ class Client(models.Model):
         default=False,
         help_text="Status which indicate if client is assigned as disabled"
     )
-    last_active = models.DateTimeField()
-    created = models.DateTimeField(auto_now=True)
+    last_active = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
     realibility = models.PositiveSmallIntegerField(
         verbose_name=_('CLient realibility'), default=0,
         help_text="Daily count of the client disconections"
@@ -113,10 +89,88 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
-    def is_active(self):
-        now = tz.localtime(tz.now())
-        last_active = tz.localtime(self.last_active)
-        return True if last_active and (now - last_active).seconds < 60 else False
+    def is_connected(self):
+        """
+        We use this function to check connection with client.
+        It's like a simple ping method
+        """
+        url = "http://{0}/webservice/ping/".format(str(self.ip_address))
+        try:
+            r = requests.get(url)
+            if r.status_code == requests.codes.ok:
+                return True
+            else:
+                return False
+        except ConnectionError:
+            return False
+
+    def all_moduls(self):
+        links ={
+            'http': "http://{0}:{1}/webservice/gpio/all/",
+            'https': "http://{0}/webservice/gpio/all/"
+        }
+        if not self.is_connected:
+            return codes.error
+        if self.port:
+            url = links['http'].format(
+                self.ip_address, self.port
+                )
+        else:
+            url = links['https'].format(
+                self.ip_address
+                )
+        try:
+            r = requests.get(url, timeout=3.0)
+            if r.status_code == requests.codes.ok:
+                moduls = json.loads(r.text)
+                for i in moduls:
+                    group_id = i.get('group', None)
+                    #i['group'] = ClientGroup.objects.get(id=group_id)
+                return moduls
+            else:
+                return codes.error
+        except requests.exceptions.Timeout:
+            return codes.error
+
+    def moduls(self):
+        all_moduls = self.all_moduls()
+        if all_moduls is not codes.error:
+            seznam = []
+            for modul in all_moduls:
+                if modul['is_used']:
+                    seznam.append(modul)
+            return seznam
+        return None
+
+class ElementGroup(models.Model):
+
+    """
+    TODO
+    """
+    class Meta:
+        db_table = 'element_group'
+
+    name = models.CharField(
+        verbose_name=_('Group name'),
+        max_length=20,
+    )
+    description = models.CharField(
+        verbose_name=_('Short description'),
+        max_length=30,
+        help_text="Short summary of the group"
+    )
+    clients_number = models.PositiveSmallIntegerField(
+        verbose_name=_('Number of clients'),
+        default=0,
+        help_text="Number of clients in the group"
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'client_group'
+
 
 
 class Modul(models.Model):
@@ -231,6 +285,11 @@ class Event(models.Model):
 
     def is_activated(self):
         return True if self.is_active else False
+
+    def status(self):
+        start = AsyncResult(self.start_task_id)
+        end = AsyncResult(self.end_task_id)
+
 
     def clean(self):
         errors = defaultdict()

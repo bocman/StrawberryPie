@@ -9,6 +9,16 @@ from django.utils import timezone as tz
 log = logging.getLogger(__name__)
 
 
+class codes(object):
+    """
+    Class with system codes. It's used to compare
+    values at system events
+    """
+    ok = "Ok"
+    error = "Error"
+    no_elements = "Empty"
+
+
 def send_data(page_url, data=None, action_type=None):
     """
     TODO
@@ -40,7 +50,7 @@ def activation(status, client_id=None, pin_number=None):
     }
     client = Client.objects.get(id=client_id)
 
-    url = "http://{0}/rest/gpio/update/{1}/".format(client.ip_address, pin_number)
+    url = "http://{0}/webservice/gpio/update/{1}/".format(client.ip_address, pin_number)
     log.info("PREPARE to activate modul with pin {0} on client {1}".format(pin_number, client.name))
     try:
         if send_data(url, data) == 200:
@@ -51,6 +61,23 @@ def activation(status, client_id=None, pin_number=None):
     except:
         log.info( "Failed to activate modul with pin{0} on client{1}".format(pin_number, client.name) )
 
+
+def sunrise_time(datetime=None):
+    """
+    This method is used to return sunrise time for specific date,
+    which we get as argument. In case that date isn't specified, then 
+    function return today's sunrise time.
+    """
+    pass
+
+
+def sunset_time(datetime=None):
+    """
+    This method is used to return sunset time for specific date,
+    which we get as argument. In case that date isn't specified, then 
+    function return today's sunset time.
+    """ 
+    request = requests.get(url=link)
 
 
 def format_time_interval(start_time, end_time):
