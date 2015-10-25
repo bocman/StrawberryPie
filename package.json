@@ -10,7 +10,7 @@
     "bower": "0.9.0"
   },
   "scripts": {
-    "postinstall": "bower --allow-root install"
+    "postinstall": "bower install --allow-root"
   },
   "repository": {
     "type": "git",
