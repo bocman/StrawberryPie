@@ -95,12 +95,14 @@ class Client(models.Model):
         """
         url = "http://{0}/webservice/ping/".format(str(self.ip_address))
         try:
-            r = requests.get(url)
+            r = requests.get(url, timeout=3.0)
             if r.status_code == requests.codes.ok:
                 return True
             else:
                 return False
-        except ConnectionError:
+        except ConnectionError: 
+            return False
+        except requests.exceptions.Timeout:
             return False
 
     def all_moduls(self):
