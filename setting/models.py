@@ -5,6 +5,7 @@ from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
 
+from celery.result import AsyncResult
 from dateutil.parser import parse
 from datetime import date
 import logging
@@ -233,6 +234,11 @@ class Event(models.Model):
 
     def is_activated(self):
         return True if self.is_active else False
+
+    def status(self):
+        start = AsyncResult(self.start_task_id)
+        end = AsyncResult(self.end_task_id)
+
 
     def clean(self):
         errors = defaultdict()

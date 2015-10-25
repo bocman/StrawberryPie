@@ -15,7 +15,7 @@ from dashboard.models import TemperatureLog
 #from views import activate_modul
 from core.utils import activation as activate
 
-
+ 
 log = logging.getLogger(__name__)
 logger = get_task_logger(__name__)
 

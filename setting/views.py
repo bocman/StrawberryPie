@@ -18,12 +18,13 @@ import logging
 import requests
 import json
 from dateutil.parser import parse
+from celery.result import AsyncResult
 
 import project.settings as settings
 from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from rest_services.serializers import *
-from .tasks import handle_event
+from tasks import handle_event
 from utils import used_moduls, get_moduls
 
 
@@ -190,26 +191,31 @@ def add_edit_client(request, client_id=None):
     })
 
 
-@login_required
-def delete_client(self, client_id):
+class ClientDeleteView(View):
     """
-    This method is in use to mark some client as deleted. This means that
-    this client isn't visible anymore, but informations are still saved in
-    the database
-    :param client_id: Id of the specific Client
-    :type client_id: Integer
-    :return: HttpResponseRedirect
+    Function which remove client from application. We use soft delete, so it's
+    only marked as deleted.
+    Client is removed from: - It's removed from all Groups
+                            - All his moduls are removed on server.
+                           #- Removed all moduls and clients if they appear in Events.
     """
-
-    client = get_object_or_404(Client, pk=client_id)
-    try:
+    def get(self, request, *args, **kwargs):
+        client_id = kwargs.get('client_id', None)
+        client = get_object_or_404(Client, pk=client_id)
         client.deleted = True
-        client.save()
-        log.info("Client {0} has been deleted".format(client.name))
-    except:
-        pass
+        self.remove_tasks(client_id)
+        # client.save()
+        return HttpResponseRedirect(reverse('settings:clients_list'))
 
-    return HttpResponseRedirect(reverse('settings:clients_list'))
+    def remove_tasks(self, client_id):
+        """
+        Support method, which remove all scheudeled tasks for some client on
+        delete. In that way, when some client is removed, there is no activations
+        or deactivations scheudeled for this client.
+        """
+        pass
+        #moduls = Event.objects.filter()
+        #start_task = AsyncResult()
 
 
 class ModulList(View):
@@ -315,7 +321,6 @@ def delete_modul(self, modul_id):
     except:
         pass
     return HttpResponseRedirect(reverse('settings:moduls_list'))
-
 
 @login_required
 def edit_client_notification(request, client_id):
