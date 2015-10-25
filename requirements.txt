@@ -1,5 +1,6 @@
 
 Markdown==2.6.2
+
 MySQL-python==1.2.3
 python-mysqldb
 #---------------------------------------------------------------------------------
@@ -32,3 +33,6 @@ whitenoise
 gunicorn==19.3.0
 django-postgrespool
 dj-database-url==0.2.2
+psycopg2
+py-mysql2pgsql
+redis

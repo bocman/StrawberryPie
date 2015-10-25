@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from os.path import join
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 import djcelery
 djcelery.setup_loader()
 
@@ -30,16 +32,14 @@ ALLOWED_HOSTS = ['*'] # Allow domain and subdomains]
 TEMPLATE_DEBUG = True
 
 # Application definition
-DJANGO_APPS = (
+
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
-)
-
-THIRD_PARTY_APPS = (
+    'django.contrib.staticfiles',
     'django_extensions',
     'djcelery',
     'kombu.transport.django',
@@ -54,10 +54,10 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'setting',
     'dashboard',
-    'entertainment'
-)
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+    'entertainment',
+    'djangosecure'
 
+)
 
 DJANGO_SETTINGS_MODULE = "project.settings"
 
@@ -90,7 +90,7 @@ TEMPLATE_CONTEXT_PROCESSORS =(
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
+ 
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -102,18 +102,19 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+DATABASES = {}
+
+import dj_database_url
+
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project',
-        'USER': 'root',
-        'PASSWORD': 'bostjanNovak1',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'OPTIONS': {
-            "init_command": "SET foreign_key_checks = 0;",
-        },
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "d5rqm4oh7gvrpc",
+        "USER": "upbsznbuvgxsoz",
+        "PASSWORD": "H6sNFivM6lAcnCFJ0cXwGUknWt",
+        "HOST": "ec2-54-217-202-109.eu-west-1.compute.amazonaws.com",
+        "PORT": "5432",
     }
 }
 
@@ -154,13 +155,16 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     '%s/static/' % BASE_DIR,
-    '%s/static/images' % BASE_DIR
+    '%s/static/images' % BASE_DIR,
 )
+
 
 #Enable it in production
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 FIXTURE_DIRS = (
     set(os.path.join(BASE_DIR, 'project/fixtures/'))
@@ -182,98 +186,18 @@ IP_ADDRESS = "192.168.1.130"
 # Domain name of server
 DOMAIN_NAME = "malina.webhop.me:8000"
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+#EMAIL SETTINGS
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'app41680308@heroku.com'
+EMAIL_HOST_PASSWORD = 'ccqvqvpk7991'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-ADMINS = (
-    ('Bostjan Novak', 'bocman@siol.net'),
-)
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        },
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue'
-        }
-    },
-    'formatters': {
-        'main_formatter': {
-            'format': '%(levelname)s:%(name)s: %(message)s '
-            '(%(asctime)s; %(filename)s:%(lineno)d)',
-            'datefmt': "%Y-%m-%d %H:%M:%S",
-        },
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'main_formatter',
-        },
-        'debug_file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/StrawberryPie/strawberry.log',
-            'maxBytes': 1024 * 1024 * 5,  # 5 MB
-            'backupCount': 7,
-            'formatter': 'main_formatter',
-            'filters': ['require_debug_true'],
-        },
-        'null': {
-            "class": 'django.utils.log.NullHandler',
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins', 'console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'django': {
-            'handlers': ['null', ],
-        },
-        'py.warnings': {
-            'handlers': ['null', ],
-        },
-        'django.db.backends': {
-            'handlers': ['null'],  # Quiet by default!
-            'propagate': False,
-            'level':'DEBUG',
-            },
-        '': {
-            'handlers': ['console', 'debug_file'],
-            'level': "DEBUG",
-        }
-    }
-}
-
-
-BROKER_URL = 'django://'
-CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend' 
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-CELERY_APP="proj"
-CELERYD_NODES="worker"
+REDIS_URL = "ec2-54-195-242-227.eu-west-1.compute.amazonaws.com"
+BROKER_URL = 'redis://h:pcaq1skmhhbgou5qk6t63iqik96@ec2-54-195-242-227.eu-west-1.compute.amazonaws.com:7739'
+CELERY_RESULT_BACKEND= BROKER_URL
+#CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+#CELERY_APP="proj"
+#CELERYD_NODES="worker"
 CELERY_TIMEZONE = TIME_ZONE
 
-try:
-    from local import *
-except:
-    pass
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jagodni.piskotek@gmail.com'
-EMAIL_HOST_PASSWORD = 'piskotekJagodni1991'
-EMAIL_PORT = 587
