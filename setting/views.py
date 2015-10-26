@@ -25,20 +25,23 @@ from forms import ClientForm, ModulForm, EventForm, UserForm, GroupForm
 from models import Client, Event, EventActivationElements, ElementGroup, Modul
 from .tasks import handle_event
 from core.utils import codes
-from utils import used_moduls, get_moduls
+from utils import all_online_moduls
 
 
 log = logging.getLogger(__name__)
 
 
-@login_required
-def general_settings(request):
+class GeneralSettingsView(View):
     """
     TODO
     """
     template_name = 'settings/general_settings.html'
-    return TemplateResponse(request, template_name, {
-    })
+
+    def get(self, request, *args, **kwargs):
+
+        return TemplateResponse(
+            request, self.template_name
+        )
 
 
 def user_logout(request):
@@ -147,13 +150,13 @@ def add_edit_client(request, client_id=None):
     from_email = settings.EMAIL_HOST
     to_email = request.user.email
     text = {
-            'created_email_body': _("New client has been successfully created on %s. To authorize it \
-                                         use this generated key %s ."),
+            'created_email_body': _("New client has been successfully created on {0}. To authorize it \
+                                         use this generated key {1} ."),
             'created_email_subject': _("New client has been successfully created"),
-            'created': _("Client '%s' with id=%s has been created"),
-            'created_log': _("Email after creation sended for client '%s' with id=%s"),
+            'created': _("Client '{0}' with id={1} has been created"),
+            'created_log': _("Email after creation sended for client '{0}' with id={1}"),
             'created_success': _('Additional info were sended on email'),
-            'edited': "Client '%s' with id=%s has been edited"
+            'edited': "Client '{0}' with id={1} has been edited"
     }
 
     if client_id:
@@ -167,16 +170,16 @@ def add_edit_client(request, client_id=None):
         if client_form.is_valid():
             client_form.save()
             if not client_id:
-                log.info(text['created'] % (client.name, client.id))
+                log.info(text['created'].format(client.name, client.id))
                 if from_email and to_email:
                     send_mail(
                         text['created_email_subject'],
-                        text['created_email_body'] % (settings.DOMAIN_NAME, client.key),
+                        text['created_email_body'].format(settings.DOMAIN_NAME, client.key),
                         from_email, [to_email]
                         )
-                    log.info(text['created_log'] % (client.name, client.id))
+                    log.info(text['created_log'].format(client.name, client.id))
             else:
-                log.info(text['edited'] % (client.name, client.id))
+                log.info(text['edited'].format(client.name, client.id))
 
             messages.add_message(request, messages.SUCCESS, text['created_success'])
             return HttpResponseRedirect(reverse('settings:clients_list'), {'messages': messages})
@@ -223,11 +226,12 @@ class ModulList(View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['moduls'] = used_moduls(1)
+        context['moduls'] = all_online_moduls()
         names = []
-        for name in context['moduls']:
-            names.append(name.get('name', None))
-        context['modul_names'] = names
+        if context['moduls']:
+            for name in context['moduls']:
+                names.append(name.get('name', None))
+            context['modul_names'] = names
 
         return TemplateResponse(
             request,
@@ -330,13 +334,6 @@ def edit_client_notification(request, client_id):
     })
 
 
-def client_statistics(request, client_id):
-    template_name = 'settings/clients/client_statistics.html'
-    return TemplateResponse(request, template_name, {
-        'client_id': client_id
-    })
-
-
 class AddEventView(FormView, CreateView):
     form_class = EventForm
     template_name = "settings/events/add_edit_event.html"
@@ -364,22 +361,12 @@ class AddEventView(FormView, CreateView):
         activation.save()
         return super(AddEventView, self).form_valid(form)
 
-    def get_moduls(self):
-        moduls = []
-        online_clients = Client.online.all()
-        if online_clients:
-            for client in online_clients:
-                moduls += client.moduls()
-            if moduls:
-                return moduls
-            else:
-                return None
-        else:
-            return None
-
     def get_context_data(self, **kwargs):
         context = super(AddEventView, self).get_context_data(**kwargs)
-        moduls = self.get_moduls()
+        # ----------------------------------------------- #
+        # tu ce so clienti ali ce so online clienti pogoj #
+        # ----------------------------------------------- #
+        moduls = all_online_moduls()
         context['moduls'] = moduls
         context['events'] = Event.objects.all()
         return context
