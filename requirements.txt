@@ -1,8 +1,8 @@
 
 Markdown==2.6.2
 
-MySQL-python==1.2.3
-python-mysqldb
+#MySQL-python==1.2.3
+#python-mysqldb
 #---------------------------------------------------------------------------------
 
 # Base
