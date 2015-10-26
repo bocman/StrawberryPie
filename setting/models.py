@@ -107,17 +107,17 @@ class Client(models.Model):
 
     def all_moduls(self):
         links ={
-            'http': "http://{0}:{1}/webservice/gpio/all/",
-            'https': "http://{0}/webservice/gpio/all/"
+            'port': "http://{0}:{1}/webservice/gpio/all/",
+            'no_port': "http://{0}/webservice/gpio/all/"
         }
         if not self.is_connected:
             return codes.error
         if self.port:
-            url = links['http'].format(
+            url = links['port'].format(
                 self.ip_address, self.port
                 )
         else:
-            url = links['https'].format(
+            url = links['no_port'].format(
                 self.ip_address
                 )
         try:
@@ -131,6 +131,8 @@ class Client(models.Model):
             else:
                 return codes.error
         except requests.exceptions.Timeout:
+            return codes.error
+        except requests.exceptions.ConnectionError:
             return codes.error
 
     def moduls(self):
@@ -241,7 +243,7 @@ class Event(models.Model):
         null=False,
         blank=False,
         default=None,
-        verbose_name='Event name',
+        verbose_name=_('Event name'),
         help_text=_('Name tag of the event')
         )
     note = models.CharField(
@@ -295,7 +297,7 @@ class Event(models.Model):
     def clean(self):
         errors = defaultdict()
         if self.start_time > self.end_time:
-            errors['start_time'] = _('Start time should be lesser then end time.')
+            errors['start_time'] = _('Start time should be less then end time.')
         if self.end_time < self.start_time: 
             errors['end_time'] = _('End time should be greater then start time.')       
         
@@ -325,12 +327,3 @@ class EventActivationElements(models.Model):
         null=True,
         blank=True
         )
-
-
-
-
-
-
-
-
-
