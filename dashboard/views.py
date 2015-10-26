@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import requests
 import json
 import logging
-
+ 
 import project.settings as global_settings
 from setting.models import Client, Modul, Event
 from dashboard.models import TemperatureLog

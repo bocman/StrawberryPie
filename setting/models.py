@@ -5,10 +5,13 @@ from django.utils import timezone as tz
 from datetime import timedelta
 from djcelery.models import TaskState
 
+
+from celery.result import AsyncResult
 import logging
 import requests
 import json
 from requests.exceptions import ConnectionError
+
 from dateutil.parser import parse
 from datetime import date
 from collections import defaultdict
@@ -92,12 +95,14 @@ class Client(models.Model):
         """
         url = "http://{0}/webservice/ping/".format(str(self.ip_address))
         try:
-            r = requests.get(url)
+            r = requests.get(url, timeout=3.0)
             if r.status_code == requests.codes.ok:
                 return True
             else:
                 return False
-        except ConnectionError:
+        except ConnectionError: 
+            return False
+        except requests.exceptions.Timeout:
             return False
 
     def all_moduls(self):
@@ -284,6 +289,11 @@ class Event(models.Model):
     def is_activated(self):
         return True if self.is_active else False
 
+    def status(self):
+        start = AsyncResult(self.start_task_id)
+        end = AsyncResult(self.end_task_id)
+
+
     def clean(self):
         errors = defaultdict()
         if self.start_time > self.end_time:
@@ -317,12 +327,3 @@ class EventActivationElements(models.Model):
         null=True,
         blank=True
         )
-
-
-
-
-
-
-
-
-

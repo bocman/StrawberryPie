@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from . import views
 
 urlpatterns = patterns('',
+
        url(r'^logout/$', views.user_logout,
            name='user_logout'),
 
@@ -48,3 +49,4 @@ urlpatterns = patterns('',
        url(r'^events/edit/(?P<pk>[0-9]+)/$',
            views.EditEventView.as_view(), name='edit_event'),
        )
+

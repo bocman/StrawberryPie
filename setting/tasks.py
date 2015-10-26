@@ -6,7 +6,7 @@ import logging
 from .models import Event, EventActivationElements, Client
 from core.utils import activation as activate
 
-
+ 
 log = logging.getLogger(__name__)
 logger = get_task_logger(__name__)
 
