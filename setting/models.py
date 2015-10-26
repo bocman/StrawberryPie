@@ -238,7 +238,7 @@ class Event(models.Model):
         null=False,
         blank=False,
         default=None,
-        verbose_name='Event name',
+        verbose_name=_('Event name'),
         help_text=_('Name tag of the event')
         )
     note = models.CharField(
@@ -287,7 +287,7 @@ class Event(models.Model):
     def clean(self):
         errors = defaultdict()
         if self.start_time > self.end_time:
-            errors['start_time'] = _('Start time should be lesser then end time.')
+            errors['start_time'] = _('Start time should be less then end time.')
         if self.end_time < self.start_time: 
             errors['end_time'] = _('End time should be greater then start time.')       
         

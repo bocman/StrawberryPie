@@ -149,13 +149,13 @@ def add_edit_client(request, client_id=None):
     from_email = settings.EMAIL_HOST
     to_email = request.user.email
     text = {
-            'created_email_body': _("New client has been successfully created on %s. To authorize it \
-                                         use this generated key %s ."),
+            'created_email_body': _("New client has been successfully created on {0}. To authorize it \
+                                         use this generated key {1} ."),
             'created_email_subject': _("New client has been successfully created"),
-            'created': _("Client '%s' with id=%s has been created"),
-            'created_log': _("Email after creation sended for client '%s' with id=%s"),
+            'created': _("Client '{0}' with id={1} has been created"),
+            'created_log': _("Email after creation sended for client '{0}' with id={1}"),
             'created_success': _('Additional info were sended on email'),
-            'edited': "Client '%s' with id=%s has been edited"
+            'edited': "Client '{0}' with id={1} has been edited"
     }
 
     if client_id:
@@ -169,16 +169,16 @@ def add_edit_client(request, client_id=None):
         if client_form.is_valid():
             client_form.save()
             if not client_id:
-                log.info(text['created'] % (client.name, client.id))
+                log.info(text['created'].format(client.name, client.id))
                 if from_email and to_email:
                     send_mail(
                         text['created_email_subject'],
-                        text['created_email_body'] % (settings.DOMAIN_NAME, client.key),
+                        text['created_email_body'].format(settings.DOMAIN_NAME, client.key),
                         from_email, [to_email]
                         )
-                    log.info(text['created_log'] % (client.name, client.id))
+                    log.info(text['created_log'].format(client.name, client.id))
             else:
-                log.info(text['edited'] % (client.name, client.id))
+                log.info(text['edited'].format(client.name, client.id))
 
             messages.add_message(request, messages.SUCCESS, text['created_success'])
             return HttpResponseRedirect(reverse('settings:clients_list'), {'messages': messages})
