@@ -7,5 +7,6 @@ local_settings.pyc
 celerybeat-schedule
 celerybeat.pid
 npm-debug.log
+
 node_modules
 #bower_components
