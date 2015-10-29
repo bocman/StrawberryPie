@@ -10,5 +10,5 @@ celerybeat-schedule
 celerybeat.pid
 npm-debug.log
 
-#static/bower_components/
+static/bower_components/
 bower_components
