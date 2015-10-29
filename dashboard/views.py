@@ -32,15 +32,15 @@ def dashboard(request):
     return TemplateResponse(request, 'dashboard/dashboard.html', context)
 
 def clients_online():
-    return Client.online.count()
+    return 1
 
 def next_event():
     now = tz.localtime(tz.now())
     try:
         return Event.objects.filter(start_time__gt=now).order_by('start_time')[0]
-    except Event.DoesNotExist:
-        return None
     except IndexError:
+        return None
+    except:
         return None
 
 def weather_widget(country_name=None):
