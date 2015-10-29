@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Client, Event, EventActivationElements
+from models import Client, Event, EventActivationElements
 
 admin.site.register(Client)
 admin.site.register(Event)
