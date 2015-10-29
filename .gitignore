@@ -2,12 +2,11 @@
 local_settings.py
 local_settings.pyc
 
-.gitignore
+project/settings.py
 
 celerybeat-schedule
 celerybeat.pid
 npm-debug.log
 
-node_modules
-#bower_components
-
+static/bower_components/
+bower_components

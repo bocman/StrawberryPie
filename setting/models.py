@@ -175,7 +175,6 @@ class ElementGroup(models.Model):
         db_table = 'client_group'
 
 
-
 class Modul(models.Model):
     """
     Class is used to hold information about some specific modul. modul can 
