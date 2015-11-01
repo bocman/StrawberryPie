@@ -1,38 +1,56 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
+{% load widget_tweaks %}
 {% block content %}
     <!-- Page Heading -->
-    <div class="row">
-        <div class="main_container">
-            <div class="first_container" />
 
-                <img src="{% static 'images/avatar/woman.jpg' %}" style="width:250px; height:120px; margin-left:60px">        
-                <br><br>
-                <form action= "{% url 'settings:edit_user' user_id %}" method="post"> 
-                    {% csrf_token %}
-                    {% for field in user_form  %}
-                        <div class="field_group" />
-                           
-                            {{ field.label }} <br>
-                            {{ field }}<br>
-                            <small>{{ field.help_text }} </small>
-                            {% if field.errors %}
-                                {% for error in field.errors %}
-                                    <div class="error">
-                                    {{error}}
-                                    </p>
-                                {% endfor %}
-                                <br>
-                            {% endif %}
+<link href="{{ STATIC_URL }}bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
+<style>
+#id_password, #id_confirm_password, label[for="id_password"], label[for="id_confirm_password"]{
+    display: none
+}
+</style>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <img src="http://images2.fanpop.com/images/photos/3000000/Homer-Simpson-homer-simpson-3065329-800-600.jpg" class="img-rounded img-responsive" />
+        <br />
+        <form action= "{% url 'settings:edit_user' user.id %}" method="post"> 
+            {% csrf_token %}
+            {% for field in form  %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field |add_class:"form-control" }}
+                    {% if field.help_text %}
+                        <small>{{ field.help_text }} </small><br>
+                    {% endif %}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="error">
+                            {{error}}
+                            </p>
+                        {% endfor %}                            
+                    {% endif %}
+                    {% if field.name == "email" %}
+                        <div class="checkbox checkbox-success">
+                            <input type="checkbox" name="change_passwords">
+                            <label for="checkbox1">
+                                I would like to change password
+                            </label>
                         </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </form>
     </div>
+    <div class="col-md-6 col-lg-4">
+        test 212
+    </div>
+</div>
+<!-- ROW END -->
 
+    <script src="{{ STATIC_URL }}js/pages/edit_user.js"></script>
 {% endblock %}
