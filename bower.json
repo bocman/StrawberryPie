@@ -16,14 +16,14 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~1.11.1",
     "angular": "~1.4.7",
-    "seiyria-bootstrap-slider": "~1.9.0",
-    "toastr": "~2.1.0",
-    "font-awesome": "~4.1.0",
+    "awesome-bootstrap-checkbox": "v0.3.5",
+    "bootstrap-datetimepicker": "~0.0.11",
     "chartjs": "1.0.1-beta.3",
+    "font-awesome": "~4.1.0",
     "gauge.js": "~1.2.1",
-    "bootstrap-datetimepicker": "~0.0.11"
+    "jquery": "~1.11.1",
+    "seiyria-bootstrap-slider": "~1.9.0",
+    "toastr": "~2.1.0"
   }
 }
- 

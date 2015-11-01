@@ -2314,7 +2314,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
   font-weight: bold;
 }
 input[type="search"] {
@@ -2421,7 +2421,7 @@ input[type="search"] {
   }
 }
 .form-group {
-  
+  margin-bottom: 3px;
 }
 .radio,
 .checkbox {

@@ -22,7 +22,13 @@
             {% endif %}
         </div>
     </div>
-    <a href="{% url 'settings:add_client' %}" class="btn btn-sm btn-primary" role="button">{% trans "Add new" %} </a>
+
+
+    <a href="{% url 'settings:add_client' %}" class="btn btn-sm btn-success"><span 
+       class="glyphicon glyphicon-cog"></span> Add new</a>    
+    <a href="#" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-envelope"></span> Notification settings</a>
+
+
     <!-- /.row -->
     <hr>
         <div class="col-lg-14">

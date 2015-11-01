@@ -1,8 +1,13 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, PasswordInput
 from django import forms
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+
+import logging
 
 from models import ElementGroup, Client, Modul, Event
+
+log = logging.getLogger(__name__)
 
 
 class ElementForm(ModelForm):
@@ -71,6 +76,16 @@ class UserForm(ModelForm):
     Form is used to edit/update own user profile, or edit other user
     info
     """
+    password = forms.CharField(
+        required=False,
+        max_length=50,
+        widget=PasswordInput
+        )
+    confirm_password = forms.CharField(
+        required=False,
+        max_length=50,
+        widget=PasswordInput
+        )
 
     class Meta:
         model = User
@@ -78,23 +93,24 @@ class UserForm(ModelForm):
             'username', 'first_name', 'last_name',
             'email'
         ]
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        #self.fields['username'].widget.attrs['disabled'] = True
 
-    password = forms.CharField(
-        max_length=50
-        )
-    confirm_password = forms.CharField(
-        max_length=50
-        )
+    def clean(self):
+        msg = {
+            'not_equals': 'Sorry, passwords do not match.',
+            'no_password': "Please fill in new password",
+            'no_confirm_password': "Please confirm your new password"
+        }
+        cleaned_data = super(UserForm, self).clean()
+        new_password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
 
-
-
-
-
-
-
-
-
-
-
-
+        if new_password and not confirm_password:
+            self.add_error('password', _(msg['no_confirm_password']))
+        if not new_password and confirm_password:
+            self.add_error('password', _(msg['no_password']))
+        if new_password != confirm_password:
+            self.add_error('password', _(msg['not_equals']))
 
