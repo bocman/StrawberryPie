@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-25 16:28+0100\n"
+"POT-Creation-Date: 2015-11-01 22:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,94 +55,94 @@ msgstr "Opis"
 msgid "Sea temperature"
 msgstr "Temperatura morja"
 
-#: setting/models.py:36
+#: setting/models.py:39
 msgid "Client name"
 msgstr "Ime odjemalca"
 
-#: setting/models.py:41 setting/models.py:156 setting/models.py:192
+#: setting/models.py:44 setting/models.py:161 setting/models.py:196
 msgid "Short description"
 msgstr "Kratek opis"
 
-#: setting/models.py:46 templates/settings/clients/clients.html:38
+#: setting/models.py:49 templates/settings/clients/clients.html:38
 msgid "IP address"
 msgstr "IP naslov"
 
-#: setting/models.py:51
+#: setting/models.py:54
 msgid "Port number"
 msgstr "Številka porta"
 
-#: setting/models.py:67
+#: setting/models.py:70
 msgid "CLient realibility"
 msgstr ""
 
-#: setting/models.py:152
+#: setting/models.py:157
 #, fuzzy
 #| msgid "Group"
 msgid "Group name"
 msgstr "Skupina"
 
-#: setting/models.py:161
+#: setting/models.py:166
 msgid "Number of clients"
 msgstr ""
 
-#: setting/models.py:188
+#: setting/models.py:192
 #, fuzzy
 #| msgid "Name of the item"
 msgid "Name of the modul"
 msgstr "Ime modula"
 
-#: setting/models.py:241
+#: setting/models.py:245
 #, fuzzy
 #| msgid "Client name"
 msgid "Event name"
 msgstr "Ime odjemalca"
 
-#: setting/models.py:242
+#: setting/models.py:246
 #, fuzzy
 #| msgid "Name of the item"
 msgid "Name tag of the event"
 msgstr "Ime modula"
 
-#: setting/models.py:247
+#: setting/models.py:251
 msgid "Short notes about this event"
 msgstr ""
 
-#: setting/models.py:268
+#: setting/models.py:272
 msgid "Repet periodically"
 msgstr "Periodično ponavljaj"
 
-#: setting/models.py:290
+#: setting/models.py:299
 #, fuzzy
 #| msgid "Start time should be lesser then end time."
 msgid "Start time should be less then end time."
 msgstr "Začetni čas ne sme biti večji od končnega"
 
-#: setting/models.py:292
+#: setting/models.py:301
 msgid "End time should be greater then start time."
 msgstr "Končni čas ne sme biti večji od začetnega"
 
-#: setting/views.py:152
+#: setting/views.py:116
 #, python-brace-format
 msgid ""
 "New client has been successfully created on {0}. To authorize "
 "it                                          use this generated key {1} ."
 msgstr ""
 
-#: setting/views.py:154
+#: setting/views.py:118
 msgid "New client has been successfully created"
 msgstr ""
 
-#: setting/views.py:155
+#: setting/views.py:119
 #, python-brace-format
 msgid "Client '{0}' with id={1} has been created"
 msgstr ""
 
-#: setting/views.py:156
+#: setting/views.py:120
 #, python-brace-format
 msgid "Email after creation sended for client '{0}' with id={1}"
 msgstr ""
 
-#: setting/views.py:157
+#: setting/views.py:121
 msgid "Additional info were sended on email"
 msgstr ""
 
@@ -329,16 +329,12 @@ msgid "Settings"
 msgstr "Nastavitve"
 
 #: templates/sidebar_menu.html:40
-#, fuzzy
-#| msgid "Basic settings"
 msgid "General settings"
-msgstr "Osnovne nastavitve"
+msgstr "Splošne nastavitve"
 
 #: templates/sidebar_menu.html:43
-#, fuzzy
-#| msgid "Group"
 msgid "Groups"
-msgstr "Skupina"
+msgstr "Skupine"
 
 #: templates/sidebar_menu.html:49
 msgid "All moduls"
@@ -347,6 +343,9 @@ msgstr "Vsi moduli"
 #: templates/sidebar_menu.html:52
 msgid "Users"
 msgstr "Uporabniki"
+
+#~ msgid "S ettings"
+#~ msgstr "Nastavitve"
 
 #~ msgid "Test connection"
 #~ msgstr "Preizkusi povezavo"

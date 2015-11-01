@@ -38,10 +38,7 @@ class GeneralSettingsView(View):
     template_name = 'settings/general_settings.html'
 
     def get(self, request, *args, **kwargs):
-
-        return TemplateResponse(
-            request, self.template_name
-        )
+        return TemplateResponse( request, self.template_name)
 
 
 def user_logout(request):
@@ -67,75 +64,41 @@ def users_list(request):
     })
 
 
-@login_required
-def add_edit_user(request, user_id=None):
+class EditUserView(UpdateView):
     """
     TODO
     """
-    template_name = 'settings/users/add_edit_user.html'
-    if user_id:
-        user = get_object_or_404(User, pk=user_id)
-    else:
-        user = User()
-
-    if request.POST:
-        form = UserForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('dashboard:dashboard'),
-                                        {'messages': messages}
-                                        )
-    else:
-        form = UserForm(instance=user)
-
-    return TemplateResponse(request, template_name, {
-        'user_form': form,
-        'user_id': user_id
-    })
+    model = User
+    form_class = UserForm
+    template_name = "settings/users/add_edit_user.html"
+    success_url = "/dashboard/"
 
 
-@login_required
-def groups_list(request):
+class GroupListView(ListView):
     """
-    This method is used to get all Groups, which are not marked as deleted
-    :return: List of Client objects
+    TODO
     """
+    model = ElementGroup
     template_name = 'settings/groups/groups.html'
-    groups = ElementGroup.objects.all()
-    return TemplateResponse(request, template_name, {
-        'groups': groups,
-    })
+    context_object_name = 'groups'
 
 
 class AddGroupView(FormView, CreateView):
+    """
+    TODO
+    """
     form_class = GroupForm
     template_name = "settings/groups/add_edit_group.html"
     success_url = "/settings/groups/"
 
 
-@login_required
-def clients_list(request):
+class ClientListView(ListView):
     """
-    This method is used to get all Clients. At the moment, Clients are
-    also sorted by
-    status, so Clients which are online are set before those which aren't
-    :return: List of Client objects
+    TODO
     """
+    model = Client
     template_name = 'settings/clients/clients.html'
-    clients = Client.active.all().order_by('disabled')
-    return TemplateResponse(request, template_name, {
-        'clients': clients,
-    })
-
-
-def shutdown_client(request, client_id):
-    client = Client.objects.get(id=client_id)
-    url = "http://{0}:{1}/rest/shutdown/".format(client.ip_address, client.port)
-    try:
-        r = requests.get(url)
-        return HttpResponseRedirect(reverse('settings:clients_list'))
-    except ConnectionError as e:
-        return None
+    context_object_name = 'clients'
 
 
 @login_required
