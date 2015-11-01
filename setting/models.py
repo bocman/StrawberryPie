@@ -16,6 +16,7 @@ from dateutil.parser import parse
 from datetime import date
 from collections import defaultdict
 
+from django.contrib.auth.models import User
 from core.utils import codes, format_time_interval, format_datetime
 from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModulsManager
 
@@ -144,6 +145,7 @@ class Client(models.Model):
                     seznam.append(modul)
             return seznam
         return None
+
 
 class ElementGroup(models.Model):
 
@@ -326,3 +328,42 @@ class EventActivationElements(models.Model):
         null=True,
         blank=True
         )
+
+
+class UserEmailSettings(models.Model):
+    """
+    This model hold all settings about sending email to users.
+    Each user have unique email settings, which is related with foreign key.
+    """
+    class Meta:
+        db_table = 'user_email_settings'
+
+    user = models.ForeignKey(User)
+    disable_email_notifications = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Disable all email notifications."
+    )
+    send_morning_report = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Send me morning report."
+    )
+    when_my_event_start = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Notify me, when my event has started"
+    )
+    when_my_event_end = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Notify me, when my event is done"
+    )
+    someone_cancel_my_event = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Notify me, if someone has cancel my event"
+    )
+    client_become_unreachable = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Notify me, when client become unreachable"
+    )
+    client_become_available = models.BooleanField(
+        default=False, null=False, blank=False,
+        help_text="Notify me, when client become connected"
+    )
