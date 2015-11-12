@@ -185,7 +185,7 @@ IP_ADDRESS = "192.168.1.130"
 
 # Domain name of server
 DOMAIN_NAME = "malina.webhop.me:8000"
-
+ 
 #EMAIL SETTINGS
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'app41680308@heroku.com'
@@ -196,8 +196,8 @@ EMAIL_USE_TLS = True
 REDIS_URL = "ec2-54-195-242-227.eu-west-1.compute.amazonaws.com"
 BROKER_URL = 'redis://h:pcaq1skmhhbgou5qk6t63iqik96@ec2-54-195-242-227.eu-west-1.compute.amazonaws.com:7739'
 CELERY_RESULT_BACKEND= BROKER_URL
-#CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-#CELERY_APP="proj"
-#CELERYD_NODES="worker"
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_APP="proj"
+CELERYD_NODES="worker"
 CELERY_TIMEZONE = TIME_ZONE
-
+ 
