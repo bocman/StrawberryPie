@@ -5,10 +5,14 @@ local_settings.pyc
 
 project/settings.py
 .gitignore
+node_modules
 
 celerybeat-schedule
 celerybeat.pid
 npm-debug.log
 
-static/bower_components/
+static/bower_components
 bower_components
+
+sublime-gulp.log
+venv
