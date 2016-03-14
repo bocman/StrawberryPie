@@ -8,7 +8,9 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	watch = require('gulp-watch');
 	md5 = require('gulp-md5'),
-	gulprimraf = require('gulp-rimraf');
+	gulprimraf = require('gulp-rimraf'),
+	zip = require('gulp-zip');
+	copy = require('gulp-copy');
 
 gulp.task('test', function() {
 	console.log("nisem ne ");
@@ -28,9 +30,18 @@ gulp.task('compileCSS', ['cleanPublicCSS'], function () {
 });
 
 gulp.task('compileJS', function() {
-  return gulp.src('lib/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'));
+  return gulp.src('./static/main.js')
+    .pipe(gulp.dest('./static/public/'));
+});
+
+gulp.task('releaseImages', function() {
+  return gulp.src(['./static/images/**/*']).pipe(gulp.dest('./static/dist/images'));
+});
+
+gulp.task('release', ['compileCSS', 'releaseImages'], function() {
+	return gulp.src('./static/public/*')
+		//.pipe(zip('release.zip'))
+		.pipe(gulp.dest('./static/dist'));
 });
 
 
@@ -39,6 +50,8 @@ gulp.task('watch', function () {
 	gulp.watch(['./static/**/*.js'], ['compileJS']);
     gulp.watch(['./static/**/*.less'], ['compileCSS']);
 });
+
+
 
 
 
