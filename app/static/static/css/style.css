@@ -71,6 +71,7 @@ form input[type="text"],form input[type="email"], form input[type="number"]{
 .datetimeChooser{
     margin-bottom: 6px;
     display: block;
+*/
 }
 
 .input-group.date {
@@ -133,19 +134,6 @@ form #days_group button {
 .mail_active{
     color: #10EEF6;
 }
-
-
-/*------------------- NO SHIT ------------*/
-.helptext {
-    display: block;
-    font-size: smaller;
-}
-
-
-
-
-
-
 
 
 

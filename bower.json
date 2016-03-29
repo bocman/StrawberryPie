@@ -16,8 +16,8 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrap": "3.3.6",
     "jquery": "~1.11.1",
-    "angular": "~1.4.7",
     "seiyria-bootstrap-slider": "~1.9.0",
     "toastr": "~2.1.0",
     "font-awesome": "~4.1.0",
