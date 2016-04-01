@@ -13,9 +13,12 @@
     "font-awesome": "^4.5.0",
     "gulp-copy": "0.0.2",
     "gulp-csso": "^1.0.1",
+    "gulp-exec": "^2.1.2",
     "gulp-md5": "^0.1.1",
     "gulp-rev": "^6.0.1",
     "gulp-rimraf": "^0.2.0",
+    "gulp-run": "^1.6.12",
+    "gulp-shell": "^0.5.2",
     "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
     "gulp-zip": "^3.1.0"

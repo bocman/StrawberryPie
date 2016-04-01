@@ -23,6 +23,34 @@ from core.managers import ActiveClientsManager, OnlineClientsManager, ActiveModu
 log = logging.getLogger(__name__)
 
 
+
+
+class Group(models.Model):
+
+    """
+    TODO
+    """
+    class Meta:
+        db_table = 'Group'
+
+    name = models.CharField(
+        verbose_name=_('Group name'),
+        max_length=20,
+    )
+    description = models.CharField(
+        verbose_name=_('Short description'),
+        max_length=30,
+        help_text="Short summary of the group"
+    )
+    is_deleted = models.BooleanField(
+        default=False,
+        help_text="Status which indicate if group is marked as deleted"
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Client(models.Model):
 
     """
@@ -46,6 +74,12 @@ class Client(models.Model):
         max_length=30,
         help_text="Short summary of the client"
     )
+    group = models.ForeignKey(
+        Group, 
+        on_delete=models.CASCADE,
+        default = None
+        )
+
     ip_address = models.GenericIPAddressField(
         verbose_name=_('IP address'), blank=True,
         null=True, unique=True, default=None,
@@ -147,31 +181,6 @@ class Client(models.Model):
         return None
 
 
-class Group(models.Model):
-
-    """
-    TODO
-    """
-    class Meta:
-        db_table = 'Group'
-
-    name = models.CharField(
-        verbose_name=_('Group name'),
-        max_length=20,
-    )
-    description = models.CharField(
-        verbose_name=_('Short description'),
-        max_length=30,
-        help_text="Short summary of the group"
-    )
-    is_deleted = models.BooleanField(
-        default=False,
-        help_text="Status which indicate if group is marked as deleted"
-    )
-
-    def __str__(self):
-        return self.name
-
 
 class Modul(models.Model):
     """
@@ -194,7 +203,13 @@ class Modul(models.Model):
         verbose_name=_('Short description'),
         max_length=30,
         help_text="Short summary of the modul"
-    )
+        )
+    group = models.ForeignKey(
+        Group, 
+        on_delete=models.CASCADE,
+        default = None
+        )
+
     is_general = models.BooleanField(
         default=False,
         blank=False, null=False

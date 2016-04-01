@@ -11,10 +11,7 @@ var gulp = require('gulp'),
 	gulprimraf = require('gulp-rimraf'),
 	zip = require('gulp-zip');
 	copy = require('gulp-copy');
-
-gulp.task('test', function() {
-	console.log("nisem ne ");
-});
+	shell = require('gulp-shell');
 
 gulp.task('cleanPublicCSS', function () {
    return gulp.src('app/static/public/*.css', { read: false })
@@ -52,8 +49,26 @@ gulp.task('watch', function () {
 });
 
 
-
-
+var exec = require('gulp-exec');
+ 
+gulp.task('server', ['watch'], function() { 
+  var options = {
+    continueOnError: false, // default = false, true means don't emit error event 
+    pipeStdout: false, // default = false, true means stdout is written to file.contents 
+    customTemplatingThing: "test" // content passed to gutil.template() 
+  };
+  var reportOptions = {
+  	err: true, // default = true, false means don't write err 
+  	stderr: true, // default = true, false means don't write stderr 
+  	stdout: true // default = true, false means don't write stdout 
+  }
+  gulp.src('.')
+    .pipe(exec(
+   	    "cd app && . venv/bin/activate && python manage.py runserver localhost:8104"
+    ))
+    .pipe(exec.reporter(reportOptions));
+    console.log('Started Django Server'); 
+});
 
 
 

@@ -33,7 +33,7 @@ class ClientForm(ModelForm):
         model = Client
         fields = [
             'name', 'description', 'ip_address',
-            'port', 'key'
+            'port', 'group'
         ]
 
 class GroupForm(ModelForm):

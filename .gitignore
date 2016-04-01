@@ -13,7 +13,9 @@ npm-debug.log
 
 static/bower_components
 bower_components
-public
+app/static/public
 
 sublime-gulp.log
 venv
+/output
+/path

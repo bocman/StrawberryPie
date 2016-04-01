@@ -104,6 +104,12 @@ class EditGroupView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EditGroupView, self).get_context_data(**kwargs)
         context['group_id'] = self.kwargs['pk']
+        clients = Client.objects.filter(group_id=self.kwargs['pk'])
+        moduls = Modul.objects.filter(group_id = self.kwargs['pk'])
+        from itertools import chain
+        childs = list(chain(clients, moduls))
+
+        context['childs'] = childs
         return context
 
 class ClientListView(ListView):
