@@ -50,7 +50,7 @@ def activation(status, client_id=None, pin_number=None):
     }
     client = Client.objects.get(id=client_id)
 
-    url = "http://{0}/webservice/gpio/update/{1}/".format(client.ip_address, pin_number)
+    url = "http://{0}/api/gpio/update/{1}/".format(client.ip_address, pin_number)
     log.info("PREPARE to activate modul with pin {0} on client {1}".format(pin_number, client.name))
     try:
         if send_data(url, data) == 200:

@@ -17,7 +17,8 @@ pytz==2015.4
 requests==2.2.1
 wolframalpha==1.2
 django-secure==1.0.1
-django-debug-toolbar
+#django-debug-toolbar
+django-angular
 
 #---------------------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ django-extensions==1.5.5
 
 #---------------------------------------------------------------------------------
 # Heroku production
-whitenoise
-gunicorn==19.3.0
-django-postgrespool
-dj-database-url==0.2.2
+#whitenoise
+#gunicorn==19.3.0
+#django-postgrespool
+#dj-database-url==0.2.2

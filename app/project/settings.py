@@ -44,14 +44,15 @@ THIRD_PARTY_APPS = (
     'djcelery',
     'kombu.transport.django',
     'rest_framework',
-    'webservice',
     'widget_tweaks',
     'djangosecure',
     'debug_toolbar',
+    'djng',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'api',
     'setting',
     'dashboard',
     'entertainment'
@@ -160,7 +161,7 @@ MEDIA_ROOT = "media/"
 SONGS_ROOT = "{0}music".format(MEDIA_ROOT)
 
 #Enable it in production
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'public')
 
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 

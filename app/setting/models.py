@@ -128,7 +128,7 @@ class Client(models.Model):
         We use this function to check connection with client.
         It's like a simple ping method
         """
-        url = "http://{0}/webservice/ping/".format(str(self.ip_address))
+        url = "http://{0}/api/ping/".format(str(self.ip_address))
         try:
             r = requests.get(url, timeout=3.0)
             if r.status_code == requests.codes.ok:
@@ -142,8 +142,8 @@ class Client(models.Model):
 
     def all_moduls(self):
         links ={
-            'port': "http://{0}:{1}/webservice/gpio/all/",
-            'no_port': "http://{0}/webservice/gpio/all/"
+            'port': "http://{0}:{1}/api/gpio/all/",
+            'no_port': "http://{0}/api/gpio/all/"
         }
         if not self.is_connected:
             return codes.error
