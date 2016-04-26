@@ -23,7 +23,12 @@
     "font-awesome": "~4.1.0",
     "chartjs": "1.0.1-beta.3",
     "gauge.js": "~1.2.1",
-    "bootstrap-datetimepicker": "~0.0.11"
+    "bootstrap-datetimepicker": "~0.0.11",
+    "restangular": "^1.5.2"
+  },
+  "devDependencies": {
+    "angular": "^1.5.3",
+    "angular-route": "^1.5.3",
+    "angular-ui-router": "^0.2.18"
   }
 }
- 

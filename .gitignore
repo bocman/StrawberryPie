@@ -16,6 +16,5 @@ bower_components
 app/static/public
 
 sublime-gulp.log
-venv
 /output
 /path

@@ -124,26 +124,22 @@
                                         {% for modul in moduls  %}
                                             <tr>
                                                 <td>
-                                                <a href="
-                                                        {% if modul.is_activated %}
-                                                            {% url 'settings:activate_modul' client_id=client_id pin_number=modul.pin_number status=False %}
-                                                        {% else %}
-                                                            {% url 'settings:activate_modul' client_id=client_id pin_number=modul.pin_number status=True %}
-                                                        {% endif %}
-                                                        "
-                                                    class="
-                                                        activation_button 
-                                                        {% if modul.is_activated %}
-                                                            btn btn-xs btn-success
-                                                        {% else %}
-                                                            btn btn-xs btn-default
-                                                        {% endif %}
-                                                        "
+    <a href="
+            {% if modul.is_activated %}
+                {% url 'settings:activate_modul' client_id=client_id pin_number=modul.pin_number status=False %}
+            {% else %}
+                 {% url 'settings:activate_modul' client_id=client_id pin_number=modul.pin_number status=True %}
+            {% endif %}"
+     class="
+            activation_button 
+            {% if modul.is_activated %}
+                btn btn-xs btn-success
+            {% else %}
+                btn btn-xs btn-default
+             {% endif %}"
 
-                                                    role="button"
-                                                    id ="{{modul.pin_number}}"
-                                                    >
-
+    role="button"
+    id ="{{modul.pin_number}}">
                                                     {{ modul.name }}
                                                 </a>
                                                 </td>

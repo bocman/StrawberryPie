@@ -13,6 +13,7 @@
         <script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}bower_components/font-awesome/css/font-awesome.min.css"/>
     </head>
+    
     <body onload="updateClock(); setInterval('updateClock()', 1000 )">
         <div id="wrapper">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -20,14 +21,18 @@
                 {% include "sidebar_menu.html" %}
             </nav>
             <div id="page-wrapper">
-                <div class="container-fluid">  
+                <div class="container-fluid"> 
+
                     {% block content %}
                     {% endblock %}              
                 </div>
             </div>
         </div>
-        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+        
+
         <script src="{{ STATIC_URL }}js/pages/utils.js"></script>
+
         <script type="text/javascript">
             var paths={
                 'fieldset_open': "{% static 'images/maximize.png' %}",

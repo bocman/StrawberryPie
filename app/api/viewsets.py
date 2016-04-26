@@ -1,28 +1,31 @@
-from django.forms import widgets
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
-from rest_framework import status
 from rest_framework import viewsets
-from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
-from setting.models import Client
-from serializers import ClientSerializer
+from setting.models import Client, Group
+from serializers import ClientSerializer, GroupSerializer
 
 import logging
-
 log = logging.getLogger(__name__)
 
 
-class ClientsViewSet(viewsets.ReadOnlyModelViewSet):
-	queryset = Client.objects.all()
-	serializer_class = ClientSerializer
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'clients': reverse('api:client-list', request=request, format=format),
+        'groups': reverse('api:group-list', request=request, format=format)
+    })
 
 
+class ClientViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
 
 
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 
 

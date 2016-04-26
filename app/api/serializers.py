@@ -22,3 +22,12 @@ class ModulSerializer(serializers.Serializer):
     is_general = serializers.BooleanField()
     pin_number = serializers.IntegerField()
     is_activated = serializers.BooleanField()
+
+
+class GroupSerializer(serializers.Serializer):
+    """
+    Group serializer
+    """
+    name = serializers.CharField(max_length=40)
+    description = serializers.CharField(max_length=50)
+    is_deleted = serializers.BooleanField()
